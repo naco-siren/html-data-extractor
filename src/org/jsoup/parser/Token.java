@@ -81,7 +81,7 @@ abstract class Token {
         private boolean hasEmptyAttributeValue = false; // distinguish boolean attribute from empty string value
         private boolean hasPendingAttributeValue = false;
         boolean selfClosing = false;
-        Attributes attributes; // start tags get attributes on construction. End tags get attributes on first new attribute (but only for parser convenience, not used).
+        Attributes attributes; // start tags get attributes on construction. End tags get attributes on first new attribute (but only for apted.parser convenience, not used).
 
         @Override
         Tag reset() {

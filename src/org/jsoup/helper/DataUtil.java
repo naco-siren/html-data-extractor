@@ -64,7 +64,7 @@ public final class DataUtil {
      * @param in input stream to parse. You will need to close it.
      * @param charsetName character set of input
      * @param baseUri base URI of document, to resolve relative links against
-     * @param parser alternate {@link Parser#xmlParser() parser} to use.
+     * @param parser alternate {@link Parser#xmlParser() apted.parser} to use.
      * @return Document
      * @throws IOException on IO error
      */

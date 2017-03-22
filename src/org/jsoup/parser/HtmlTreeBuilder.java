@@ -531,9 +531,9 @@ public class HtmlTreeBuilder extends TreeBuilder {
 
     /**
      11.2.5.2 Closing elements that have implied end tags<p/>
-     When the steps below require the UA to generate implied end tags, then, while the current node is a dd element, a
+     When the steps below require the UA to generate implied end tags, then, while the current apted.node is a dd element, a
      dt element, an li element, an option element, an optgroup element, a p element, an rp element, or an rt element,
-     the UA must pop the current node off the stack of open elements.
+     the UA must pop the current apted.node off the stack of open elements.
 
      @param excludeTag If a step requires the UA to generate implied end tags but lists an element to exclude from the
      process, then the UA must perform the above steps as if that element was not in the above list.
@@ -617,7 +617,7 @@ public class HtmlTreeBuilder extends TreeBuilder {
                 entry = formattingElements.get(++pos);
             Validate.notNull(entry); // should not occur, as we break at last element
 
-            // 8. create new element from element, 9 insert into current node, onto stack
+            // 8. create new element from element, 9 insert into current apted.node, onto stack
             skip = false; // can only skip increment from 4.
             Element newEl = insertStartTag(entry.nodeName()); // todo: avoid fostering here?
             // newEl.namespace(entry.namespace()); // todo: namespaces

@@ -20,7 +20,7 @@ public class Jsoup {
     private Jsoup() {}
 
     /**
-     Parse HTML into a Document. The parser will make a sensible, balanced document tree out of any HTML.
+     Parse HTML into a Document. The apted.parser will make a sensible, balanced document tree out of any HTML.
 
      @param html    HTML to parse
      @param baseUri The URL where the HTML was retrieved from. Used to resolve relative URLs to absolute URLs, that occur
@@ -32,13 +32,13 @@ public class Jsoup {
     }
 
     /**
-     Parse HTML into a Document, using the provided Parser. You can provide an alternate parser, such as a simple XML
-     (non-HTML) parser.
+     Parse HTML into a Document, using the provided Parser. You can provide an alternate apted.parser, such as a simple XML
+     (non-HTML) apted.parser.
 
      @param html    HTML to parse
      @param baseUri The URL where the HTML was retrieved from. Used to resolve relative URLs to absolute URLs, that occur
      before the HTML declares a {@code <base href>} tag.
-     @param parser alternate {@link Parser#xmlParser() parser} to use.
+     @param parser alternate {@link Parser#xmlParser() apted.parser} to use.
      @return sane HTML
      */
     public static Document parse(String html, String baseUri, Parser parser) {
@@ -119,14 +119,14 @@ public class Jsoup {
     }
 
     /**
-     Read an input stream, and parse it to a Document. You can provide an alternate parser, such as a simple XML
-     (non-HTML) parser.
+     Read an input stream, and parse it to a Document. You can provide an alternate apted.parser, such as a simple XML
+     (non-HTML) apted.parser.
 
      @param in          input stream to read. Make sure to close it after parsing.
      @param charsetName (optional) character set of file contents. Set to {@code null} to determine from {@code http-equiv} meta tag, if
      present, or fall back to {@code UTF-8} (which is often safe to do).
      @param baseUri     The URL where the HTML was retrieved from, to resolve relative links against.
-     @param parser alternate {@link Parser#xmlParser() parser} to use.
+     @param parser alternate {@link Parser#xmlParser() apted.parser} to use.
      @return sane HTML
 
      @throws IOException if the file could not be found, or read, or if the charsetName is invalid.
