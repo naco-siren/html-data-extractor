@@ -6,7 +6,7 @@ import org.jsoup.helper.StringUtil;
 import org.jsoup.nodes.Document.OutputSettings.*;
 
 /**
- * A {@code <!DOCTYPE>} node.
+ * A {@code <!DOCTYPE>} apted.node.
  */
 public class DocumentType extends Node {
     public static final String PUBLIC_KEY = "PUBLIC";

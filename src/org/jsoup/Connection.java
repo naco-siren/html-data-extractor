@@ -254,9 +254,9 @@ public interface Connection {
     Connection cookies(Map<String, String> cookies);
 
     /**
-     * Provide an alternate parser to use when parsing the response to a Document. If not set, defaults to the HTML
-     * parser, unless the response content-type is XML, in which case the XML parser is used.
-     * @param parser alternate parser
+     * Provide an alternate apted.parser to use when parsing the response to a Document. If not set, defaults to the HTML
+     * apted.parser, unless the response content-type is XML, in which case the XML apted.parser is used.
+     * @param parser alternate apted.parser
      * @return this Connection, for chaining
      */
     Connection parser(Parser parser);
@@ -583,14 +583,14 @@ public interface Connection {
         String requestBody();
 
         /**
-         * Specify the parser to use when parsing the document.
-         * @param parser parser to use.
+         * Specify the apted.parser to use when parsing the document.
+         * @param parser apted.parser to use.
          * @return this Request, for chaining
          */
         Request parser(Parser parser);
 
         /**
-         * Get the current parser to use when parsing the document.
+         * Get the current apted.parser to use when parsing the document.
          * @return current Parser
          */
         Parser parser();

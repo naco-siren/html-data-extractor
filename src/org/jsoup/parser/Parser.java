@@ -155,7 +155,7 @@ public class Parser {
         Document doc = Document.createShell(baseUri);
         Element body = doc.body();
         List<Node> nodeList = parseFragment(bodyHtml, body, baseUri);
-        Node[] nodes = nodeList.toArray(new Node[nodeList.size()]); // the node list gets modified when re-parented
+        Node[] nodes = nodeList.toArray(new Node[nodeList.size()]); // the apted.node list gets modified when re-parented
         for (int i = nodes.length - 1; i > 0; i--) {
             nodes[i].remove();
         }
@@ -190,18 +190,18 @@ public class Parser {
     // builders
 
     /**
-     * Create a new HTML parser. This parser treats input as HTML5, and enforces the creation of a normalised document,
+     * Create a new HTML apted.parser. This apted.parser treats input as HTML5, and enforces the creation of a normalised document,
      * based on a knowledge of the semantics of the incoming tags.
-     * @return a new HTML parser.
+     * @return a new HTML apted.parser.
      */
     public static Parser htmlParser() {
         return new Parser(new HtmlTreeBuilder());
     }
 
     /**
-     * Create a new XML parser. This parser assumes no knowledge of the incoming tags and does not treat it as HTML,
+     * Create a new XML apted.parser. This apted.parser assumes no knowledge of the incoming tags and does not treat it as HTML,
      * rather creates a simple tree directly from the input.
-     * @return a new simple XML parser.
+     * @return a new simple XML apted.parser.
      */
     public static Parser xmlParser() {
         return new Parser(new XmlTreeBuilder());

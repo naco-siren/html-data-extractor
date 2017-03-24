@@ -3,7 +3,7 @@ package org.jsoup.select;
 import org.jsoup.nodes.Node;
 
 /**
- * Depth-first node traversor. Use to iterate through all nodes under and including the specified root node.
+ * Depth-first apted.node traversor. Use to iterate through all nodes under and including the specified root apted.node.
  * <p>
  * This implementation does not use recursion, so a deep DOM does not risk blowing the stack.
  * </p>
@@ -13,7 +13,7 @@ public class NodeTraversor {
 
     /**
      * Create a new traversor.
-     * @param visitor a class implementing the {@link NodeVisitor} interface, to be called when visiting each node.
+     * @param visitor a class implementing the {@link NodeVisitor} interface, to be called when visiting each apted.node.
      */
     public NodeTraversor(NodeVisitor visitor) {
         this.visitor = visitor;
@@ -21,7 +21,7 @@ public class NodeTraversor {
 
     /**
      * Start a depth-first traverse of the root and all of its descendants.
-     * @param root the root node point to traverse.
+     * @param root the root apted.node point to traverse.
      */
     public void traverse(Node root) {
         Node node = root;

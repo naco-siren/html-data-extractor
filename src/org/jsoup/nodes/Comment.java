@@ -3,14 +3,14 @@ package org.jsoup.nodes;
 import java.io.IOException;
 
 /**
- A comment node.
+ A comment apted.node.
 
  @author Jonathan Hedley, jonathan@hedley.net */
 public class Comment extends Node {
     private static final String COMMENT_KEY = "comment";
 
     /**
-     Create a new comment node.
+     Create a new comment apted.node.
      @param data The contents of the comment
      @param baseUri base URI
      */
