@@ -2,18 +2,18 @@ import apted.costmodel.StringUnitCostModel;
 import apted.distance.APTED;
 import apted.node.Node;
 import apted.node.StringNodeData;
+import apted.parser.BracketStringInputParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import apted.parser.BracketStringInputParser;
 
 public class Main {
 
     public static void main(String[] args) {
 
-
         /* 1. Jsoup parsing HTML part */
+
         Document doc = null;
         try {
             // a. Use Jsoup directly connect to and parse a given URL
@@ -26,10 +26,8 @@ public class Main {
             e.printStackTrace();
         }
         String title = doc.title();
-
         Element resultsRoot = doc.getElementById("gs_ccl_results");
         Elements results = resultsRoot.children();
-
 
 
         /* 2. Tree Edit Distance part */
@@ -44,7 +42,6 @@ public class Main {
 
         // This cast is safe due to unit cost.
         int result = (int)apted.computeEditDistance(t1, t2);
-
 
         return;
     }

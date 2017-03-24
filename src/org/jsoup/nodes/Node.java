@@ -25,6 +25,9 @@ public abstract class Node implements Cloneable {
     String baseUri;
     int siblingIndex;
 
+    /* TODO: Hao Sun please implement this! */
+    public String APTEDTreeStructure;
+
     /**
      Create a new Node.
      @param baseUri base URI
