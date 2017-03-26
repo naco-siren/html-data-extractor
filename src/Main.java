@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         /* 1. Jsoup parsing HTML part */
-        //part1();
+        part1();
 
         /* 2. Transforming Jsoup's tree into APTED project's input format */
 
