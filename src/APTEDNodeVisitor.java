@@ -26,6 +26,7 @@ public class APTEDNodeVisitor implements NodeVisitor {
             StringBuilder stringBuilder = new StringBuilder("{" + element.tagName());
             for (Element child : element.children()){
                 stringBuilder.append(child.APTEDTreeStructure);
+                element.numOffSpring += child.numOffSpring;
             }
             stringBuilder.append("}");
 

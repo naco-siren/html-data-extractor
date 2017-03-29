@@ -28,6 +28,9 @@ public abstract class Node implements Cloneable {
     /* TODO: Hao Sun please implement this! */
     public String APTEDTreeStructure;
 
+    //use for debug by haosun
+    public int numOffSpring = 1; //include itself
+
     /**
      Create a new Node.
      @param baseUri base URI
