@@ -34,13 +34,19 @@ public class HTMLExtractor {
         return proximity;
     }
 
-    private int recordsAdd(Node node) {
-        ArrayList<Node> outputList = new ArrayList<Node>();
+    /**
+     * The node's children will vote for each other based on proximity. If two
+     * children are close enough, they will give each other one vote. If one c-
+     * hild get enough votes, its vote result is true. That means it is one of
+     * the possible records which the user is interested in.
+     * @param node
+     * @return the vote result for each child.
+     */
+    private boolean[] vote(Node node) {
         int numChilds = node.childNodeSize();
         float voteThreshhold = 0.6f;
-        int[] voteResult = new int[numChilds];
-
-        System.out.println(node.numOffSpring + ":");
+        int[] voteCount = new int[numChilds];
+        boolean[] voteResult = new boolean[numChilds];
 
         for(int i = 0; i < numChilds; i++) {
             for(int j = i + 1; j < numChilds; j++) {
@@ -53,36 +59,65 @@ public class HTMLExtractor {
                         * (1 - proximity);
                 //System.out.println("i"+i+"j"+j+"tmp"+tmp+"distance"+apted.computeEditDistance(t1, t2));
                 if(tmp >= apted.computeEditDistance(t1, t2)) {
-                    voteResult[i]++;
-                    voteResult[j]++;
+                    voteCount[i]++;
+                    voteCount[j]++;
                 }
             }
         }
 
         for(int i = 0; i < numChilds; i++) {
-            System.out.print(voteResult[i]);
-            if(voteResult[i] >= voteThreshhold * numChilds) {
+            System.out.print(voteCount[i]);
+            if(voteCount[i] >= voteThreshhold * numChilds) {
+                voteResult[i] = true;
+            }else {
+                voteResult[i] = false;
+            }
+        }
+
+        return voteResult;
+    }
+
+    /**
+     * Decide whether a node's children are the records to output. If they are,
+     * they will be put in an arraylist. And the arraylist will be one element
+     * of the class' member records.
+     * @param node whose children are examined.
+     * @return the number of records to output. If it is 0, this node's children
+     * are not the records users are interested in.
+     */
+    private int recordsAdd(Node node) {
+        ArrayList<Node> outputList = new ArrayList<Node>();
+        int numChilds = node.childNodeSize();
+        boolean[] voteResult;
+
+        System.out.println(node.numOffSpring + ":");
+
+        voteResult = vote(node);
+        for(int i = 0; i < numChilds; i++) {
+            if(voteResult[i]) {
                 outputList.add(node.childNode(i));
             }
         }
 
-        System.out.println("next");
-
-        if(!outputList.isEmpty()) {
+        if (outputList.isEmpty()) {
+            return 0;
+        } else {
             records.add(outputList);
             return outputList.size();
-        }else {
-            return 0;
         }
 
     }
 
+    /**
+     * Traverse the tree (pre-order) to extract records from the HTML doc.
+     * Call method on root, if its children are hit records, move to its
+     * Sibling. If not, call method on all its child recursively one by one.
+     * @param root the root node of the DOM representation of the HTML doc.
+     */
     public void recordsExtract(Node root) {
-
         if(root.childNodeSize() > 0) {
             if(root.childNodeSize() >= 2) {
-                int i = recordsAdd(root);
-                if(i > 0) {
+                if(recordsAdd(root) > 0) {
                     return;
                 }else {
                     for(Node node : root.childNodes()) {
@@ -91,12 +126,19 @@ public class HTMLExtractor {
                 }
             }else {
                 //only one child
-                for(Node node : root.childNodes()) {
-                    recordsExtract(node);
-                }
+                recordsExtract(root.childNode(0));
             }
         }
         return;
+    }
+
+    public void filterByNumber(int minRecordsNum) {
+        for(int i = 0; i < records.size(); i++) {
+            if(records.get(i).size() < minRecordsNum) {
+                records.remove(i);
+                i--;
+            }
+        }
     }
 
     public static void main(String[] args) throws IOException {
@@ -113,6 +155,7 @@ public class HTMLExtractor {
 
         HTMLExtractor htmlExtractor = new HTMLExtractor(mainBody);
         htmlExtractor.recordsExtract(htmlExtractor.root);
+        htmlExtractor.filterByNumber(4);
 
         ArrayList<ArrayList<Node>> records = htmlExtractor.records;
 
