@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="HanSoup" level="project" />
+    <orderEntry type="library" name="htmlcleaner-2.19" level="project" />
   </component>
 </module>
