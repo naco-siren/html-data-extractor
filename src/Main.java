@@ -19,6 +19,7 @@ public class Main {
         /* Perform extraction */
         htmlDataExtractor.setMinResultSize(4);
         if (htmlDataExtractor.extract() == 0) {
+            htmlDataExtractor.refine();
             DataGroups results = htmlDataExtractor.getResults();
 
             for (int i = 0; i < results.size(); i++) {
