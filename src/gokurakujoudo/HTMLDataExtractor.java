@@ -1,3 +1,9 @@
+package gokurakujoudo;
+
+import gokurakujoudo.data.DataGroup;
+import gokurakujoudo.data.DataGroups;
+import gokurakujoudo.dom_tree_helpers.DomTreeCleaner;
+import gokurakujoudo.dom_tree_helpers.DomTreeDataExtractor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 
@@ -30,8 +36,31 @@ public class HTMLDataExtractor {
     private DomTreeDataExtractor _domTreeDataExtractor;
 
     /* Output: */
-    private ArrayList<ArrayList<Node>> _results;
-    public ArrayList<ArrayList<Node>> getResults() {
+    private DataGroups _results;
+    public DataGroups getResults() {
+        /* Rank the results */
+        int resultSize = _results.size();
+
+        for (int i = 0; i < resultSize; i++) {
+            DataGroup dataGroup = _results.get(i);
+            ArrayList<Node> data = dataGroup._data;
+
+            /* measurement += avg(tree_node_size) */
+            double numOffspringsSum = 0;
+            for (Node node : data) {
+                numOffspringsSum += node.numOffsprings;
+            }
+            dataGroup._significance += (numOffspringsSum / (double) data.size());
+        }
+
+        /* Sort the results according to their significances */
+        _results.sort();
+        _results.reverse();
+
+
+        /* TODO: Apply a filtering strategy */
+        _results.refine();
+
         return _results;
     }
 

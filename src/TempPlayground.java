@@ -3,17 +3,28 @@ import apted.distance.APTED;
 import apted.node.Node;
 import apted.node.StringNodeData;
 import apted.parser.BracketStringInputParser;
+import gokurakujoudo.data.DataGroup;
+import gokurakujoudo.dom_tree_helpers.APTEDNodeVisitor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.jsoup.select.NodeTraversor;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Created by naco_siren on 3/29/17.
  */
 public class TempPlayground {
     public static void main(String[] args) throws Exception {
+        //testJsoupAndAPTED();
+
+        return;
+    }
+
+    public static void testJsoupAndAPTED() throws Exception {
         /* 1. Jsoup parsing HTML part */
         part1();
 
@@ -47,7 +58,7 @@ public class TempPlayground {
         System.out.println("Difference: " + diff);
     }
 
-    public static void part1(){
+    private static void part1(){
         Document doc = null;
         try {
             // a. Use Jsoup directly connect to and parse a given URL
@@ -64,7 +75,7 @@ public class TempPlayground {
         Elements results = resultsRoot.children();
     }
 
-    public static String part2(String html) throws Exception{
+    private static String part2(String html) throws Exception{
         Document document = Jsoup.parse(html);
 
 
@@ -75,8 +86,7 @@ public class TempPlayground {
         return document.body().APTEDTreeStructure;
     }
 
-
-    public static int part3(String tree1, String tree2){
+    private static int part3(String tree1, String tree2){
 
         // Parse the input.
         BracketStringInputParser parser = new BracketStringInputParser();

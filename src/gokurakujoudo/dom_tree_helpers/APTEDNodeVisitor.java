@@ -1,7 +1,7 @@
+package gokurakujoudo.dom_tree_helpers;
+
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
-import org.jsoup.nodes.TextNode;
-import org.jsoup.select.Elements;
 import org.jsoup.select.NodeVisitor;
 
 /**
@@ -26,7 +26,7 @@ public class APTEDNodeVisitor implements NodeVisitor {
             StringBuilder stringBuilder = new StringBuilder("{" + element.tagName());
             for (Element child : element.children()){
                 stringBuilder.append(child.APTEDTreeStructure);
-                element.numOffSpring += child.numOffSpring;
+                element.numOffsprings += child.numOffsprings;
             }
             stringBuilder.append("}");
 

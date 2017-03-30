@@ -1,6 +1,6 @@
-import org.jsoup.nodes.Node;
-
-import java.util.ArrayList;
+import gokurakujoudo.data.DataGroup;
+import gokurakujoudo.HTMLDataExtractor;
+import gokurakujoudo.data.DataGroups;
 
 public class Main {
 
@@ -19,7 +19,12 @@ public class Main {
         /* Perform extraction */
         htmlDataExtractor.setMinResultSize(4);
         if (htmlDataExtractor.extract() == 0) {
-            ArrayList<ArrayList<Node>> results = htmlDataExtractor.getResults();
+            DataGroups results = htmlDataExtractor.getResults();
+
+            for (int i = 0; i < results.size(); i++) {
+                DataGroup dataGroup = results.get(i);
+                System.out.println("No. " + i + ", " + dataGroup);
+            }
         }
 
         return;

@@ -1,8 +1,8 @@
-import org.jsoup.Jsoup;
+package gokurakujoudo.dom_tree_helpers;
+
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**

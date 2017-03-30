@@ -1,12 +1,14 @@
+package gokurakujoudo.dom_tree_helpers;
+
 import apted.costmodel.StringUnitCostModel;
 import apted.distance.APTED;
 import apted.node.StringNodeData;
 import apted.parser.BracketStringInputParser;
-import org.jsoup.nodes.Element;
+import gokurakujoudo.data.DataGroup;
+import gokurakujoudo.data.DataGroups;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.NodeTraversor;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**HTML extractor is used to extract data which users are interested
@@ -30,9 +32,13 @@ public class DomTreeDataExtractor {
     }
 
     /* Output: Results */
-    private ArrayList<ArrayList<Node>> _results = new ArrayList<ArrayList<Node>>();
-    public ArrayList<ArrayList<Node>> getResults(){
-        return _results;
+    private DataGroups _results = new DataGroups();
+    public DataGroups getResults(){
+        /* Check if results null */
+        if (_results == null)
+            return null;
+        else
+            return _results;
     }
 
     /* Tools:  */
@@ -99,11 +105,13 @@ public class DomTreeDataExtractor {
      * are not the results users are interested in.
      */
     private int addToResults(Node node) {
-        ArrayList<Node> outputList = new ArrayList<Node>();
+
+        DataGroup dataGroup = new DataGroup();
+        dataGroup._data = new ArrayList<>();
+        ArrayList<Node> outputList = dataGroup._data;
+
         int childNodeSize = node.childNodeSize();
-
-        //System.out.println(node.numOffSpring + ":");
-
+        //System.out.println(node.numOffsprings + ":");
         boolean[] voteResult = vote(node);
         for(int i = 0; i < childNodeSize; i++) {
             if(voteResult[i]) {
@@ -114,7 +122,7 @@ public class DomTreeDataExtractor {
         if (outputList.isEmpty()) {
             return 0;
         } else {
-            _results.add(outputList);
+            _results.add(dataGroup);
             return outputList.size();
         }
     }
@@ -149,7 +157,7 @@ public class DomTreeDataExtractor {
                 apted.node.Node<StringNodeData> t2 = _APTEDParser.fromString(node.childNode(j).APTEDTreeStructure);
 
                 /* Judge if TED exceed threshold */
-                float TEDthreshold = (node.childNode(i).numOffSpring + node.childNode(j).numOffSpring) / 2
+                float TEDthreshold = (node.childNode(i).numOffsprings + node.childNode(j).numOffsprings) / 2
                         * (1 - _proximity);
                 //System.out.println("i"+i+"j"+j+"tmp"+tmp+"distance"+_apted.computeEditDistance(t1, t2));
                 if (TEDthreshold >= _apted.computeEditDistance(t1, t2)) {
@@ -161,7 +169,7 @@ public class DomTreeDataExtractor {
 
         /* Collect voting results */
         for(int i = 0; i < childNodeSize; i++) {
-            System.out.print(voteCount[i]);
+            //System.out.print(voteCount[i]);
             if (voteCount[i] >= voteThreshold * childNodeSize) {
                 voteResult[i] = true;
             } else {
@@ -180,16 +188,19 @@ public class DomTreeDataExtractor {
      * @return
      */
     public void filterByMinResultSize(int minResultSize) throws Exception {
+        /* Check if argument illegal */
         if (minResultSize < 1) {
             throw new IllegalArgumentException("Min result size should be larger than 0!");
         }
 
+        /* Check if results null */
         if (_results == null) {
             throw new Exception("Must run extractData() first before filtering!");
         }
 
+        /* Remove DataGroups below minimum result size */
         for(int i = 0; i < _results.size(); i++) {
-            if(_results.get(i).size() < minResultSize) {
+            if(_results.get(i)._data.size() < minResultSize) {
                 _results.remove(i);
                 i--;
             }
