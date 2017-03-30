@@ -15,37 +15,25 @@ import java.util.ArrayList;
  * ill be extracted and exported into a database-like schema.
  * Created by haosun on 3/27/17.
  */
-public class HTMLExtractor {
-    public static void main(String[] args) throws IOException {
-        String[] removeTagNames = new String[]{"meta", "script", "title", "style"};
-        String URL = "https://scholar.google.com/scholar?hl=en&q=database&as_sdt=1%2C14&as_sdtp=&oq=";
-        HTMLCleaner htmlCleaner = new HTMLCleaner(URL, removeTagNames);
-
-        Element mainBody = htmlCleaner.clean();
-        //Element searchResult = mainBody.getElementById("gs_ccl");
-
-        APTEDNodeVisitor aptedNodeVisitor = new APTEDNodeVisitor();
-        NodeTraversor nodeTraversor = new NodeTraversor(aptedNodeVisitor);
-        nodeTraversor.traverse(mainBody);
-
-        HTMLExtractor htmlExtractor = new HTMLExtractor(mainBody);
-        htmlExtractor.extractData(htmlExtractor._root);
-        htmlExtractor.filterByNumber(4);
-
-        ArrayList<ArrayList<Node>> records = htmlExtractor._results;
-
-        return;
-    }
-
+public class DomTreeDataExtractor {
 
     /* Input: */
     private Node _root;
 
-    /* Parameters:  */
+    /* Parameters: Proximity */
     private float _proximity = 0.7f;
+    public void setProximity(float proximity) {
+        this._proximity = proximity;
+    }
+    public double getProximity() {
+        return _proximity;
+    }
 
-    /* Output: */
+    /* Output: Results */
     private ArrayList<ArrayList<Node>> _results = new ArrayList<ArrayList<Node>>();
+    public ArrayList<ArrayList<Node>> getResults(){
+        return _results;
+    }
 
     /* Tools:  */
     private BracketStringInputParser _APTEDParser = new BracketStringInputParser();
@@ -55,19 +43,8 @@ public class HTMLExtractor {
      * Constructor
      * @param root: the root of the input DOM tree
      */
-    public HTMLExtractor(Node root) {
+    public DomTreeDataExtractor(Node root) {
         this._root = root;
-    }
-
-    /**
-     * Customize the proximity
-     * @param proximity
-     */
-    public void setProximity(float proximity) {
-        this._proximity = proximity;
-    }
-    public double getProximity() {
-        return _proximity;
     }
 
 
@@ -75,16 +52,30 @@ public class HTMLExtractor {
      * Traverse the tree (pre-order) to extract _results from the HTML doc.
      * Call method on root, if its children are hit _results, move to its
      * Sibling. If not, call method on all its child recursively one by one.
+     */
+    public int extractData(){
+        /* Construct APTED structure for each node */
+        APTEDNodeVisitor aptedNodeVisitor = new APTEDNodeVisitor();
+        NodeTraversor nodeTraversor = new NodeTraversor(aptedNodeVisitor);
+        nodeTraversor.traverse(_root);
+
+        /* Recursively extract data using pre-order traversing */
+        extractDataRecursive(_root);
+
+        return 0;
+    }
+    /**
+     * Recursive part of extractData()
      * @param root the root node of the DOM representation of the HTML doc.
      */
-    public void extractData(Node root) {
+    private void extractDataRecursive(Node root) {
         int childNodeSize = root.childNodeSize();
 
         if (childNodeSize <= 0) {
             return;
 
         } else if (childNodeSize == 1){
-            extractData(root.childNode(0));
+            extractDataRecursive(root.childNode(0));
 
         } else {
             if (addToResults(root) > 0) {
@@ -92,15 +83,13 @@ public class HTMLExtractor {
 
             } else {
                 for (Node node : root.childNodes()) {
-                    extractData(node);
+                    extractDataRecursive(node);
                 }
             }
         }
 
         return;
     }
-
-
     /**
      * Decide whether a node's children are the _results to output. If they are,
      * they will be put in an arraylist. And the arraylist will be one element
@@ -113,11 +102,9 @@ public class HTMLExtractor {
         ArrayList<Node> outputList = new ArrayList<Node>();
         int childNodeSize = node.childNodeSize();
 
-        boolean[] voteResult;
+        //System.out.println(node.numOffSpring + ":");
 
-        System.out.println(node.numOffSpring + ":");
-
-        voteResult = vote(node);
+        boolean[] voteResult = vote(node);
         for(int i = 0; i < childNodeSize; i++) {
             if(voteResult[i]) {
                 outputList.add(node.childNode(i));
@@ -130,10 +117,7 @@ public class HTMLExtractor {
             _results.add(outputList);
             return outputList.size();
         }
-
     }
-
-
     /**
      * The node's children will vote for each other based on _proximity. If two
      * children are close enough, they will give each other one vote. If one c-
@@ -188,14 +172,20 @@ public class HTMLExtractor {
         return voteResult;
     }
 
+
+
     /**
      * Filter the results given the minimum result size
      * @param minResultSize
      * @return
      */
-    public boolean filterByNumber(int minResultSize) {
+    public void filterByMinResultSize(int minResultSize) throws Exception {
         if (minResultSize < 1) {
             throw new IllegalArgumentException("Min result size should be larger than 0!");
+        }
+
+        if (_results == null) {
+            throw new Exception("Must run extractData() first before filtering!");
         }
 
         for(int i = 0; i < _results.size(); i++) {
@@ -204,7 +194,6 @@ public class HTMLExtractor {
                 i--;
             }
         }
-        return true;
     }
 
 }

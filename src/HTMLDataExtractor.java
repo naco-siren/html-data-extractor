@@ -1,9 +1,6 @@
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
-import org.jsoup.select.Elements;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.ArrayList;
 //import org.jsoup.safety.Whitelist;
 
@@ -12,134 +9,118 @@ import java.util.ArrayList;
  */
 public class HTMLDataExtractor {
 
+    /* Constants: */
+    private static final int CONNECTION_TIMEOUT_LIMIT = 3000;
+
+    /* Parameters: minimum result size for filtering */
+    private int _minResultSize ;
+    public void setMinResultSize(int minResultSize) {
+        this._minResultSize = minResultSize;
+    }
+    public int getMinResultSize() {
+        return _minResultSize;
+    }
+
+    /* Data: */
     private Document _document;
-    String baseURL;
-    String[] removeTagNames;
+    private Element _body;
 
-//    HtmlCleaner cleaner = new HtmlCleaner();
+    /* Tools: */
+    private DomTreeCleaner _domTreeCleaner;
+    private DomTreeDataExtractor _domTreeDataExtractor;
 
-    public HTMLDataExtractor(String baseURL, String[] removeTagNames){
-        this.baseURL = baseURL;
-        this.removeTagNames = removeTagNames;
-    }
-
-    private static String cleanHtmlFragment(String htmlFragment, String attributesToRemove) {
-        return htmlFragment.replaceAll("\\s+(?:" + attributesToRemove + ")\\s*=\\s*\"[^\"]*\"","");
-    }
-
-    public void tail(Node node, ArrayList<Node> nodeArrayList){
-        if(node instanceof Comment) nodeArrayList.add(node);
-        if(node instanceof TextNode && ((TextNode) node).isBlank()) nodeArrayList.add(node);
-    }
-
-    // TODO: Data structure for outputting extracted data
+    /* Output: */
     private ArrayList<ArrayList<Node>> _results;
+    public ArrayList<ArrayList<Node>> getResults() {
+        return _results;
+    }
 
     /**
      * Constructor
      */
     public HTMLDataExtractor(){
-
+        this._minResultSize = 4;
     }
 
     /**
-     *
+     * Get DOM tree from given file name
      * @param fileName
-     * @return
+     * @return 0 if no error occurs
      */
-    public String readFromFile(String fileName)throws IOException{
+    public int readFromFile(String fileName) {
+        try {
+            _document = Jsoup.parse(fileName, "UTF-8");
+            _body = _document.body();
 
-        Document doc = Jsoup.parse(fileName, "UTF-8");
+            return 0;
 
-        return preprocess(doc);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
-
     /**
-     *
+     * Get DOM tree from given URL
      * @param URL
-     * @return
+     * @return 0 if no error occurs
      */
-    public String readFromURL(String URL)throws IOException{
+    public int readFromURL(String URL) {
+        try {
+            _document = Jsoup
+                    .connect(URL)
+                    .timeout(CONNECTION_TIMEOUT_LIMIT)
+                    .get();
+            _body = _document.body();
 
-        Document doc = Jsoup.connect(URL).get();
 
+            return 0;
 
-        return preprocess(doc);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
+
 
     /**
-     * Preprocessing: remove irrelevant Nodes/Elements
+     * Remove irrelevant elements with given tag names
+     * @param tagNamesToRemove
      * @return
      */
-    public String preprocess(Document doc) throws IOException{
-
-        Element mainBody = doc.getElementsByTag("body").get(0);
-        Elements elesToRemove = new Elements();
-        for(String removeTagName : removeTagNames){
-            elesToRemove.addAll(mainBody.getElementsByTag(removeTagName));
-        }
-        for(Element ele : elesToRemove){
-            ele.remove();
-        }
-        ArrayList<Node> nodesToDelete = new ArrayList<Node>();
-        nodesToDelete = traverse(mainBody);
-        for(Node node : nodesToDelete){
-            node.remove();
-        }
-        String html = mainBody.toString();
-        String attributesToRemove = "id|style|";
-
-
-        html = cleanHtmlFragment(html, attributesToRemove);
-
-        return html;
+    public int cleanDomTree(String[] tagNamesToRemove){
+        _domTreeCleaner = new DomTreeCleaner(_body);
+        return _domTreeCleaner.clean(tagNamesToRemove);
     }
 
-    public ArrayList<Node> traverse(Node root) {
-        ArrayList<Node> nodeArrayList = new ArrayList<Node>();
-        Node node = root;
-        int depth = 0;
-        while (node != null) {
-            if (node.childNodeSize() > 0) {
-                node = node.childNode(0);
-                depth++;
-            } else {
-                while (node.nextSibling() == null && depth > 0) {
-                    tail(node, nodeArrayList);
-                    node = node.parentNode();
-                    depth--;
-                }
-                tail(node, nodeArrayList);
-                if (node == root)
-                    break;
-                node = node.nextSibling();
-            }
-        }
-        return nodeArrayList;
-    }
 
     /**
-     * Entrance for extraction
+     * Extract data from DOM tree
      * @return
      */
     public int extract(){
         try {
-            // TODO: Pre-order traverse the DOM tree
+            /* Instantiate a DomTreeDataExtractor */
+            _domTreeDataExtractor = new DomTreeDataExtractor(_body);
 
+            /* Perform data extraction */
+            int dataExtractErrCode = _domTreeDataExtractor.extractData();
+            if (dataExtractErrCode != 0) {
+                return dataExtractErrCode;
+            }
 
+            /* Filter the results */
+            _domTreeDataExtractor.filterByMinResultSize(_minResultSize);
+
+            /* Get the final results of data extraction */
+            _results = _domTreeDataExtractor.getResults();
+
+            return 0;
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getMessage());
             return -1;
         }
-        return 0;
     }
 
-    public static void main(String[] args) throws IOException {
-        String[] removeTagNames = new String[]{"meta", "script", "title", "style"};
-        String URL = "https://scholar.google.com/scholar?hl=en&q=database&as_sdt=1%2C14&as_sdtp=&oq=";
-        HTMLDataExtractor HTMLpreporcess = new HTMLDataExtractor(URL, removeTagNames);
-        String mainbody = HTMLpreporcess.readFromURL(URL);
-        System.out.println(mainbody);
-    }
+
 }
