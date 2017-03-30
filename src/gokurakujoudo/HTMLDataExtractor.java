@@ -38,6 +38,26 @@ public class HTMLDataExtractor {
     /* Output: */
     private DataGroups _results;
     public DataGroups getResults() {
+
+        /* Rank the results */
+        int resultSize = _results.size();
+
+        for (int i = 0; i < resultSize; i++) {
+            DataGroup dataGroup = _results.get(i);
+            ArrayList<Node> data = dataGroup._data;
+
+            /* measurement += avg(tree_node_size) */
+            double numOffspringsSum = 0;
+            for (Node node : data) {
+                numOffspringsSum += node.numOffsprings;
+            }
+            dataGroup._significance += (numOffspringsSum / (double) data.size());
+        }
+
+        /* Sort the results according to their significances */
+        _results.sort();
+        _results.reverse();
+
         return _results;
     }
 
@@ -134,29 +154,11 @@ public class HTMLDataExtractor {
      * TODO: define more strategies
      */
     public int refine(){
+        /* Check if results null */
         if (_results == null) {
             System.err.println("Please call extract() first before refining!");
             return -1;
         }
-
-        /* Rank the results */
-        int resultSize = _results.size();
-
-        for (int i = 0; i < resultSize; i++) {
-            DataGroup dataGroup = _results.get(i);
-            ArrayList<Node> data = dataGroup._data;
-
-            /* measurement += avg(tree_node_size) */
-            double numOffspringsSum = 0;
-            for (Node node : data) {
-                numOffspringsSum += node.numOffsprings;
-            }
-            dataGroup._significance += (numOffspringsSum / (double) data.size());
-        }
-
-        /* Sort the results according to their significances */
-        _results.sort();
-        _results.reverse();
 
         /* Refine DataGroups */
         double refineRatio = _results.refine();
