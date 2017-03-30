@@ -133,7 +133,11 @@ public class HTMLDataExtractor {
      * Apply a filtering strategy to refine the results
      * TODO: define more strategies
      */
-    public void refine(){
+    public int refine(){
+        if (_results == null) {
+            System.err.println("Please call extract() first before refining!");
+            return -1;
+        }
 
         /* Rank the results */
         int resultSize = _results.size();
@@ -154,8 +158,10 @@ public class HTMLDataExtractor {
         _results.sort();
         _results.reverse();
 
+        /* Refine DataGroups */
+        double refineRatio = _results.refine();
+        System.out.println("DataGroups refined to " + refineRatio);
 
-
-        _results.refine();
+        return 0;
     }
 }

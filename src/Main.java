@@ -19,9 +19,11 @@ public class Main {
         /* Perform extraction */
         htmlDataExtractor.setMinResultSize(4);
         if (htmlDataExtractor.extract() == 0) {
+            /* Refine results using default strategy */
             htmlDataExtractor.refine();
-            DataGroups results = htmlDataExtractor.getResults();
 
+            /* Output the results */
+            DataGroups results = htmlDataExtractor.getResults();
             for (int i = 0; i < results.size(); i++) {
                 DataGroup dataGroup = results.get(i);
                 System.out.println("No. " + i + ", " + dataGroup);
