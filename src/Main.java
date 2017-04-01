@@ -1,6 +1,10 @@
 import gokurakujoudo.data.DataGroup;
 import gokurakujoudo.HTMLDataExtractor;
 import gokurakujoudo.data.DataGroups;
+import org.json.JSONObject;
+import org.json.XML;
+
+import java.util.ArrayList;
 
 public class Main {
 
@@ -13,20 +17,41 @@ public class Main {
         htmlDataExtractor.readFromURL(googleScholarURL);
 
         /* Clean DOM tree */
-        String[] removeTagNames = new String[]{"meta", "script", "title", "style"};
-        htmlDataExtractor.cleanDomTree(removeTagNames);
+
+        htmlDataExtractor.cleanDomTree();
 
         /* Perform extraction */
-        htmlDataExtractor.setMinResultSize(4);
+        htmlDataExtractor.setMinResultSize(2);
         if (htmlDataExtractor.extract() == 0) {
             /* Refine results using default strategy */
             htmlDataExtractor.refine();
 
-            /* Output the results */
+
             DataGroups results = htmlDataExtractor.getResults();
+            results.clean();
+
+            /* Output the results */
             for (int i = 0; i < results.size(); i++) {
                 DataGroup dataGroup = results.get(i);
-                System.out.println("No. " + i + ", " + dataGroup);
+
+                System.out.println("=== No. " + i + ", " + dataGroup);
+                //System.out.println(dataGroup.getDataHTMLs());
+                ArrayList<String> dataHTMLs = dataGroup.getDataHTMLs();
+
+                for (String dataHTML : dataHTMLs) {
+                    JSONObject jsonObject = XML.toJSONObject(dataHTML);
+                    jsonObject.remove("id");
+                    jsonObject.remove("class");
+                    jsonObject.remove("href");
+                    jsonObject.remove("href");
+
+
+                    String jsonString = jsonObject.toString();
+                    System.out.println(jsonString);
+                    System.out.println();
+                }
+
+                System.out.println();
             }
         }
 

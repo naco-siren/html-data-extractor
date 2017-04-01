@@ -100,8 +100,20 @@ public class DataGroups {
         return (double) size() / (double) beginSize;
     }
 
+
+    public int clean() {
+        int retval = 0;
+        for (DataGroup dataGroup : _data) {
+            retval += dataGroup.clean();
+        }
+        return retval;
+    }
+
+
     @Override
     public String toString() {
         return "DataGroups of size " + size();
     }
+
+
 }

@@ -9,6 +9,9 @@ import java.util.ArrayList;
  * Created by haosun on 3/25/17.
  */
 public class DomTreeCleaner {
+    private final String[] TAG_NAMES_TO_REMOVE = new String[]{"meta", "script", "style", "base", "video", "audio"};
+    //private final String[] ATTRIBUTE_KETS_TO_REMOVE = new String[]{"href", "id", "class", "style"};
+
     /* Input: */
     private Element _root;
 
@@ -22,13 +25,12 @@ public class DomTreeCleaner {
 
     /**
      * Perform DOM tree cleaning
-     * @param tagNamesToRemove
      */
-    public int clean(String[] tagNamesToRemove) {
+    public int clean() {
         try {
             /* Remove elements with given tag names */
             Elements elementsToRemove = new Elements();
-            for (String removeTagName : tagNamesToRemove) {
+            for (String removeTagName : TAG_NAMES_TO_REMOVE) {
                 elementsToRemove.addAll(_root.getElementsByTag(removeTagName));
             }
             elementsToRemove.remove();
@@ -43,11 +45,11 @@ public class DomTreeCleaner {
                     depth++;
                 } else {
                     while (cursor.nextSibling() == null && depth > 0) {
-                        tail(cursor, nodesToDelete);
+                        cacheVoidNode(cursor, nodesToDelete);
                         cursor = cursor.parentNode();
                         depth--;
                     }
-                    tail(cursor, nodesToDelete);
+                    cacheVoidNode(cursor, nodesToDelete);
                     if (cursor == _root)
                         break;
                     cursor = cursor.nextSibling();
@@ -55,6 +57,16 @@ public class DomTreeCleaner {
             }
             for (Node node : nodesToDelete) {
                 node.remove();
+            }
+
+
+            /* Remove the attributes with given keys */
+            Elements elements = _root.getAllElements();
+            for (Element e : elements) {
+                Attributes at = e.attributes();
+                for (Attribute a : at) {
+                    e.removeAttr(a.getKey());
+                }
             }
 
             return 0;
@@ -65,10 +77,13 @@ public class DomTreeCleaner {
         }
     }
 
-    private void tail(Node node, ArrayList<Node> nodeArrayList){
+    private void cacheVoidNode(Node node, ArrayList<Node> nodeArrayList){
         if(node instanceof Comment) nodeArrayList.add(node);
 
         if(node instanceof TextNode && ((TextNode) node).isBlank()) nodeArrayList.add(node);
+        
+        //TODO: Experimental
+        //if (node instanceof Element && node.childNodeSize() == 0) nodeArrayList.add(node);
     }
 
 //    private static String cleanHtmlFragment(String htmlFragment, String attributesToRemove) {

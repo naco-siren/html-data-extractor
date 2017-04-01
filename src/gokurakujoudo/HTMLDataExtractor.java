@@ -110,12 +110,11 @@ public class HTMLDataExtractor {
 
     /**
      * Remove irrelevant elements with given tag names
-     * @param tagNamesToRemove
      * @return
      */
-    public int cleanDomTree(String[] tagNamesToRemove){
+    public int cleanDomTree(){
         _domTreeCleaner = new DomTreeCleaner(_body);
-        return _domTreeCleaner.clean(tagNamesToRemove);
+        return _domTreeCleaner.clean();
     }
 
 
@@ -154,6 +153,9 @@ public class HTMLDataExtractor {
      * TODO: define more strategies
      */
     public int refine(){
+        /* Rank results */
+        getResults();
+
         /* Check if results null */
         if (_results == null) {
             System.err.println("Please call extract() first before refining!");
