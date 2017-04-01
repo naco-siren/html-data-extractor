@@ -73,7 +73,7 @@ public class DataGroup implements Comparable<DataGroup> {
         return retval;
     }
     private final String[] TAG_NAMES_TO_REMOVE = new String[]{"br"};
-    private final String[] TAG_NAMES_TO_UNWRAP = new String[]{"a", "font", "strong", "em", "b", "i", "u", "s", "br", "sup", "sub"};
+    private final String[] TAG_NAMES_TO_UNWRAP = new String[]{"font", "strong", "em", "b", "i", "u", "s", "br", "sup", "sub"};
     private int cleanDataNode(Node node){
         /* Check if Node is not instance of Element */
         if (node instanceof Element == false) {

@@ -40,10 +40,10 @@ public class Main {
 
                 for (String dataHTML : dataHTMLs) {
                     JSONObject jsonObject = XML.toJSONObject(dataHTML);
-                    jsonObject.remove("id");
-                    jsonObject.remove("class");
-                    jsonObject.remove("href");
-                    jsonObject.remove("href");
+//                    jsonObject.remove("id");
+//                    jsonObject.remove("class");
+//                    jsonObject.remove("href");
+//                    jsonObject.remove("href");
 
 
                     String jsonString = jsonObject.toString();

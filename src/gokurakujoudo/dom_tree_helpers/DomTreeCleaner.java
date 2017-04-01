@@ -4,6 +4,7 @@ import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by haosun on 3/25/17.
@@ -27,6 +28,7 @@ public class DomTreeCleaner {
      * Perform DOM tree cleaning
      */
     public int clean() {
+
         try {
             /* Remove elements with given tag names */
             Elements elementsToRemove = new Elements();
@@ -62,10 +64,10 @@ public class DomTreeCleaner {
 
             /* Remove the attributes with given keys */
             Elements elements = _root.getAllElements();
-            for (Element e : elements) {
-                Attributes at = e.attributes();
-                for (Attribute a : at) {
-                    e.removeAttr(a.getKey());
+            for (Element ele : elements) {
+                List<Attribute> attrs = ele.attributes().asList();
+                for (Attribute attr : attrs) {
+                    ele.removeAttr(attr.getKey());
                 }
             }
 

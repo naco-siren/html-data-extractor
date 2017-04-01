@@ -1,5 +1,7 @@
 package gokurakujoudo.dom_tree_helpers;
 
+import org.jsoup.nodes.Attribute;
+import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.NodeVisitor;
@@ -10,10 +12,12 @@ import org.jsoup.select.NodeVisitor;
 public class APTEDNodeVisitor implements NodeVisitor {
     @Override
     public void head(Node node, int depth) {
-//        if (node instanceof Element)
-//            System.out.println("Enter Element: " + ((Element) node).tag() + ", " + depth);
-//        else
-//            System.out.println("Enter Text: " + ((TextNode) node).text() + ", " + depth);
+//        if (node instanceof Element) {
+//            // System.out.println("Enter Element: " + ((Element) node).tag() + ", " + depth);
+//        }
+//        else {
+//            // System.out.println("Enter Text: " + ((TextNode) node).text() + ", " + depth);
+//        }
     }
 
     @Override
