@@ -23,10 +23,11 @@ public class Main {
         /* Perform extraction */
         htmlDataExtractor.setMinResultSize(2);
         if (htmlDataExtractor.extract() == 0) {
+
             /* Refine results using default strategy */
             htmlDataExtractor.refine();
 
-
+            /* Collect and clean up the results */
             DataGroups results = htmlDataExtractor.getResults();
             results.clean();
 

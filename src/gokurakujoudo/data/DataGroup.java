@@ -118,6 +118,7 @@ public class DataGroup implements Comparable<DataGroup> {
             for (String tagName : TAG_NAMES_TO_UNWRAP) {
                 element.select(tagName).unwrap();
             }
+            element.select("a").unwrap();
 
 
             return 0;

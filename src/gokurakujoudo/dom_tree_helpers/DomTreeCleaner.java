@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class DomTreeCleaner {
     private final String[] TAG_NAMES_TO_REMOVE = new String[]{"meta", "script", "style", "base", "video", "audio"};
+    private final String[] TAG_NAMES_TO_UNWRAP = new String[]{"font", "strong", "em", "b", "i", "u", "s", "br", "sup", "sub"};
     //private final String[] ATTRIBUTE_KETS_TO_REMOVE = new String[]{"href", "id", "class", "style"};
 
     /* Input: */
@@ -69,6 +70,11 @@ public class DomTreeCleaner {
                 for (Attribute attr : attrs) {
                     ele.removeAttr(attr.getKey());
                 }
+            }
+
+            /* Unwrap <font>, <strong>, <em>, <b>, <i>, <u>, <s>, <br>, <sup>, <sub> */
+            for (String tagName : TAG_NAMES_TO_UNWRAP) {
+                _root.select(tagName).unwrap();
             }
 
             return 0;

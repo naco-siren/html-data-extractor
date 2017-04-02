@@ -60,10 +60,16 @@ public class DomTreeDataExtractor {
      * Sibling. If not, call method on all its child recursively one by one.
      */
     public int extractData(){
+
+//        /* Unwrap <a> elements */
+//        UnwrapANodeVisitor unwrapANodeVisitor = new UnwrapANodeVisitor();
+//        NodeTraversor unwrapANodeTraversor = new NodeTraversor(unwrapANodeVisitor);
+//        unwrapANodeTraversor.traverse(_root);
+
         /* Construct APTED structure for each node */
         APTEDNodeVisitor aptedNodeVisitor = new APTEDNodeVisitor();
-        NodeTraversor nodeTraversor = new NodeTraversor(aptedNodeVisitor);
-        nodeTraversor.traverse(_root);
+        NodeTraversor APTEDNodeTraversor = new NodeTraversor(aptedNodeVisitor);
+        APTEDNodeTraversor.traverse(_root);
 
         /* Recursively extract data using pre-order traversing */
         extractDataRecursive(_root);
