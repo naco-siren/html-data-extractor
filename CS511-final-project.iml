@@ -15,5 +15,6 @@
     <orderEntry type="library" name="junit-4.12" level="project" />
     <orderEntry type="library" name="client-combined-3.3.1-nodeps" level="project" />
     <orderEntry type="library" name="selenium-html-runner-3.0.1" level="project" />
+    <orderEntry type="library" name="cglib-nodep-3.2.4" level="project" />
   </component>
 </module>

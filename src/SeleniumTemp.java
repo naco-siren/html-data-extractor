@@ -20,7 +20,7 @@ import java.util.Optional;
 
 public class SeleniumTemp {
     public static void main(String... args) {
-        System.setProperty("webdriver.gecko.driver", "/usr/local/bin/geckodriver");
+        System.setProperty("webdriver.gecko.driver", "lib\\geckodriver.exe");
 
         /* Selenium capacities */
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
@@ -31,7 +31,7 @@ public class SeleniumTemp {
 
         // Firefox options
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.setBinary("/Applications/Firefox.app/Contents/MacOS/firefox-bin");
+        firefoxOptions.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
         //firefoxOptions.setBinary(new FirefoxBinary(Optional.empty()));
         firefoxOptions.addArguments(new ArrayList<String>());
         firefoxOptions.setLogLevel(null);
