@@ -13,65 +13,110 @@ import java.util.List;
  */
 public class SeleniumRenderer {
     public static void main(String... args) {
-        SeleniumRenderer seleniumRenderer = new SeleniumRenderer();
-        seleniumRenderer.get("https://scholar.google.com/scholar?hl=en&q=database&as_sdt=1%2C14&as_sdtp=&oq=");
+        String googleScholarURL = "https://scholar.google.com/scholar?hl=en&q=database&as_sdt=1%2C14&as_sdtp=&oq=";
+        String HTML = null;
+
+        SeleniumRenderer seleniumRenderer = new SeleniumRenderer(DevPlatform.WINDOWS);
+        if (seleniumRenderer.render(googleScholarURL) == 0)
+            HTML = seleniumRenderer.getHTML();
 
         return;
     }
 
+    /* Param */
+    public enum DevPlatform {
+        WINDOWS,
+        MACOS,
+        LINUX,
+        UNKNOWN
+    }
 
+    /* Tool */
     private WebDriver _driver;
 
-    public SeleniumRenderer(){
-        System.setProperty("webdriver.gecko.driver", "lib\\geckodriver.exe");
+    /* Output */
+    private String _HTML;
+    public String getHTML(){
+        return _HTML;
+    }
 
+
+    public SeleniumRenderer(DevPlatform devPlatform){
         /* Selenium capacities */
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability("marionette", true);
         capabilities.setBrowserName("firefox");
         capabilities.setVersion("");
-        capabilities.setPlatform(Platform.MAC);
 
-        // Firefox options
-        FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
-        //firefoxOptions.setBinary(new FirefoxBinary(Optional.empty()));
-        firefoxOptions.addArguments(new ArrayList<String>());
-        firefoxOptions.setLogLevel(null);
-        //firefoxOptions.addPreference();
-        firefoxOptions.setProfile(null);
-//        capabilities.setCapability("moz", firefoxOptions);
-        capabilities.setCapability("moz:firefoxOptions", firefoxOptions);
+        switch (devPlatform) {
+            case WINDOWS:
+                System.setProperty("webdriver.gecko.driver", "lib\\geckodriver.exe");
+                capabilities.setPlatform(Platform.WIN10);
+
+                // Firefox options
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
+                firefoxOptions.addArguments(new ArrayList<String>());
+                firefoxOptions.setLogLevel(null);
+                //firefoxOptions.addPreference();
+                firefoxOptions.setProfile(null);
+
+                capabilities.setCapability("moz:firefoxOptions", firefoxOptions);
+                break;
+
+            case MACOS:
+            case LINUX:
+            case UNKNOWN:
+                break;
+        }
 
         _driver = new FirefoxDriver(capabilities);
     }
 
 
-    public void get(String URL){
+    public int render(String URL){
+        try {
+            _driver.get(URL);
+            /* Alternatively the same thing can be done like this */
+            // driver.navigate().to("http://www.google.com");
 
-        _driver.get(URL);
-        /* Alternatively the same thing can be done like this */
-        // driver.navigate().to("http://www.google.com");
+            /* Find all the <a> elements and inject */
+            List<WebElement> elements = _driver.findElements(By.tagName("a"));
 
-        // Find the text input element by its name */
-        //WebElement element = _driver.findElement(By.tagName("a"));
-        List<WebElement> elements = _driver.findElements(By.tagName("a"));
+            for (WebElement element : elements) {
+                String text = element.getText();
 
-        for (WebElement element : elements) {
-            String text = element.getText();
-
-            String marginR = element.getCssValue("margin-right"); // In the format of "31px"
-            String marginL = element.getCssValue("margin-left");
-
-
-            Dimension dimension = element.getSize();
-            int height = dimension.getHeight();
-            int width = dimension.getWidth();
+                String marginR = element.getCssValue("margin-right"); // In the format of "31px"
+                String marginL = element.getCssValue("margin-left");
 
 
+                Dimension dimension = element.getSize();
+                String height = dimension.getHeight() + "px";
+                String width = dimension.getWidth() + "px";
+
+                ((JavascriptExecutor) _driver).executeScript(
+                        "var ele=arguments[0]; ele.style.marginLeft = arguments[1];", element, marginL);
+                ((JavascriptExecutor) _driver).executeScript(
+                        "var ele=arguments[0]; ele.style.marginRight = arguments[1];", element, marginR);
+                ((JavascriptExecutor) _driver).executeScript(
+                        "var ele=arguments[0]; ele.style.height = arguments[1];", element, height);
+                ((JavascriptExecutor) _driver).executeScript(
+                        "var ele=arguments[0]; ele.style.width = arguments[1];", element, width);
+//                ((JavascriptExecutor) _driver).executeScript(
+//                        "var ele=arguments[0]; ele.setAttribute('width', arguments[1]);", element, width);
+
+                //String style = element.getAttribute("style");
+                continue;
+            }
+
+            _HTML = _driver.getPageSource();
+            return 0;
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            return -1;
         }
-
-        return;
     }
 
 
