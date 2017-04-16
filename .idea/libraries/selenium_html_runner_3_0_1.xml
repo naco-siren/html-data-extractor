@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="selenium-html-runner-3.0.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/selenium-html-runner-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/selenium-server-standalone-3.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
