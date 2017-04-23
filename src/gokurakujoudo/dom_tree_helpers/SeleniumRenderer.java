@@ -29,6 +29,7 @@ public class SeleniumRenderer {
                 System.out.println("Successfully saved to " + outfile);
         }
 
+        seleniumRenderer.close();
         return;
     }
 
@@ -82,15 +83,19 @@ public class SeleniumRenderer {
         _driver = new FirefoxDriver(capabilities);
     }
 
-
+    /**
+     * Render the page and perform the injection
+     * @param URL
+     * @return 0 on success
+     */
     public int render(String URL){
         try {
             _driver.get(URL);
             /* Alternatively the same thing can be done like this */
             // driver.navigate().to("http://www.google.com");
 
-            /* Find all the <a> elements and inject */
-            List<WebElement> elements = _driver.findElements(By.tagName("a"));
+            /* Traverse through all the elements and inject CSS info */
+            List<WebElement> elements = _driver.findElements(By.cssSelector("*"));
 
             for (WebElement element : elements) {
                 String text = element.getText();
@@ -103,16 +108,25 @@ public class SeleniumRenderer {
                 String height = dimension.getHeight() + "px";
                 String width = dimension.getWidth() + "px";
 
-                ((JavascriptExecutor) _driver).executeScript(
-                        "var ele=arguments[0]; ele.style.marginLeft = arguments[1];", element, marginL);
-                ((JavascriptExecutor) _driver).executeScript(
-                        "var ele=arguments[0]; ele.style.marginRight = arguments[1];", element, marginR);
-                ((JavascriptExecutor) _driver).executeScript(
-                        "var ele=arguments[0]; ele.style.height = arguments[1];", element, height);
-                ((JavascriptExecutor) _driver).executeScript(
-                        "var ele=arguments[0]; ele.style.width = arguments[1];", element, width);
-//                ((JavascriptExecutor) _driver).executeScript(
-//                        "var ele=arguments[0]; ele.setAttribute('width', arguments[1]);", element, width);
+                if (false) {
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.style.marginLeft = arguments[1];", element, marginL);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.style.marginRight = arguments[1];", element, marginR);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.style.height = arguments[1];", element, height);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.style.width = arguments[1];", element, width);
+                } else {
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('width', arguments[1])", element, width);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('height', arguments[1])", element, height);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('margin-left', arguments[1])", element, marginL);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('margin-right', arguments[1])", element, marginR);
+                }
 
                 //String style = element.getAttribute("style");
                 continue;
@@ -137,6 +151,8 @@ public class SeleniumRenderer {
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
             bufferedWriter.write(_HTML);
+            bufferedWriter.flush();
+            bufferedWriter.close();
 
             return 0;
         } catch (IOException ioe) {
@@ -146,5 +162,11 @@ public class SeleniumRenderer {
         }
     }
 
+    /**
+     * Close the Firefox driver
+     */
+    public void close(){
+        _driver.close();
+    }
 
 }
