@@ -5,6 +5,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +20,14 @@ public class SeleniumRenderer {
         String HTML = null;
 
         SeleniumRenderer seleniumRenderer = new SeleniumRenderer(DevPlatform.WINDOWS);
-        if (seleniumRenderer.render(googleScholarURL) == 0)
+        if (seleniumRenderer.render(googleScholarURL) == 0) {
             HTML = seleniumRenderer.getHTML();
+
+            /* Save the injected HTML into file */
+            String outfile = "renderedHTML/googleScholar.html";
+            if (seleniumRenderer.saveToFile(outfile) == 0)
+                System.out.println("Successfully saved to " + outfile);
+        }
 
         return;
     }
@@ -119,7 +128,23 @@ public class SeleniumRenderer {
         }
     }
 
+    /**
+     * Write the injected HTML into a .html file
+     * @param filename
+     * @return 0 on success
+     */
+    public int saveToFile(String filename){
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
+            bufferedWriter.write(_HTML);
 
+            return 0;
+        } catch (IOException ioe) {
+            System.err.println(ioe.getMessage());
+            ioe.printStackTrace();
+            return -1;
+        }
+    }
 
 
 }
