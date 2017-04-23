@@ -137,7 +137,7 @@ public class HTMLDataExtractor {
                     // TODO: Check if out dir exists!!
 
                     // Get current date time
-                    DateFormat dateFormat = new SimpleDateFormat(" yyyy-MM-dd HH:mm:ss");
+                    DateFormat dateFormat = new SimpleDateFormat(" - yyyy-MM-dd HH-mm-ss");
                     Date date = new Date();
                     String currentDateTime = dateFormat.format(date);
 
