@@ -98,7 +98,7 @@ public class HTMLDataExtractor {
         return readFromURL(URL, true, true);
     }
     public int readFromURL(String URL, boolean useInjectedHTML, boolean saveInjectedHtml) {
-        if (useInjectedHTML == true) {
+        if (useInjectedHTML == false) {
             return readRawHTMLFromURL(URL);
         } else {
             return readInjectedHTMLFromURL(URL, saveInjectedHtml);
