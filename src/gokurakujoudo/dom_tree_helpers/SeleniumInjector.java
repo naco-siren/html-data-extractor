@@ -14,22 +14,22 @@ import java.util.List;
 /**
  * Created by nacos on 4/15/2017.
  */
-public class SeleniumRenderer {
+public class SeleniumInjector {
     public static void main(String... args) {
         String googleScholarURL = "https://scholar.google.com/scholar?hl=en&q=database&as_sdt=1%2C14&as_sdtp=&oq=";
         String HTML = null;
 
-        SeleniumRenderer seleniumRenderer = new SeleniumRenderer(DevPlatform.WINDOWS);
-        if (seleniumRenderer.render(googleScholarURL) == 0) {
-            HTML = seleniumRenderer.getHTML();
+        SeleniumInjector seleniumInjector = new SeleniumInjector(DevPlatform.WINDOWS);
+        if (seleniumInjector.render(googleScholarURL) == 0) {
+            HTML = seleniumInjector.getHTML();
 
             /* Save the injected HTML into file */
             String outfile = "renderedHTML/googleScholar.html";
-            if (seleniumRenderer.saveToFile(outfile) == 0)
+            if (seleniumInjector.saveToFile(outfile) == 0)
                 System.out.println("Successfully saved to " + outfile);
         }
 
-        seleniumRenderer.close();
+        seleniumInjector.close();
         return;
     }
 
@@ -45,13 +45,20 @@ public class SeleniumRenderer {
     private WebDriver _driver;
 
     /* Output */
+    private String _Title;
+    public String getTitle(){
+        return _Title;
+    }
     private String _HTML;
     public String getHTML(){
         return _HTML;
     }
 
-
-    public SeleniumRenderer(DevPlatform devPlatform){
+    /**
+     * Constructor
+     * @param devPlatform specify current platform (Windows only)
+     */
+    public SeleniumInjector(DevPlatform devPlatform){
         /* Selenium capacities */
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability("marionette", true);
@@ -133,6 +140,7 @@ public class SeleniumRenderer {
             }
 
             _HTML = _driver.getPageSource();
+            _Title = _driver.getTitle();
             return 0;
 
         } catch (Exception e) {
