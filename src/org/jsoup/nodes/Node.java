@@ -25,8 +25,11 @@ public abstract class Node implements Cloneable {
     String baseUri;
     int siblingIndex;
 
-    /* TODO: Hao Sun please implement this! */
+    /* String representation of its tree structure for TED calculation (APTED) */
     public String APTEDTreeStructure;
+
+    /* Whether this node should be unwrapped */
+    public boolean needsUnwrapping;
 
     //use for debug by haosun
     public int numOffsprings = 1; //include itself

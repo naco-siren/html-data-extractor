@@ -24,6 +24,7 @@ public class TestSeleniumInjector {
 
 
     }
+
     public void testCSSInjectionForURL(String URL, String fileName) throws Exception {
         String HTML = null;
 
@@ -39,34 +40,6 @@ public class TestSeleniumInjector {
 
         seleniumInjector.close();
         return;
-
-    }
-
-
-    /**
-     * Test smart unwrapping for <a> elements
-     * @throws Exception
-     */
-    @Test
-    public void testSmartUnwrapping() throws Exception {
-        // Part of Google Scholar
-        testSmartUnwrappingOnFile("googleScholarPart1");
-
-
-        // Google Scholar
-        testSmartUnwrappingOnFile(GOOGLE_SCHOLAR_TITLE);
-
-
-    }
-    public void testSmartUnwrappingOnFile(String fileName) throws Exception {
-        String inFileName = SeleniumInjector.INJECTED_HTML_OUTPUT_DIR + File.separator + fileName + ".html";
-
-        Document document = Jsoup.parse(new File(inFileName), "UTF-8", "");
-        Element body = document.body();
-
-        SeleniumInjector.smartUnwrap(document.outerHtml());
-
-
 
     }
 }

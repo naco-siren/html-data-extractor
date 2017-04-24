@@ -1,7 +1,9 @@
 package gokurakujoudo.dom_tree_helpers;
 
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
+import org.jsoup.select.NodeTraversor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +79,8 @@ public class DomTreeCleaner {
                 _root.select(tagName).unwrap();
             }
 
+
+
             return 0;
 
         } catch (Exception e) {
@@ -84,6 +88,25 @@ public class DomTreeCleaner {
             return -1;
         }
     }
+
+    /**
+     * Smartly unwrap the <a> elements based on context
+     * @param html
+     * TODO: implement the corresponding non-static method
+     */
+    public static void smartUnwrap(String html){
+        Document document = Jsoup.parse(html);
+        Element body = document.body();
+
+        AElementVisitor aElementVisitor = new AElementVisitor();
+        NodeTraversor unwrappingTraversor = new NodeTraversor(aElementVisitor);
+        unwrappingTraversor.traverse(body);
+
+
+        String newHTML = document.outerHtml();
+        return;
+    }
+
 
     private void cacheVoidNode(Node node, ArrayList<Node> nodeArrayList){
         if(node instanceof Comment) nodeArrayList.add(node);

@@ -150,21 +150,6 @@ public class SeleniumInjector {
         }
     }
 
-
-    public static void smartUnwrap(String html){
-        Document document = Jsoup.parse(html);
-        Element body = document.body();
-
-        AElementVisitor aElementVisitor = new AElementVisitor();
-        NodeTraversor unwrappingTraversor = new NodeTraversor(aElementVisitor);
-        unwrappingTraversor.traverse(body);
-
-
-        String newHTML = document.outerHtml();
-        return;
-    }
-
-
     /**
      * Write the injected HTML into a .html file
      * @param filename
@@ -199,6 +184,7 @@ public class SeleniumInjector {
      */
     public void close(){
         _driver.close();
+        _driver.quit();
     }
 
 }
