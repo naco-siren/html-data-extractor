@@ -142,7 +142,7 @@ public class HTMLDataExtractor {
                     String currentDateTime = dateFormat.format(date);
 
                     // Save to output file
-                    String outfile = "renderedHTML/" + seleniumInjector.getTitle() + currentDateTime + ".html";
+                    String outfile = seleniumInjector.getTitle() + currentDateTime + ".html";
                     if (seleniumInjector.saveToFile(outfile) == 0)
                         System.out.println("=== Successfully saved to " + outfile);
                 }

@@ -1,11 +1,16 @@
 package gokurakujoudo.dom_tree_helpers;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.NodeTraversor;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,25 +20,8 @@ import java.util.List;
  * Created by nacos on 4/15/2017.
  */
 public class SeleniumInjector {
-    public static void main(String... args) {
-        String googleScholarURL = "https://scholar.google.com/scholar?hl=en&q=database&as_sdt=1%2C14&as_sdtp=&oq=";
-        String HTML = null;
-
-        SeleniumInjector seleniumInjector = new SeleniumInjector(DevPlatform.WINDOWS);
-        if (seleniumInjector.render(googleScholarURL) == 0) {
-            HTML = seleniumInjector.getHTML();
-
-            /* Save the injected HTML into file */
-            String outfile = "renderedHTML/googleScholar.html";
-            if (seleniumInjector.saveToFile(outfile) == 0)
-                System.out.println("Successfully saved to " + outfile);
-        }
-
-        seleniumInjector.close();
-        return;
-    }
-
     /* Param */
+    public static final String INJECTED_HTML_OUTPUT_DIR = "injectedHTML";
     public enum DevPlatform {
         WINDOWS,
         MACOS,
@@ -150,6 +138,21 @@ public class SeleniumInjector {
         }
     }
 
+
+    public void smartUnwrap(){
+        Document document = Jsoup.parse(_HTML);
+        Element body = document.body();
+
+        AElementVisitor aElementVisitor = new AElementVisitor();
+        NodeTraversor unwrappingTraversor = new NodeTraversor(aElementVisitor);
+        unwrappingTraversor.traverse(body);
+
+
+        String newHTML = document.outerHtml();
+        return;
+    }
+
+
     /**
      * Write the injected HTML into a .html file
      * @param filename
@@ -157,16 +160,25 @@ public class SeleniumInjector {
      */
     public int saveToFile(String filename){
         try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
+            /* Create output directory if not exists */
+            File file =new File(INJECTED_HTML_OUTPUT_DIR);
+            if  (file.exists() == false && file.isDirectory() == false) {
+                file.mkdir();
+            }
+
+            /* Write HTML into the file */
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(INJECTED_HTML_OUTPUT_DIR + File.separator + filename));
             bufferedWriter.write(_HTML);
             bufferedWriter.flush();
             bufferedWriter.close();
 
             return 0;
+
         } catch (IOException ioe) {
             System.err.println(ioe.getMessage());
             ioe.printStackTrace();
             return -1;
+
         }
     }
 
