@@ -67,44 +67,57 @@ public class AElementVisitor implements NodeVisitor {
         if (prevSib == null && nextSib == null)
             return true;
 
-        /* If its previous and next sibling nodes are text nodes */
-        TextNode prevSibTextNode = prevSib == null ? null : (prevSib instanceof TextNode ? (TextNode) prevSib : null);
-        TextNode nextSibTextNode = nextSib == null ? null : (nextSib instanceof TextNode ? (TextNode) nextSib : null);
-        /* And if they are blanks */
-        boolean prevTextIsBlank = prevSibTextNode != null && StringUtils.isBlank(prevSibTextNode.text());
-        boolean nextTextIsBlank = nextSibTextNode != null && StringUtils.isBlank(nextSibTextNode.text());
-        if (prevTextIsBlank || nextTextIsBlank)
-            return false;
 
 
+        /* Check if it has blank to its previous sibling */
+        boolean hasBlankToPrev = false;
+        if (prevSib == null) {
+            /* If previous sibling not exist */
+            hasBlankToPrev = false;
+            
+        } else if (prevSib instanceof TextNode) {
+            TextNode prevTextSib = (TextNode) prevSib;
+            
+            /* If previous sibling is a text node with blank text */
+            hasBlankToPrev = StringUtils.isBlank(prevTextSib.text());
+            
+        } else if (prevSib instanceof Element) {
+            Element prevEleSib = (Element) prevSib;
+            
+            /* If previous sibling us an element with right padding + margin */
+            int prevDistance = px2int(element.attr("padding-left")) + px2int(element.attr("margin-left"));
+            prevDistance += px2int(prevEleSib.attr("margin-right")) + px2int(prevEleSib.attr("padding-right"));
 
-        /* Fetch its previous sibling element and next sibling element */
-//        Element prevSibEle = element.previousElementSibling();
-//        Element nextSibEle = element.nextElementSibling();
-        Element prevSibEle = prevSib instanceof Element ? (Element) prevSib : null;
-        Element nextSibEle = nextSib instanceof Element ? (Element) nextSib : null;
-
-        /* If it is the sole child element of its parent */
-        if (prevSibEle == null && nextSibEle == null)
-            return true;
-
-
-        /* If its has a positive distance (padding + margin) to the previous element sibling */
-        int prevDistance = px2int(element.attr("padding-left")) + px2int(element.attr("margin-left"));
-        if (prevSibEle != null)
-            prevDistance += px2int(prevSibEle.attr("margin-right")) + px2int(prevSibEle.attr("padding-right"));
-
-        /* If its has a positive distance (padding + margin) to the previous element sibling */
-        int nextDistance = px2int(element.attr("padding-right")) + px2int(element.attr("margin-right"));
-        if (nextSibEle != null)
-            nextDistance += px2int(nextSibEle.attr("margin-left")) + px2int(nextSibEle.attr("padding-left"));
-
-
-        if (prevDistance > 0 || nextDistance > 0) {
-            return false;
-        } else {
-            return true;
+            hasBlankToPrev = prevDistance > 0;
         }
+
+        /* Check if it has blank to its next sibling */
+        boolean hasBlankToNext = false;
+        if (nextSib == null) {
+            /* If Nextious sibling not exist */
+            hasBlankToNext = false;
+
+        } else if (nextSib instanceof TextNode) {
+            TextNode NextTextSib = (TextNode) nextSib;
+            
+            /* If Nextious sibling is a text node with blank text */
+            hasBlankToNext = StringUtils.isBlank(NextTextSib.text());
+
+        } else if (nextSib instanceof Element) {
+            Element NextEleSib = (Element) nextSib;
+            
+            /* If Nextious sibling us an element with right padding + margin */
+            int NextDistance = px2int(element.attr("padding-right")) + px2int(element.attr("margin-right"));
+            NextDistance += px2int(NextEleSib.attr("margin-left")) + px2int(NextEleSib.attr("padding-left"));
+
+            hasBlankToNext = NextDistance > 0;
+        }
+
+
+        if (hasBlankToPrev || hasBlankToNext)
+            return false;
+        else
+            return true;
 
     }
 

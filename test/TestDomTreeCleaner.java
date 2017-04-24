@@ -20,12 +20,15 @@ public class TestDomTreeCleaner {
      */
     @Test
     public void testSmartUnwrapping() throws Exception {
-        // Part of Google Scholar
-        testSmartUnwrappingOnFile("googleScholarPart1");
+        // <div> T <a> T <a> T <a> T </div>
+        //testSmartUnwrappingOnFile("googleScholarPart1");
+
+        // <div><a><a><a></div>
+        testSmartUnwrappingOnFile("googleScholarPart2");
 
 
         // Google Scholar
-        testSmartUnwrappingOnFile(GOOGLE_SCHOLAR_TITLE);
+        //testSmartUnwrappingOnFile(GOOGLE_SCHOLAR_TITLE);
 
 
     }
@@ -35,8 +38,9 @@ public class TestDomTreeCleaner {
         Document document = Jsoup.parse(new File(inFileName), "UTF-8", "");
         Element body = document.body();
 
-        DomTreeCleaner.smartUnwrap(document.outerHtml());
+        DomTreeCleaner.smartUnwrap(body.outerHtml());
 
+        System.out.println(body.html());
 
         return;
     }
