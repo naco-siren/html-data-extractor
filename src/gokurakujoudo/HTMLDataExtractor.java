@@ -8,6 +8,7 @@ import gokurakujoudo.dom_tree_helpers.SeleniumInjector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -77,9 +78,10 @@ public class HTMLDataExtractor {
      * @param fileName
      * @return 0 if no error occurs
      */
-    public int readFromFile(String fileName) {
+    public int readFromFile(String fileName, String baseUri) {
         try {
-            _document = Jsoup.parse(fileName, "UTF-8");
+            File inFile = new File(fileName);
+            _document = Jsoup.parse(inFile, "UTF-8", baseUri);
             _body = _document.body();
 
             return 0;
@@ -134,8 +136,6 @@ public class HTMLDataExtractor {
 
                 /* Save the injected HTML into file */
                 if (saveInjectedHtml == true) {
-                    // TODO: Check if out dir exists!!
-
                     // Get current date time
                     DateFormat dateFormat = new SimpleDateFormat(" - yyyy-MM-dd HH-mm-ss");
                     Date date = new Date();

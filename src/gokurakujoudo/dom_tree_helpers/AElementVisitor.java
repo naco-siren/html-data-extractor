@@ -4,16 +4,33 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.NodeVisitor;
 
+import java.util.ArrayList;
+
 /**
  * Created by nacos on 4/23/2017.
  */
 public class AElementVisitor implements NodeVisitor {
 
+    /* Data */
+    // The children of the current elements to be unwrapped.
+    private ArrayList<Element> _elementsToUnwrap;
+
+    /**
+     * When into the
+     * @param node the node being visited.
+     * @param depth the depth of the node, relative to the root node. E.g., the root node has depth 0, and a child node
+     */
     @Override
     public void head(Node node, int depth) {
-
+        return;
     }
 
+
+    /**
+     * Unwrap the element's
+     * @param node the apted.node being visited.
+     * @param depth the depth of the apted.node, relative to the root apted.node. E.g., the root apted.node has depth 0, and a child apted.node
+     */
     @Override
     public void tail(Node node, int depth) {
 
@@ -58,7 +75,9 @@ public class AElementVisitor implements NodeVisitor {
 
 
         /* Perform unwrapping */
-        if (shouldUnwrap == true)
+        if (shouldUnwrap == true) {
             element.unwrap();
+            return;
+        }
     }
 }

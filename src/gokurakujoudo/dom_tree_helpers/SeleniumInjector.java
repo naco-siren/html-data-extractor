@@ -97,6 +97,8 @@ public class SeleniumInjector {
 
                 String marginR = element.getCssValue("margin-right"); // In the format of "31px"
                 String marginL = element.getCssValue("margin-left");
+                String paddingL = element.getCssValue("padding-left");
+                String paddingR = element.getCssValue("padding-right");
 
 
                 Dimension dimension = element.getSize();
@@ -113,14 +115,24 @@ public class SeleniumInjector {
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.style.width = arguments[1];", element, width);
                 } else {
+                    /* The dimensions */
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.setAttribute('width', arguments[1])", element, width);
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.setAttribute('height', arguments[1])", element, height);
+
+                    /* The margins */
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.setAttribute('margin-left', arguments[1])", element, marginL);
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.setAttribute('margin-right', arguments[1])", element, marginR);
+
+                    /* The paddings */
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('padding-left', arguments[1])", element, paddingL);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('padding-right', arguments[1])", element, paddingR);
+
                 }
 
                 //String style = element.getAttribute("style");
@@ -139,8 +151,8 @@ public class SeleniumInjector {
     }
 
 
-    public void smartUnwrap(){
-        Document document = Jsoup.parse(_HTML);
+    public static void smartUnwrap(String html){
+        Document document = Jsoup.parse(html);
         Element body = document.body();
 
         AElementVisitor aElementVisitor = new AElementVisitor();
