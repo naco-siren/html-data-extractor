@@ -1,5 +1,6 @@
 package gokurakujoudo.dom_tree_helpers;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
@@ -30,6 +31,7 @@ public class AElementVisitor implements NodeVisitor {
      */
     @Override
     public void tail(Node node, int depth) {
+
         /* Unwrap all the children demands unwrapping */
         ArrayList<Node> childrenDemandsUnwrapping = new ArrayList<>();
         for (Node childNode : node.childNodes()) {
@@ -57,51 +59,63 @@ public class AElementVisitor implements NodeVisitor {
             return false;
 
 
-
-
-
         /* Fetch its previous sibling and next sibling node */
         Node prevSib = element.previousSibling();
         Node nextSib = element.nextSibling();
 
-        /* If its previous and next sibling nodes are null or textnodes */
-        boolean prevSibIsTextNode = prevSib == null || prevSib instanceof TextNode;
-        boolean nextSibIsTextNode = nextSib == null || prevSib instanceof TextNode;
-        if (prevSibIsTextNode && nextSibIsTextNode)
+        /* If it's the only child */
+        if (prevSib == null && nextSib == null)
             return true;
 
+        /* If its previous and next sibling nodes are text nodes */
+        TextNode prevSibTextNode = prevSib == null ? null : (prevSib instanceof TextNode ? (TextNode) prevSib : null);
+        TextNode nextSibTextNode = nextSib == null ? null : (nextSib instanceof TextNode ? (TextNode) nextSib : null);
+        /* And if they are blanks */
+        boolean prevTextIsBlank = prevSibTextNode != null && StringUtils.isBlank(prevSibTextNode.text());
+        boolean nextTextIsBlank = nextSibTextNode != null && StringUtils.isBlank(nextSibTextNode.text());
+        if (prevTextIsBlank || nextTextIsBlank)
+            return false;
 
 
-        /* If  */
 
-        Element prevSibEle = element.previousElementSibling();
-        Element nextSibEle = element.nextElementSibling();
+        /* Fetch its previous sibling element and next sibling element */
+//        Element prevSibEle = element.previousElementSibling();
+//        Element nextSibEle = element.nextElementSibling();
+        Element prevSibEle = prevSib instanceof Element ? (Element) prevSib : null;
+        Element nextSibEle = nextSib instanceof Element ? (Element) nextSib : null;
 
         /* If it is the sole child element of its parent */
-        if (prevSibEle == null && nextSibEle == null) {
+        if (prevSibEle == null && nextSibEle == null)
             return true;
-        }
 
 
-        /* If its previous sibling is an element with a positive margin-right */
-        int prevMarginR = 0;
-        if (prevSibEle != null) {
-            String prevMarginRight = prevSibEle.attr("margin-right");
-            prevMarginR = prevMarginRight != null && prevMarginRight.length() > 0 ? Integer.parseInt(prevMarginRight.split("px")[0]) : 0;
-        }
+        /* If its has a positive distance (padding + margin) to the previous element sibling */
+        int prevDistance = px2int(element.attr("padding-left")) + px2int(element.attr("margin-left"));
+        if (prevSibEle != null)
+            prevDistance += px2int(prevSibEle.attr("margin-right")) + px2int(prevSibEle.attr("padding-right"));
 
-        /* If its next sibling is an element with a positive margin-left */
-        int nextMarginL = 0;
-        if (nextSibEle != null) {
-            String nextMarginLeft = nextSibEle.attr("margin-left");
-            nextMarginL = nextMarginLeft != null && nextMarginLeft.length() > 0 ? Integer.parseInt(nextMarginLeft.split("px")[0]) : 0;
-        }
+        /* If its has a positive distance (padding + margin) to the previous element sibling */
+        int nextDistance = px2int(element.attr("padding-right")) + px2int(element.attr("margin-right"));
+        if (nextSibEle != null)
+            nextDistance += px2int(nextSibEle.attr("margin-left")) + px2int(nextSibEle.attr("padding-left"));
 
-        if (prevMarginR > 0 || nextMarginL > 0) {
+
+        if (prevDistance > 0 || nextDistance > 0) {
             return false;
         } else {
             return true;
         }
 
+    }
+
+    private int px2int(String px) {
+        if (px == null)
+            return 0;
+
+        String[] parts = px.split("px");
+        if (parts.length == 0)
+            return 0;
+
+        return Integer.parseInt(parts[0]);
     }
 }
