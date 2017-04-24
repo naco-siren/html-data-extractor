@@ -55,7 +55,9 @@ public class AElementVisitor implements NodeVisitor {
         if (node instanceof Element == false)
             return false;
         Element element = (Element) node;
-        if (element.tagName().equals("a") == false)
+
+        String tagName = element.tagName();
+        if (tagName.equals("a") == false && tagName.equals("span") == false)
             return false;
 
 
@@ -67,6 +69,10 @@ public class AElementVisitor implements NodeVisitor {
         if (prevSib == null && nextSib == null)
             return true;
 
+
+        /* If it has an emphasizing style */
+//        if (element.attr("font-style").equals("normal") == false || element.attr("font-weight").equals("normal") == false)
+//            return false;
 
 
         /* Check if it has blank to its previous sibling */
@@ -129,6 +135,12 @@ public class AElementVisitor implements NodeVisitor {
         if (parts.length == 0)
             return 0;
 
-        return Integer.parseInt(parts[0]);
+        try {
+            int value = Integer.parseInt(parts[0]);
+            return value;
+
+        } catch (Exception e) {
+            return 0;
+        }
     }
 }

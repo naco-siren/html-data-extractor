@@ -86,8 +86,6 @@ public class SeleniumInjector {
     public int render(String URL){
         try {
             _driver.get(URL);
-            /* Alternatively the same thing can be done like this */
-            // driver.navigate().to("http://www.google.com");
 
             /* Traverse through all the elements and inject CSS info */
             List<WebElement> elements = _driver.findElements(By.cssSelector("*"));
@@ -95,15 +93,25 @@ public class SeleniumInjector {
             for (WebElement element : elements) {
                 String text = element.getText();
 
+                /* Dimensions */
+                Dimension dimension = element.getSize();
+                String height = dimension.getHeight() + "px";
+                String width = dimension.getWidth() + "px";
+
+                /* Paddings and Margins */
                 String marginR = element.getCssValue("margin-right"); // In the format of "31px"
                 String marginL = element.getCssValue("margin-left");
                 String paddingL = element.getCssValue("padding-left");
                 String paddingR = element.getCssValue("padding-right");
 
+                /* Fonts */
+                String fontFamily = element.getCssValue("font-family");
+                String fontStyle = element.getCssValue("font-style");
+                String fontSize = element.getCssValue("font-size");
+                String fontWeight = element.getCssValue("font-weight");
+                //String fontVariant = element.getCssValue("font-variant");
 
-                Dimension dimension = element.getSize();
-                String height = dimension.getHeight() + "px";
-                String width = dimension.getWidth() + "px";
+
 
                 if (false) {
                     ((JavascriptExecutor) _driver).executeScript(
@@ -114,24 +122,35 @@ public class SeleniumInjector {
                             "var ele=arguments[0]; ele.style.height = arguments[1];", element, height);
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.style.width = arguments[1];", element, width);
+
                 } else {
-                    /* The dimensions */
+                    /* Dimensions */
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.setAttribute('width', arguments[1])", element, width);
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.setAttribute('height', arguments[1])", element, height);
 
-                    /* The margins */
+                    /* Margins */
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.setAttribute('margin-left', arguments[1])", element, marginL);
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.setAttribute('margin-right', arguments[1])", element, marginR);
 
-                    /* The paddings */
+                    /* Paddings */
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.setAttribute('padding-left', arguments[1])", element, paddingL);
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.setAttribute('padding-right', arguments[1])", element, paddingR);
+
+                    /* Fonts */
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('font-family', arguments[1])", element, fontFamily);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('font-size', arguments[1])", element, fontSize);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('font-style', arguments[1])", element, fontStyle);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('font-weight', arguments[1])", element, fontWeight);
 
                 }
 

@@ -20,28 +20,31 @@ public class TestDomTreeCleaner {
      */
     @Test
     public void testSmartUnwrapping() throws Exception {
-        // <div> T <a> T <a> T <a> T </div>
-        //testSmartUnwrappingOnFile("googleScholarPart1");
+        // <div> blank <a> blank <a> blank <a> blank </div>
+        //String result1 = testSmartUnwrappingOnFile("googleScholarPart1");
 
-        // <div><a><a><a></div>
-        testSmartUnwrappingOnFile("googleScholarPart2");
+        // <div> text <a> text <a> text </div>
+        //String result2 = testSmartUnwrappingOnFile("googleScholarPart2");
+
 
 
         // Google Scholar
-        //testSmartUnwrappingOnFile(GOOGLE_SCHOLAR_TITLE);
+        String result3 = testSmartUnwrappingOnFile(GOOGLE_SCHOLAR_TITLE);
 
-
+        return;
     }
-    public void testSmartUnwrappingOnFile(String fileName) throws Exception {
+
+    public String testSmartUnwrappingOnFile(String fileName) throws Exception {
         String inFileName = SeleniumInjector.INJECTED_HTML_OUTPUT_DIR + File.separator + fileName + ".html";
 
         Document document = Jsoup.parse(new File(inFileName), "UTF-8", "");
         Element body = document.body();
 
-        DomTreeCleaner.smartUnwrap(body.outerHtml());
+        DomTreeCleaner.trimDOMTree(body);
+        DomTreeCleaner.smartUnwrapDOMTree(body);
 
-        System.out.println(body.html());
+        String result = body.outerHtml();
 
-        return;
+        return result;
     }
 }
