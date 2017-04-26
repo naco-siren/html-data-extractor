@@ -19,7 +19,7 @@ import static gokurakujoudo.injection.InjectionUtils.*;
  */
 public class SeleniumInjector {
     /* Param */
-    public static final String INJECTED_HTML_OUTPUT_DIR = "injectedHTML";
+    public static final String INJECTED_HTML_OUTPUT_DIR = "injected_HTML";
     public enum DevPlatform {
         WINDOWS,
         MACOS,
