@@ -101,9 +101,6 @@ public class DomTreeCleaner {
         if(node instanceof Comment) nodeArrayList.add(node);
 
         if(node instanceof TextNode && ((TextNode) node).isBlank()) nodeArrayList.add(node);
-
-        //TODO: Experimental
-        //if (node instanceof Element && node.childNodeSize() == 0) nodeArrayList.add(node);
     }
 
 

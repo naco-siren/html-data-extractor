@@ -13,18 +13,24 @@ import java.util.ArrayList;
 public class TestHTMLDataExtractor {
     @Test
     public void testWebpages() throws Exception {
+
+        /* TODO: Add more test cases and analyze! */
+        String[] titles = new String[] {
+                "Google Scholar"
+        };
         String[] URLs = new String[]{
                 "https://scholar.google.com/scholar?hl=en&q=database&as_sdt=1%2C14&as_sdtp=&oq="
 
         };
-        String[] TITLEs = new String[] {
-                "Google Scholar"
+        int[] expectedOutputDataCounts = new int[] {
+                8
         };
 
 
+        /* DO NOT MODIFY THIS! */
         for (int i = 0; i < URLs.length; i++) {
-            System.out.println("=== Testing on " + TITLEs[i] + " ===");
-            assert (testWebpage(URLs[i], true, true) == 8);
+            System.out.println("=== Testing on " + titles[i] + " ===");
+            assert (testWebpage(URLs[i], true, true) == expectedOutputDataCounts[i]);
             System.out.println();
         }
 
