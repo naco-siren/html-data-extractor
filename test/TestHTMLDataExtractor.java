@@ -50,21 +50,25 @@ public class TestHTMLDataExtractor {
 
             /* Collect and clean up the results */
             DataGroups results = htmlDataExtractor.getResults();
+            results.clean();
 
             /* Output the results */
             for (int i = 0; i < results.size(); i++) {
                 DataGroup dataGroup = results.get(i);
 
                 System.out.println("*** No. " + i + ", " + dataGroup);
-                //System.out.println(dataGroup.getDataHTMLs());
-                ArrayList<String> dataHTMLs = dataGroup.getDataHTMLs();
 
+                /* Get data in HTML format */
+                ArrayList<String> dataHTMLs = dataGroup.getHTMLs();
                 for (String dataHTML : dataHTMLs) {
-                    JSONObject jsonObject = XML.toJSONObject(dataHTML);
-                    String jsonString = jsonObject.toString();
-                    System.out.println(jsonString);
+                    System.out.println(dataHTML);
                     System.out.println();
                 }
+
+                /* Get data in JSON format */
+                ArrayList<String> dataJSONs = dataGroup.getJSONs();
+                for (String dataJSON : dataJSONs)
+                    System.out.println(dataJSON);
 
                 System.out.println();
             }

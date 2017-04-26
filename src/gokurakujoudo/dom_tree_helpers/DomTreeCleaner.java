@@ -37,8 +37,6 @@ public class DomTreeCleaner {
             return -1;
         if (smartUnwrap() != 0)
             return -2;
-        if (removeAttributes() != 0)
-            return -3;
 
         return 0;
     }
@@ -151,12 +149,12 @@ public class DomTreeCleaner {
 
 
     /**
-     *
+     * Remove all attributes in a DOM tree
      * @return 0 on success
      */
-    private int removeAttributes(){
-        return removeDOMTreeAttributes(_root);
-    }
+//    private int removeAttributes(){
+//        return removeDOMTreeAttributes(_root);
+//    }
     public static int removeDOMTreeAttributes(Element root){
         try {
             /* Remove the attributes with given keys */

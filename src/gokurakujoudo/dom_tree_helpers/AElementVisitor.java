@@ -51,7 +51,7 @@ public class AElementVisitor implements NodeVisitor {
         return;
     }
 
-    public boolean shouldUnwrap(Node node, int depth){
+    private boolean shouldUnwrap(Node node, int depth){
 
         /* Check if the node is not an <a> element */
         if (node instanceof Element == false)
