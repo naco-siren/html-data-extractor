@@ -1,9 +1,6 @@
 package gokurakujoudo.dom_tree_helpers;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.NodeTraversor;
+import gokurakujoudo.utils.InjectionUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -15,6 +12,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static gokurakujoudo.utils.InjectionUtils.*;
 
 /**
  * Created by nacos on 4/15/2017.
@@ -28,6 +27,12 @@ public class SeleniumInjector {
         LINUX,
         UNKNOWN
     }
+
+    /* Settings */
+    private boolean _injectDimensionInfo = true;
+    private boolean _injectMarginInfo = true;
+    private boolean _injectPaddingInfo = true;
+    private boolean _injectFontInfo = false;
 
     /* Tool */
     private WebDriver _driver;
@@ -94,67 +99,73 @@ public class SeleniumInjector {
                 String text = element.getText();
 
                 /* Dimensions */
-                Dimension dimension = element.getSize();
-                String height = dimension.getHeight() + "px";
-                String width = dimension.getWidth() + "px";
+                if (_injectDimensionInfo) {
+                    Dimension dimension = element.getSize();
 
-                /* Paddings and Margins */
-                String marginR = element.getCssValue("margin-right"); // In the format of "31px"
-                String marginL = element.getCssValue("margin-left");
-                String paddingL = element.getCssValue("padding-left");
-                String paddingR = element.getCssValue("padding-right");
+                    int height = dimension.getHeight();
+                    int width = dimension.getWidth();
+                    int area = height * width;
 
-                /* Fonts */
-                String fontFamily = element.getCssValue("font-family");
-                String fontStyle = element.getCssValue("font-style");
-                String fontSize = element.getCssValue("font-size");
-                String fontWeight = element.getCssValue("font-weight");
-                //String fontVariant = element.getCssValue("font-variant");
-
-
-
-                if (false) {
                     ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.style.marginLeft = arguments[1];", element, marginL);
+                            "var ele=arguments[0]; ele.setAttribute('" + WIDTH + "', arguments[1])", element, width + "px");
                     ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.style.marginRight = arguments[1];", element, marginR);
+                            "var ele=arguments[0]; ele.setAttribute('" + HEIGHT + "', arguments[1])", element, height + "px");
                     ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.style.height = arguments[1];", element, height);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.style.width = arguments[1];", element, width);
-
-                } else {
-                    /* Dimensions */
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('width', arguments[1])", element, width);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('height', arguments[1])", element, height);
-
-                    /* Margins */
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('margin-left', arguments[1])", element, marginL);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('margin-right', arguments[1])", element, marginR);
-
-                    /* Paddings */
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('padding-left', arguments[1])", element, paddingL);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('padding-right', arguments[1])", element, paddingR);
-
-                    /* Fonts */
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('font-family', arguments[1])", element, fontFamily);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('font-size', arguments[1])", element, fontSize);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('font-style', arguments[1])", element, fontStyle);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('font-weight', arguments[1])", element, fontWeight);
-
+                            "var ele=arguments[0]; ele.setAttribute('" + AREA + "', arguments[1])", element, area);
                 }
 
+                /* Margins */
+                if (_injectMarginInfo) {
+                    String marginR = element.getCssValue(MARGIN_RIGHT);
+                    String marginL = element.getCssValue(MARGIN_LEFT);
+
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('" + MARGIN_LEFT + "', arguments[1])", element, marginL);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('" + MARGIN_RIGHT + "', arguments[1])", element, marginR);
+                }
+
+                /* Padding */
+                if (_injectPaddingInfo) {
+                    String paddingL = element.getCssValue(PADDING_LEFT);
+                    String paddingR = element.getCssValue(PADDING_RIGHT);
+
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('" + PADDING_LEFT + "', arguments[1])", element, paddingL);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('" + PADDING_RIGHT + "', arguments[1])", element, paddingR);
+                }
+
+                /* Fonts */
+                if (_injectFontInfo) {
+                    String fontFamily = element.getCssValue(FONT_FAMILY);
+                    String fontStyle = element.getCssValue(FONT_STYLE);
+                    String fontSize = element.getCssValue(FONT_SIZE);
+                    String fontWeight = element.getCssValue(FONT_WEIGHT);
+                    //String fontVariant = element.getCssValue(FONT_VARIANT);
+
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('" + FONT_FAMILY + "', arguments[1])", element, fontFamily);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('" + FONT_SIZE + "', arguments[1])", element, fontSize);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('" + FONT_STYLE + "', arguments[1])", element, fontStyle);
+                    ((JavascriptExecutor) _driver).executeScript(
+                            "var ele=arguments[0]; ele.setAttribute('" + FONT_WEIGHT + "', arguments[1])", element, fontWeight);
+                }
+
+
+
                 //String style = element.getAttribute("style");
+//                ((JavascriptExecutor) _driver).executeScript(
+//                        "var ele=arguments[0]; ele.style.marginLeft = arguments[1];", element, marginL);
+//                ((JavascriptExecutor) _driver).executeScript(
+//                        "var ele=arguments[0]; ele.style.marginRight = arguments[1];", element, marginR);
+//                ((JavascriptExecutor) _driver).executeScript(
+//                        "var ele=arguments[0]; ele.style.height = arguments[1];", element, height);
+//                ((JavascriptExecutor) _driver).executeScript(
+//                        "var ele=arguments[0]; ele.style.width = arguments[1];", element, width);
+
                 continue;
             }
 

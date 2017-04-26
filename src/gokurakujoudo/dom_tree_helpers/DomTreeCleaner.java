@@ -1,5 +1,6 @@
 package gokurakujoudo.dom_tree_helpers;
 
+import gokurakujoudo.utils.InjectionUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
@@ -60,9 +61,12 @@ public class DomTreeCleaner {
             elementsToRemove.remove();
 
             /* Remove elements that are not visible */
-            elementsToRemove = root.getElementsByAttributeValue("style", "display:none");
+            // In style
+            elementsToRemove = root.getElementsByAttributeValueContaining("style", "display:none");
             elementsToRemove.remove();
-
+            // In dimension
+            elementsToRemove = root.getElementsByAttributeValue(InjectionUtils.AREA, "0");
+            elementsToRemove.remove();
 
             /* Remove blank lines and comments */
             ArrayList<Node> nodesToDelete = new ArrayList<>();

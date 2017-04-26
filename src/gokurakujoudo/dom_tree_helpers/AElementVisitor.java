@@ -8,6 +8,8 @@ import org.jsoup.select.NodeVisitor;
 
 import java.util.ArrayList;
 
+import static gokurakujoudo.utils.InjectionUtils.*;
+
 /**
  * Created by nacos on 4/23/2017.
  */
@@ -91,8 +93,8 @@ public class AElementVisitor implements NodeVisitor {
             Element prevEleSib = (Element) prevSib;
             
             /* If previous sibling us an element with right padding + margin */
-            int prevDistance = px2int(element.attr("padding-left")) + px2int(element.attr("margin-left"));
-            prevDistance += px2int(prevEleSib.attr("margin-right")) + px2int(prevEleSib.attr("padding-right"));
+            int prevDistance = px2int(element.attr(PADDING_LEFT)) + px2int(element.attr(MARGIN_LEFT));
+            prevDistance += px2int(prevEleSib.attr(MARGIN_RIGHT)) + px2int(prevEleSib.attr(PADDING_RIGHT));
 
             hasBlankToPrev = prevDistance > 0;
         }
@@ -113,8 +115,8 @@ public class AElementVisitor implements NodeVisitor {
             Element NextEleSib = (Element) nextSib;
             
             /* If Nextious sibling us an element with right padding + margin */
-            int NextDistance = px2int(element.attr("padding-right")) + px2int(element.attr("margin-right"));
-            NextDistance += px2int(NextEleSib.attr("margin-left")) + px2int(NextEleSib.attr("padding-left"));
+            int NextDistance = px2int(element.attr(PADDING_RIGHT)) + px2int(element.attr(MARGIN_RIGHT));
+            NextDistance += px2int(NextEleSib.attr(MARGIN_LEFT)) + px2int(NextEleSib.attr(PADDING_LEFT));
 
             hasBlankToNext = NextDistance > 0;
         }
@@ -127,20 +129,4 @@ public class AElementVisitor implements NodeVisitor {
 
     }
 
-    private int px2int(String px) {
-        if (px == null)
-            return 0;
-
-        String[] parts = px.split("px");
-        if (parts.length == 0)
-            return 0;
-
-        try {
-            int value = Integer.parseInt(parts[0]);
-            return value;
-
-        } catch (Exception e) {
-            return 0;
-        }
-    }
 }

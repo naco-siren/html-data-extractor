@@ -6,6 +6,7 @@ import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
+import org.jsoup.select.NodeVisitor;
 
 import java.util.ArrayList;
 
@@ -83,42 +84,41 @@ public class DataGroup implements Comparable<DataGroup> {
 
 
         try {
-            /* Remove elements with given tag names */
-            Elements elementsToRemove = new Elements();
-            for (String removeTagName : TAG_NAMES_TO_REMOVE) {
-                elementsToRemove.addAll(element.getElementsByTag(removeTagName));
-            }
-            elementsToRemove.remove();
+//            /* Remove elements with given tag names */
+//            Elements elementsToRemove = new Elements();
+//            for (String removeTagName : TAG_NAMES_TO_REMOVE) {
+//                elementsToRemove.addAll(element.getElementsByTag(removeTagName));
+//            }
+//            elementsToRemove.remove();
 
-            /* Remove elements with no children */
-            ArrayList<Node> nodesToDelete = new ArrayList<>();
-            Node cursor = element;
-            int depth = 0;
-            while (cursor != null) {
-                if (cursor.childNodeSize() > 0) {
-                    cursor = cursor.childNode(0);
-                    depth++;
-                } else {
-                    while (cursor.nextSibling() == null && depth > 0) {
-                        cacheLonelyNodes(cursor, nodesToDelete);
-                        cursor = cursor.parentNode();
-                        depth--;
-                    }
-                    cacheLonelyNodes(cursor, nodesToDelete);
-                    if (cursor == element)
-                        break;
-                    cursor = cursor.nextSibling();
-                }
-            }
-            for (Node n : nodesToDelete) {
-                n.remove();
-            }
-
-            /* Unwrap <font>, <strong>, <em>, <b>, <i>, <u>, <s>, <br>, <sup>, <sub> */
-            for (String tagName : TAG_NAMES_TO_UNWRAP) {
-                element.select(tagName).unwrap();
-            }
-            element.select("a").unwrap();
+//            /* Remove elements with no children */
+//            ArrayList<Node> nodesToDelete = new ArrayList<>();
+//            Node cursor = element;
+//            int depth = 0;
+//            while (cursor != null) {
+//                if (cursor.childNodeSize() > 0) {
+//                    cursor = cursor.childNode(0);
+//                    depth++;
+//                } else {
+//                    while (cursor.nextSibling() == null && depth > 0) {
+//                        cacheLonelyNodes(cursor, nodesToDelete);
+//                        cursor = cursor.parentNode();
+//                        depth--;
+//                    }
+//                    cacheLonelyNodes(cursor, nodesToDelete);
+//                    if (cursor == element)
+//                        break;
+//                    cursor = cursor.nextSibling();
+//                }
+//            }
+//            for (Node n : nodesToDelete) {
+//                n.remove();
+//            }
+//
+//            /* Unwrap <font>, <strong>, <em>, <b>, <i>, <u>, <s>, <br>, <sup>, <sub> */
+//            for (String tagName : TAG_NAMES_TO_UNWRAP) {
+//                element.select(tagName).unwrap();
+//            }
 
 
             return 0;
@@ -131,5 +131,21 @@ public class DataGroup implements Comparable<DataGroup> {
     //TODO: Experimental
     private void cacheLonelyNodes(Node node, ArrayList<Node> nodeArrayList){
         if (node instanceof Element && node.childNodeSize() == 0) nodeArrayList.add(node);
+    }
+
+
+    /**
+     * Used for unwrapping single elements
+     */
+    class SingleElementVisitor implements NodeVisitor {
+        @Override
+        public void head(Node node, int depth) {
+
+        }
+
+        @Override
+        public void tail(Node node, int depth) {
+
+        }
     }
 }
