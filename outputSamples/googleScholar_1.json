@@ -1,0 +1,28 @@
+{
+  "div": {
+    "div": [
+      {
+        "div": [
+          "[HTML] oxfordjournals.org",
+          "Discover UIUC Full Text"
+        ]
+      },
+      {
+        "div": [
+          "A Acland, R Agarwala, T Barrett, J Beck… - Nucleic acids …, 2014 - ncbi.nlm.nih.gov",
+          "ABSTRACT In addition to maintaining the GenBankÕ nucleic acid sequence database, the National Center for Biotechnology Information (NCBI, http://www. ncbi. nlm. nih. go v) provides analysis and retrieval resources for the data in GenBank and other biological data",
+          {
+            "a": [
+              "Cited by 661",
+              "Related articles",
+              "All 12 versions",
+              "Cite"
+            ],
+            "span": "Save"
+          }
+        ],
+        "h3": "Database resources of the national center for biotechnology information"
+      }
+    ]
+  }
+}

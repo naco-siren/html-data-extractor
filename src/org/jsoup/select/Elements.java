@@ -564,7 +564,7 @@ public class Elements extends ArrayList<Element> {
 
     /**
      * Perform a depth-first traversal on each of the selected elements.
-     * @param nodeVisitor the visitor callbacks to perform on each apted.node
+     * @param nodeVisitor the visitor callbacks to perform on each node
      * @return this, for chaining
      */
     public Elements traverse(NodeVisitor nodeVisitor) {

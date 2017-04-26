@@ -131,7 +131,7 @@ public final class StringUtil {
         int len = string.length();
         int c;
 
-        /* Pass the abominable mere " " element or apted.node  */
+        /* Pass the abominable mere " " element or node  */
         if(len == 1){
             c = string.codePointAt(0);
             if (isWhitespace(c)) {

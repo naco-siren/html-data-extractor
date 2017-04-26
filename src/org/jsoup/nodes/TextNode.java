@@ -6,12 +6,12 @@ import org.jsoup.helper.StringUtil;
 import org.jsoup.helper.Validate;
 
 /**
- A text apted.node.
+ A text node.
 
  @author Jonathan Hedley, jonathan@hedley.net */
 public class TextNode extends Node {
     /*
-    TextNode is a apted.node, and so by default comes with attributes and children. The attributes are seldom used, but use
+    TextNode is a node, and so by default comes with attributes and children. The attributes are seldom used, but use
     memory, and the child nodes are never used. So we don't have them, and override accessors to attributes to create
     them as needed on the fly.
      */
@@ -35,7 +35,7 @@ public class TextNode extends Node {
     }
     
     /**
-     * Get the text content of this text apted.node.
+     * Get the text content of this text node.
      * @return Unencoded, normalised text.
      * @see TextNode#getWholeText()
      */
@@ -44,7 +44,7 @@ public class TextNode extends Node {
     }
     
     /**
-     * Set the text content of this text apted.node.
+     * Set the text content of this text node.
      * @param text unencoded text
      * @return this, for chaining
      */
@@ -56,7 +56,7 @@ public class TextNode extends Node {
     }
 
     /**
-     Get the (unencoded) text of this text apted.node, including any newlines and spaces present in the original.
+     Get the (unencoded) text of this text node, including any newlines and spaces present in the original.
      @return text
      */
     public String getWholeText() {
@@ -64,7 +64,7 @@ public class TextNode extends Node {
     }
 
     /**
-     Test if this text apted.node is blank -- that is, empty or only whitespace (including newlines).
+     Test if this text node is blank -- that is, empty or only whitespace (including newlines).
      @return true if this document is empty or only whitespace, false if it contains any text content.
      */
     public boolean isBlank() {
@@ -72,10 +72,10 @@ public class TextNode extends Node {
     }
 
     /**
-     * Split this text apted.node into two nodes at the specified string offset. After splitting, this apted.node will contain the
-     * original text up to the offset, and will have a new text apted.node sibling containing the text after the offset.
-     * @param offset string offset point to split apted.node at.
-     * @return the newly created text apted.node containing the text after the offset.
+     * Split this text node into two nodes at the specified string offset. After splitting, this node will contain the
+     * original text up to the offset, and will have a new text node sibling containing the text after the offset.
+     * @param offset string offset point to split node at.
+     * @return the newly created text node containing the text after the offset.
      */
     public TextNode splitText(int offset) {
         Validate.isTrue(offset >= 0, "Split offset must be not be negative");

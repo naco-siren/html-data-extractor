@@ -28,8 +28,8 @@ public class AElementVisitor implements NodeVisitor {
 
     /**
      * Unwrap the element's
-     * @param node the apted.node being visited.
-     * @param depth the depth of the apted.node, relative to the root apted.node. E.g., the root apted.node has depth 0, and a child apted.node
+     * @param node the node being visited.
+     * @param depth the depth of the node, relative to the root node. E.g., the root node has depth 0, and a child node
      */
     @Override
     public void tail(Node node, int depth) {

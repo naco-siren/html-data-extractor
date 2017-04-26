@@ -3,7 +3,7 @@ package org.jsoup.nodes;
 import java.io.IOException;
 
 /**
- A data apted.node, for contents of style, script tags etc, where contents should not show in text().
+ A data node, for contents of style, script tags etc, where contents should not show in text().
 
  @author Jonathan Hedley, jonathan@hedley.net */
 public class DataNode extends Node{
@@ -24,7 +24,7 @@ public class DataNode extends Node{
     }
 
     /**
-     Get the data contents of this apted.node. Will be unescaped and with original new lines, space etc.
+     Get the data contents of this node. Will be unescaped and with original new lines, space etc.
      @return data
      */
     public String getWholeData() {
@@ -32,9 +32,9 @@ public class DataNode extends Node{
     }
 
     /**
-     * Set the data contents of this apted.node.
+     * Set the data contents of this node.
      * @param data unencoded data
-     * @return this apted.node, for chaining
+     * @return this node, for chaining
      */
     public DataNode setWholeData(String data) {
         attributes.put(DATA_KEY, data);

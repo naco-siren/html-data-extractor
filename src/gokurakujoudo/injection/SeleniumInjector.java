@@ -110,7 +110,7 @@ public class SeleniumInjector {
                     ((JavascriptExecutor) _driver).executeScript(
                             "var ele=arguments[0]; ele.setAttribute('" + HEIGHT + "', arguments[1])", element, height + "px");
                     ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + AREA + "', arguments[1])", element, area);
+                            "var ele=arguments[0]; ele.setAttribute('" + AREA + "', arguments[1])", element, "" + area);
                 }
 
                 /* Margins */

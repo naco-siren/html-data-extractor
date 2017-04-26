@@ -24,14 +24,14 @@ public class TestHTMLDataExtractor {
 
         for (int i = 0; i < URLs.length; i++) {
             System.out.println("=== Testing on " + TITLEs[i] + " ===");
-            assert (testWebpage(URLs[i]) == 0);
+            assert (testWebpage(URLs[i], true, true) == 8);
             System.out.println();
         }
 
         return;
     }
 
-    public int testWebpage(String URL) {
+    public int testWebpage(String URL, boolean outputHTML, boolean outputJSON) {
         /* Instantiate an HTMLDataExtractor */
         HTMLDataExtractor htmlDataExtractor = new HTMLDataExtractor();
 
@@ -53,27 +53,32 @@ public class TestHTMLDataExtractor {
             results.clean();
 
             /* Output the results */
+            int dataCount = 0;
             for (int i = 0; i < results.size(); i++) {
                 DataGroup dataGroup = results.get(i);
-
-                System.out.println("*** No. " + i + ", " + dataGroup);
-
-                /* Get data in HTML format */
-                ArrayList<String> dataHTMLs = dataGroup.getHTMLs();
-                for (String dataHTML : dataHTMLs) {
-                    System.out.println(dataHTML);
-                    System.out.println();
-                }
-
-                /* Get data in JSON format */
-                ArrayList<String> dataJSONs = dataGroup.getJSONs();
-                for (String dataJSON : dataJSONs)
-                    System.out.println(dataJSON);
+                dataCount += dataGroup.size();
 
                 System.out.println();
+                System.out.println("*** No. " + i + ", " + dataGroup);
+
+                /* HTML format */
+                if (outputHTML) {
+                    ArrayList<String> dataHTMLs = dataGroup.getHTMLs();
+                    for (String dataHTML : dataHTMLs) {
+                        System.out.println(dataHTML);
+                        System.out.println();
+                    }
+                }
+
+                /* JSON format */
+                if (outputJSON) {
+                    ArrayList<String> dataJSONs = dataGroup.getJSONs();
+                    for (String dataJSON : dataJSONs)
+                        System.out.println(dataJSON);
+                }
             }
 
-            return 0;
+            return dataCount;
         } else {
             return -1;
         }

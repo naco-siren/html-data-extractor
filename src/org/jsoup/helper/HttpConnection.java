@@ -468,7 +468,7 @@ public class HttpConnection implements Connection {
         private boolean ignoreHttpErrors = false;
         private boolean ignoreContentType = false;
         private Parser parser;
-        private boolean parserDefined = false; // called apted.parser(...) vs initialized in ctor
+        private boolean parserDefined = false; // called parser(...) vs initialized in ctor
         private boolean validateTSLCertificates = true;
         private String postDataCharset = DataUtil.defaultCharset;
 
@@ -688,7 +688,7 @@ public class HttpConnection implements Connection {
                     throw new UnsupportedMimeTypeException("Unhandled content type. Must be text/*, application/xml, or application/xhtml+xml",
                             contentType, req.url().toString());
 
-                // switch to the XML apted.parser if content type is xml and not apted.parser not explicitly set
+                // switch to the XML parser if content type is xml and not parser not explicitly set
                 if (contentType != null && xmlContentTypeRxp.matcher(contentType).matches()) {
                     // only flip it if a HttpConnection.Request (i.e. don't presume other impls want it):
                     if (req instanceof Request && !((Request) req).parserDefined) {

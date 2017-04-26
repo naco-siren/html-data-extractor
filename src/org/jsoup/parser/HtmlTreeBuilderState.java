@@ -610,13 +610,13 @@ enum HtmlTreeBuilderState {
                                     break;
 
                                 Element replacement = new Element(Tag.valueOf(node.nodeName(), ParseSettings.preserveCase), tb.getBaseUri());
-                                // case will follow the original apted.node (so honours ParseSettings)
+                                // case will follow the original node (so honours ParseSettings)
                                 tb.replaceActiveFormattingElement(node, replacement);
                                 tb.replaceOnStack(node, replacement);
                                 node = replacement;
 
                                 if (lastNode == furthestBlock) {
-                                    // todo: move the aforementioned bookmark to be immediately after the new apted.node in the list of active formatting elements.
+                                    // todo: move the aforementioned bookmark to be immediately after the new node in the list of active formatting elements.
                                     // not getting how this bookmark both straddles the element above, but is inbetween here...
                                 }
                                 if (lastNode.parent() != null)
@@ -788,7 +788,7 @@ enum HtmlTreeBuilderState {
                 tb.insert(t.asCharacter());
             } else if (t.isEOF()) {
                 tb.error(this);
-                // if current apted.node is script: already started
+                // if current node is script: already started
                 tb.pop();
                 tb.transition(tb.originalState());
                 return tb.process(t);
@@ -1316,7 +1316,7 @@ enum HtmlTreeBuilderState {
             if (isWhitespace(t)) {
                 return tb.process(t, InBody);
             } else if (t.isComment()) {
-                tb.insert(t.asComment()); // into html apted.node
+                tb.insert(t.asComment()); // into html node
             } else if (t.isDoctype()) {
                 tb.error(this);
                 return false;

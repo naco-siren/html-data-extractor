@@ -115,17 +115,17 @@ public class DomTreeCleaner {
         return smartUnwrapDOMTree(_root);
     }
     public static int smartUnwrapDOMTree (Element root) {
-        try {
-            /* Unwrap <font>, <strong>, <em>, <b>, <i>, <u>, <s>, <br>, <sup>, <sub> */
-            for (String tagName : TAG_NAMES_TO_UNWRAP) {
-                root.select(tagName).unwrap();
-            }
-
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-            e.printStackTrace();
-            return -1;
-        }
+//        try {
+//            /* Unwrap <font>, <strong>, <em>, <b>, <i>, <u>, <s>, <br>, <sup>, <sub> */
+//            for (String tagName : TAG_NAMES_TO_UNWRAP) {
+//                root.select(tagName).unwrap();
+//            }
+//
+//        } catch (Exception e) {
+//            System.err.println(e.getMessage());
+//            e.printStackTrace();
+//            return -1;
+//        }
 
         try {
             /* Unwrap <a> elements according to the context */

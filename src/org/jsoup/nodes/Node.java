@@ -61,8 +61,8 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     Get the apted.node name of this apted.node. Use for debugging purposes and not logic switching (for that, use instanceof).
-     @return apted.node name
+     Get the node name of this node. Use for debugging purposes and not logic switching (for that, use instanceof).
+     @return node name
      */
     public abstract String nodeName();
 
@@ -139,7 +139,7 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     Get the base URI of this apted.node.
+     Get the base URI of this node.
      @return base URI
      */
     public String baseUri() {
@@ -147,7 +147,7 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     Update the base URI of this apted.node and all of its descendants.
+     Update the base URI of this node and all of its descendants.
      @param baseUri base URI to set
      */
     public void setBaseUri(final String baseUri) {
@@ -197,16 +197,16 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     Get a child apted.node by its 0-based index.
-     @param index index of child apted.node
-     @return the child apted.node at this index. Throws a {@code IndexOutOfBoundsException} if the index is out of bounds.
+     Get a child node by its 0-based index.
+     @param index index of child node
+     @return the child node at this index. Throws a {@code IndexOutOfBoundsException} if the index is out of bounds.
      */
     public Node childNode(int index) {
         return childNodes.get(index);
     }
 
     /**
-     Get this apted.node's children. Presented as an unmodifiable list: new children can not be added, but the child nodes
+     Get this node's children. Presented as an unmodifiable list: new children can not be added, but the child nodes
      themselves can be manipulated.
      @return list of children. If no children, returns an empty list.
      */
@@ -215,9 +215,9 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Returns a deep copy of this apted.node's children. Changes made to these nodes will not be reflected in the original
+     * Returns a deep copy of this node's children. Changes made to these nodes will not be reflected in the original
      * nodes
-     * @return a deep copy of this apted.node's children
+     * @return a deep copy of this node's children
      */
     public List<Node> childNodesCopy() {
         List<Node> children = new ArrayList<Node>(childNodes.size());
@@ -228,8 +228,8 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Get the number of child nodes that this apted.node holds.
-     * @return the number of child nodes that this apted.node holds.
+     * Get the number of child nodes that this node holds.
+     * @return the number of child nodes that this node holds.
      */
     public final int childNodeSize() {
         return childNodes.size();
@@ -240,23 +240,23 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     Gets this apted.node's parent apted.node.
-     @return parent apted.node; or null if no parent.
+     Gets this node's parent node.
+     @return parent node; or null if no parent.
      */
     public Node parent() {
         return parentNode;
     }
 
     /**
-     Gets this apted.node's parent apted.node. Not overridable by extending classes, so useful if you really just need the Node type.
-     @return parent apted.node; or null if no parent.
+     Gets this node's parent node. Not overridable by extending classes, so useful if you really just need the Node type.
+     @return parent node; or null if no parent.
      */
     public final Node parentNode() {
         return parentNode;
     }
 
     /**
-     * Get this apted.node's root apted.node; that is, its topmost ancestor. If this apted.node is the top ancestor, returns {@code this}.
+     * Get this node's root node; that is, its topmost ancestor. If this node is the top ancestor, returns {@code this}.
      * @return topmost ancestor.
      */
     public Node root() {
@@ -276,7 +276,7 @@ public abstract class Node implements Cloneable {
     }
     
     /**
-     * Remove (delete) this apted.node from the DOM tree. If this apted.node has children, they are also removed.
+     * Remove (delete) this node from the DOM tree. If this node has children, they are also removed.
      */
     public void remove() {
         Validate.notNull(parentNode);
@@ -284,9 +284,9 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Insert the specified HTML into the DOM before this apted.node (i.e. as a preceding sibling).
-     * @param html HTML to add before this apted.node
-     * @return this apted.node, for chaining
+     * Insert the specified HTML into the DOM before this node (i.e. as a preceding sibling).
+     * @param html HTML to add before this node
+     * @return this node, for chaining
      * @see #after(String)
      */
     public Node before(String html) {
@@ -295,9 +295,9 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Insert the specified apted.node into the DOM before this apted.node (i.e. as a preceding sibling).
-     * @param node to add before this apted.node
-     * @return this apted.node, for chaining
+     * Insert the specified node into the DOM before this node (i.e. as a preceding sibling).
+     * @param node to add before this node
+     * @return this node, for chaining
      * @see #after(Node)
      */
     public Node before(Node node) {
@@ -309,9 +309,9 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Insert the specified HTML into the DOM after this apted.node (i.e. as a following sibling).
-     * @param html HTML to add after this apted.node
-     * @return this apted.node, for chaining
+     * Insert the specified HTML into the DOM after this node (i.e. as a following sibling).
+     * @param html HTML to add after this node
+     * @return this node, for chaining
      * @see #before(String)
      */
     public Node after(String html) {
@@ -320,9 +320,9 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Insert the specified apted.node into the DOM after this apted.node (i.e. as a following sibling).
-     * @param node to add after this apted.node
-     * @return this apted.node, for chaining
+     * Insert the specified node into the DOM after this node (i.e. as a following sibling).
+     * @param node to add after this node
+     * @return this node, for chaining
      * @see #before(Node)
      */
     public Node after(Node node) {
@@ -343,9 +343,9 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     Wrap the supplied HTML around this apted.node.
+     Wrap the supplied HTML around this node.
      @param html HTML to wrap around this element, e.g. {@code <div class="head"></div>}. Can be arbitrarily deep.
-     @return this apted.node, for chaining.
+     @return this node, for chaining.
      */
     public Node wrap(String html) {
         Validate.notEmpty(html);
@@ -373,8 +373,8 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Removes this apted.node from the DOM, and moves its children up into the apted.node's parent. This has the effect of dropping
-     * the apted.node but keeping its children.
+     * Removes this node from the DOM, and moves its children up into the node's parent. This has the effect of dropping
+     * the node but keeping its children.
      * <p>
      * For example, with the input html:
      * </p>
@@ -383,7 +383,7 @@ public abstract class Node implements Cloneable {
      * <p>{@code <div>One Two <b>Three</b></div>}</p>
      * and the {@code "Two "} {@link TextNode} being returned.
      * 
-     * @return the first child of this apted.node, after the apted.node has been unwrapped. Null if the apted.node had no children.
+     * @return the first child of this node, after the node has been unwrapped. Null if the node had no children.
      * @see #remove()
      * @see #wrap(String)
      */
@@ -406,8 +406,8 @@ public abstract class Node implements Cloneable {
     }
     
     /**
-     * Replace this apted.node in the DOM with the supplied apted.node.
-     * @param in the apted.node that will will replace the existing apted.node.
+     * Replace this node in the DOM with the supplied node.
+     * @param in the node that will will replace the existing node.
      */
     public void replaceWith(Node in) {
         Validate.notNull(in);
@@ -482,9 +482,9 @@ public abstract class Node implements Cloneable {
     }
     
     /**
-     Retrieves this apted.node's sibling nodes. Similar to {@link #childNodes()  apted.node.parent.childNodes()}, but does not
-     include this apted.node (a apted.node is not a sibling of itself).
-     @return apted.node siblings. If the apted.node has no parent, returns an empty list.
+     Retrieves this node's sibling nodes. Similar to {@link #childNodes()  node.parent.childNodes()}, but does not
+     include this node (a node is not a sibling of itself).
+     @return node siblings. If the node has no parent, returns an empty list.
      */
     public List<Node> siblingNodes() {
         if (parentNode == null)
@@ -499,7 +499,7 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     Get this apted.node's next sibling.
+     Get this node's next sibling.
      @return next sibling, or null if this is the last sibling
      */
     public Node nextSibling() {
@@ -515,7 +515,7 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     Get this apted.node's previous sibling.
+     Get this node's previous sibling.
      @return the previous sibling, or null if this is the first sibling
      */
     public Node previousSibling() {
@@ -529,9 +529,9 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Get the list index of this apted.node in its apted.node sibling list. I.e. if this is the first apted.node
+     * Get the list index of this node in its node sibling list. I.e. if this is the first node
      * sibling, returns 0.
-     * @return position in apted.node sibling list
+     * @return position in node sibling list
      * @see Element#elementSiblingIndex()
      */
     public int siblingIndex() {
@@ -543,9 +543,9 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Perform a depth-first traversal through this apted.node and its descendants.
-     * @param nodeVisitor the visitor callbacks to perform on each apted.node
-     * @return this apted.node, for chaining
+     * Perform a depth-first traversal through this node and its descendants.
+     * @param nodeVisitor the visitor callbacks to perform on each node
+     * @return this node, for chaining
      */
     public Node traverse(NodeVisitor nodeVisitor) {
         Validate.notNull(nodeVisitor);
@@ -555,7 +555,7 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     Get the outer HTML of this apted.node.
+     Get the outer HTML of this node.
      @return HTML
      */
     public String outerHtml() {
@@ -568,14 +568,14 @@ public abstract class Node implements Cloneable {
         new NodeTraversor(new OuterHtmlVisitor(accum, getOutputSettings())).traverse(this);
     }
 
-    // if this apted.node has no document (or parent), retrieve the default output settings
+    // if this node has no document (or parent), retrieve the default output settings
     Document.OutputSettings getOutputSettings() {
         Document owner = ownerDocument();
         return owner != null ? owner.outputSettings() : (new Document("")).outputSettings();
     }
 
     /**
-     Get the outer HTML of this apted.node.
+     Get the outer HTML of this node.
      @param accum accumulator to place HTML into
      @throws IOException if appending to the given accumulator fails.
      */
@@ -584,7 +584,7 @@ public abstract class Node implements Cloneable {
     abstract void outerHtmlTail(Appendable accum, int depth, Document.OutputSettings out) throws IOException;
 
     /**
-     * Write this apted.node and its children to the given {@link Appendable}.
+     * Write this node and its children to the given {@link Appendable}.
      *
      * @param appendable the {@link Appendable} to write to.
      * @return the supplied {@link Appendable}, for chaining.
@@ -603,9 +603,9 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Check if this apted.node is the same instance of another (object identity test).
+     * Check if this node is the same instance of another (object identity test).
      * @param o other object to compare to
-     * @return true if the content of this apted.node is the same as the other
+     * @return true if the content of this node is the same as the other
      * @see Node#hasSameValue(Object) to compare nodes by their value
      */
     @Override
@@ -615,10 +615,10 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Check if this apted.node is has the same content as another apted.node. A apted.node is considered the same if its name, attributes and content match the
-     * other apted.node; particularly its position in the tree does not influence its similarity.
+     * Check if this node is has the same content as another node. A node is considered the same if its name, attributes and content match the
+     * other node; particularly its position in the tree does not influence its similarity.
      * @param o other object to compare to
-     * @return true if the content of this apted.node is the same as the other
+     * @return true if the content of this node is the same as the other
      */
 
     public boolean hasSameValue(Object o) {
@@ -629,12 +629,12 @@ public abstract class Node implements Cloneable {
     }
 
     /**
-     * Create a stand-alone, deep copy of this apted.node, and all of its children. The cloned apted.node will have no siblings or
-     * parent apted.node. As a stand-alone object, any changes made to the clone or any of its children will not impact the
-     * original apted.node.
+     * Create a stand-alone, deep copy of this node, and all of its children. The cloned node will have no siblings or
+     * parent node. As a stand-alone object, any changes made to the clone or any of its children will not impact the
+     * original node.
      * <p>
-     * The cloned apted.node may be adopted into another Document or apted.node structure using {@link Element#appendChild(Node)}.
-     * @return stand-alone cloned apted.node
+     * The cloned node may be adopted into another Document or node structure using {@link Element#appendChild(Node)}.
+     * @return stand-alone cloned node
      */
     @Override
     public Node clone() {
@@ -658,7 +658,7 @@ public abstract class Node implements Cloneable {
     }
 
     /*
-     * Return a clone of the apted.node using the given parent (which can be null).
+     * Return a clone of the node using the given parent (which can be null).
      * Not a deep copy of children.
      */
     protected Node doClone(Node parent) {

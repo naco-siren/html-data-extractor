@@ -61,7 +61,7 @@ public class HtmlToPlainText {
     public String getPlainText(Element element) {
         FormattingVisitor formatter = new FormattingVisitor();
         NodeTraversor traversor = new NodeTraversor(formatter);
-        traversor.traverse(element); // walk the DOM, and call .head() and .tail() for each apted.node
+        traversor.traverse(element); // walk the DOM, and call .head() and .tail() for each node
 
         return formatter.toString();
     }
@@ -72,7 +72,7 @@ public class HtmlToPlainText {
         private int width = 0;
         private StringBuilder accum = new StringBuilder(); // holds the accumulated text
 
-        // hit when the apted.node is first seen
+        // hit when the node is first seen
         public void head(Node node, int depth) {
             String name = node.nodeName();
             if (node instanceof TextNode)
@@ -85,7 +85,7 @@ public class HtmlToPlainText {
                 append("\n");
         }
 
-        // hit when all of the apted.node's children (if any) have been visited
+        // hit when all of the node's children (if any) have been visited
         public void tail(Node node, int depth) {
             String name = node.nodeName();
             if (StringUtil.in(name, "br", "dd", "dt", "p", "h1", "h2", "h3", "h4", "h5"))

@@ -29,7 +29,7 @@ import java.util.regex.PatternSyntaxException;
  * A HTML element consists of a tag name, attributes, and child nodes (including text nodes and
  * other elements).
  * 
- * From an Element, you can extract data, traverse the apted.node graph, and manipulate the HTML.
+ * From an Element, you can extract data, traverse the node graph, and manipulate the HTML.
  * 
  * @author Jonathan Hedley, jonathan@hedley.net
  */
@@ -315,9 +315,9 @@ public class Element extends Node {
     }
     
     /**
-     * Add a apted.node child apted.node to this element.
+     * Add a node child node to this element.
      * 
-     * @param child apted.node to add.
+     * @param child node to add.
      * @return this element, so that you can add more child nodes or elements.
      */
     public Element appendChild(Node child) {
@@ -332,9 +332,9 @@ public class Element extends Node {
     }
 
     /**
-     * Add a apted.node to the start of this element's children.
+     * Add a node to the start of this element's children.
      * 
-     * @param child apted.node to add.
+     * @param child node to add.
      * @return this element, so that you can add more child nodes or elements.
      */
     public Element prependChild(Node child) {
@@ -419,7 +419,7 @@ public class Element extends Node {
     }
     
     /**
-     * Add inner HTML to this element. The supplied HTML will be parsed, and each apted.node appended to the end of the children.
+     * Add inner HTML to this element. The supplied HTML will be parsed, and each node appended to the end of the children.
      * @param html HTML to add inside this element, after the existing HTML
      * @return this element
      * @see #html(String)
@@ -433,7 +433,7 @@ public class Element extends Node {
     }
     
     /**
-     * Add inner HTML into this element. The supplied HTML will be parsed, and each apted.node prepended to the start of the element's children.
+     * Add inner HTML into this element. The supplied HTML will be parsed, and each node prepended to the start of the element's children.
      * @param html HTML to add inside this element, before the existing HTML
      * @return this element
      * @see #html(String)
@@ -459,7 +459,7 @@ public class Element extends Node {
     }
 
     /**
-     * Insert the specified apted.node into the DOM before this apted.node (as a preceding sibling).
+     * Insert the specified node into the DOM before this node (as a preceding sibling).
      * @param node to add before this element
      * @return this Element, for chaining
      * @see #after(Node)
@@ -482,7 +482,7 @@ public class Element extends Node {
     }
 
     /**
-     * Insert the specified apted.node into the DOM after this apted.node (as a following sibling).
+     * Insert the specified node into the DOM after this node (as a following sibling).
      * @param node to add after this element
      * @return this element, for chaining
      * @see #before(Node)
@@ -533,7 +533,7 @@ public class Element extends Node {
         if (classes.length() > 0)
             selector.append('.').append(classes);
 
-        if (parent() == null || parent() instanceof Document) // don't add Document to selector, as will always have a html apted.node
+        if (parent() == null || parent() instanceof Document) // don't add Document to selector, as will always have a html node
             return selector.toString();
 
         selector.insert(0, " > ");

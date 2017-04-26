@@ -61,7 +61,7 @@ public class W3CDom {
         if (!StringUtil.isBlank(in.location()))
             out.setDocumentURI(in.location());
 
-        org.jsoup.nodes.Element rootEl = in.child(0); // skip the #root apted.node
+        org.jsoup.nodes.Element rootEl = in.child(0); // skip the #root node
         NodeTraversor traversor = new NodeTraversor(new W3CBuilder(out));
         traversor.traverse(rootEl);
     }

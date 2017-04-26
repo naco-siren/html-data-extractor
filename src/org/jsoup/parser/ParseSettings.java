@@ -4,7 +4,7 @@ import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;
 
 /**
- * Controls apted.parser settings, to optionally preserve tag and/or attribute name case.
+ * Controls parser settings, to optionally preserve tag and/or attribute name case.
  */
 public class ParseSettings {
     /**
