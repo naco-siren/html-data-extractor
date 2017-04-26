@@ -1,6 +1,6 @@
 package gokurakujoudo.dom_tree_helpers;
 
-import gokurakujoudo.utils.InjectionUtils;
+import gokurakujoudo.injection.InjectionUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;

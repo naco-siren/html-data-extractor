@@ -8,7 +8,7 @@ import org.jsoup.select.NodeVisitor;
 
 import java.util.ArrayList;
 
-import static gokurakujoudo.utils.InjectionUtils.*;
+import static gokurakujoudo.injection.InjectionUtils.*;
 
 /**
  * Created by nacos on 4/23/2017.

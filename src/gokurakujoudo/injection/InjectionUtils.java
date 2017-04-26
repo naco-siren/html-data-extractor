@@ -1,4 +1,4 @@
-package gokurakujoudo.utils;
+package gokurakujoudo.injection;
 
 /**
  * Created by nacos on 4/26/2017.

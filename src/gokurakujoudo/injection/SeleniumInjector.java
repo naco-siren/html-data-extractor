@@ -1,6 +1,5 @@
-package gokurakujoudo.dom_tree_helpers;
+package gokurakujoudo.injection;
 
-import gokurakujoudo.utils.InjectionUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -13,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static gokurakujoudo.utils.InjectionUtils.*;
+import static gokurakujoudo.injection.InjectionUtils.*;
 
 /**
  * Created by nacos on 4/15/2017.

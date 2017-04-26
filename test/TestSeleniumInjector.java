@@ -1,10 +1,5 @@
-import gokurakujoudo.dom_tree_helpers.SeleniumInjector;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import gokurakujoudo.injection.SeleniumInjector;
 import org.junit.Test;
-
-import java.io.File;
 
 /**
  * Created by nacos on 4/23/2017.

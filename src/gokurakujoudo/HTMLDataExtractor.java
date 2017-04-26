@@ -4,7 +4,7 @@ import gokurakujoudo.data.DataGroup;
 import gokurakujoudo.data.DataGroups;
 import gokurakujoudo.dom_tree_helpers.DomTreeCleaner;
 import gokurakujoudo.dom_tree_helpers.DomTreeDataExtractor;
-import gokurakujoudo.dom_tree_helpers.SeleniumInjector;
+import gokurakujoudo.injection.SeleniumInjector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 

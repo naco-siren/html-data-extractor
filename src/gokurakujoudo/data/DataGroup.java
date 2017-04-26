@@ -1,17 +1,13 @@
 package gokurakujoudo.data;
 
 import gokurakujoudo.dom_tree_helpers.DomTreeCleaner;
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 import org.json.XML;
 import org.jsoup.nodes.*;
-import org.jsoup.select.Elements;
 import org.jsoup.select.NodeTraversor;
 import org.jsoup.select.NodeVisitor;
 
 import java.util.ArrayList;
-
-import static gokurakujoudo.utils.InjectionUtils.*;
 
 /**
  * Created by naco_siren on 3/29/17.
