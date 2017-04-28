@@ -23,7 +23,7 @@ public class DomTreeDataExtractor {
     private Node _root;
 
     /* Parameters: Proximity */
-    private float _proximity = 0.7f;
+    private float _proximity = 0.6f;
     public void setProximity(float proximity) {
         this._proximity = proximity;
     }

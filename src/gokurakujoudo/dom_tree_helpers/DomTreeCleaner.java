@@ -42,6 +42,11 @@ public class DomTreeCleaner {
         if (smartUnwrap() != 0)
             return -2;
 
+        /* Remove nodes with blank text */
+        BlankNodesRemovingVisitor blankNodesRemovingVisitor = new BlankNodesRemovingVisitor();
+        NodeTraversor blankNodesRemovingTraversor = new NodeTraversor(blankNodesRemovingVisitor);
+        //blankNodesRemovingTraversor.traverse(root);
+
         return 0;
     }
 
@@ -93,11 +98,6 @@ public class DomTreeCleaner {
             for (Node node : nodesToDelete) {
                 node.remove();
             }
-
-            /* Remove nodes with blank text */
-            BlankNodesRemovingVisitor blankNodesRemovingVisitor = new BlankNodesRemovingVisitor();
-            NodeTraversor blankNodesRemovingTraversor = new NodeTraversor(blankNodesRemovingVisitor);
-            blankNodesRemovingTraversor.traverse(root);
 
             return 0;
 

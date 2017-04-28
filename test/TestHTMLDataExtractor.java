@@ -96,4 +96,18 @@ public class TestHTMLDataExtractor {
         testWebpage(url, true, true);
         return;
     }
+
+
+    /**
+     * TODO: Sun Hao will use this test case to make use of area information
+     * @throws Exception
+     */
+    @Test
+    public void testOnAmazon() throws Exception {
+        String url = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=playstation4&rh=i%3Aaps%2Ck%3Aplaystation4";
+        testWebpage(url, true, true);
+        return;
+
+    }
+
 }

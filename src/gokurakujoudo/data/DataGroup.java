@@ -65,10 +65,15 @@ public class DataGroup implements Comparable<DataGroup> {
         for (Node node : _data) {
             String outerHTML = node.outerHtml();
 
-            JSONObject jsonObject = XML.toJSONObject(outerHTML);
-            String jsonString = jsonObject.toString();
+            try {
+                JSONObject jsonObject = XML.toJSONObject(outerHTML);
+                String jsonString = jsonObject.toString();
+                results.add(jsonString);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println(outerHTML);
+            }
 
-            results.add(jsonString);
         }
         return results;
     }
