@@ -92,81 +92,36 @@ public class SeleniumInjector {
             _driver.get(URL);
 
             /* Traverse through all the elements and inject CSS info */
-            List<WebElement> elements = _driver.findElements(By.cssSelector("*"));
+            ((JavascriptExecutor) _driver).executeScript(
+                "var elements = document.body.getElementsByTagName('*');" +
+                "for (var i = 0; i < elements.length; i++)" +
+                "{" +
+                    "var ele = elements[i];" +
 
-            for (WebElement element : elements) {
-                String text = element.getText();
+                    /* Dimensions */
+                    //"var positionInfo = ele.getBoundingClientRect();" +
+                    //"var height = Math.round(positionInfo.height);" +
+                    //"var width = Math.round(positionInfo.width);" +
+                    "var height = Math.round(ele.offsetHeight);" +
+                    "var width = Math.round(ele.offsetWidth);" +
+                    "var area = width * height;" +
+                    "ele.setAttribute('" + WIDTH + "', width);" +
+                    "ele.setAttribute('" + HEIGHT + "', height);" +
+                    "ele.setAttribute('" + AREA + "', area);" +
 
-                /* Dimensions */
-                if (_injectDimensionInfo) {
-                    Dimension dimension = element.getSize();
+                    /* Paddings */
+                    "var paddingL = window.getComputedStyle(ele).paddingLeft;" +
+                    "var paddingR = window.getComputedStyle(ele).paddingRight;" +
+                    "ele.setAttribute('" + PADDING_LEFT + "', paddingL);" +
+                    "ele.setAttribute('" + PADDING_RIGHT + "', paddingR);" +
 
-                    int height = dimension.getHeight();
-                    int width = dimension.getWidth();
-                    int area = height * width;
-
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + WIDTH + "', arguments[1])", element, width + "px");
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + HEIGHT + "', arguments[1])", element, height + "px");
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + AREA + "', arguments[1])", element, "" + area);
-                }
-
-                /* Margins */
-                if (_injectMarginInfo) {
-                    String marginR = element.getCssValue(MARGIN_RIGHT);
-                    String marginL = element.getCssValue(MARGIN_LEFT);
-
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + MARGIN_LEFT + "', arguments[1])", element, marginL);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + MARGIN_RIGHT + "', arguments[1])", element, marginR);
-                }
-
-                /* Padding */
-                if (_injectPaddingInfo) {
-                    String paddingL = element.getCssValue(PADDING_LEFT);
-                    String paddingR = element.getCssValue(PADDING_RIGHT);
-
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + PADDING_LEFT + "', arguments[1])", element, paddingL);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + PADDING_RIGHT + "', arguments[1])", element, paddingR);
-                }
-
-                /* Fonts */
-                if (_injectFontInfo) {
-                    String fontFamily = element.getCssValue(FONT_FAMILY);
-                    String fontStyle = element.getCssValue(FONT_STYLE);
-                    String fontSize = element.getCssValue(FONT_SIZE);
-                    String fontWeight = element.getCssValue(FONT_WEIGHT);
-                    //String fontVariant = element.getCssValue(FONT_VARIANT);
-
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + FONT_FAMILY + "', arguments[1])", element, fontFamily);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + FONT_SIZE + "', arguments[1])", element, fontSize);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + FONT_STYLE + "', arguments[1])", element, fontStyle);
-                    ((JavascriptExecutor) _driver).executeScript(
-                            "var ele=arguments[0]; ele.setAttribute('" + FONT_WEIGHT + "', arguments[1])", element, fontWeight);
-                }
-
-
-
-                //String style = element.getAttribute("style");
-//                ((JavascriptExecutor) _driver).executeScript(
-//                        "var ele=arguments[0]; ele.style.marginLeft = arguments[1];", element, marginL);
-//                ((JavascriptExecutor) _driver).executeScript(
-//                        "var ele=arguments[0]; ele.style.marginRight = arguments[1];", element, marginR);
-//                ((JavascriptExecutor) _driver).executeScript(
-//                        "var ele=arguments[0]; ele.style.height = arguments[1];", element, height);
-//                ((JavascriptExecutor) _driver).executeScript(
-//                        "var ele=arguments[0]; ele.style.width = arguments[1];", element, width);
-
-                continue;
-            }
+                    /* Margins */
+                    "var marginL = window.getComputedStyle(ele).marginLeft;" +
+                    "var marginR = window.getComputedStyle(ele).marginRight;" +
+                    "ele.setAttribute('" + MARGIN_LEFT + "', marginL);" +
+                    "ele.setAttribute('" + MARGIN_RIGHT + "', marginR);" +
+                "}"
+            );
 
             _HTML = _driver.getPageSource();
             _Title = _driver.getTitle();
