@@ -1,10 +1,12 @@
 package gokurakujoudo.dom_tree_helpers;
 
 import gokurakujoudo.injection.InjectionUtils;
+import org.apache.http.util.TextUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 import org.jsoup.select.NodeTraversor;
+import org.jsoup.select.NodeVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,8 @@ public class DomTreeCleaner {
 
     /* Input: */
     private Element _root;
+
+    /* Tools: */
 
     /**
      * Constructor
@@ -89,6 +93,11 @@ public class DomTreeCleaner {
             for (Node node : nodesToDelete) {
                 node.remove();
             }
+
+            /* Remove nodes with blank text */
+            BlankNodesRemovingVisitor blankNodesRemovingVisitor = new BlankNodesRemovingVisitor();
+            NodeTraversor blankNodesRemovingTraversor = new NodeTraversor(blankNodesRemovingVisitor);
+            blankNodesRemovingTraversor.traverse(root);
 
             return 0;
 
@@ -172,4 +181,21 @@ public class DomTreeCleaner {
 //    private static String cleanHtmlFragment(String htmlFragment, String attributesToRemove) {
 //        return htmlFragment.replaceAll("\\s+(?:" + attributesToRemove + ")\\s*=\\s*\"[^\"]*\"","");
 //    }
+
+
+    static class BlankNodesRemovingVisitor implements NodeVisitor {
+        @Override
+        public void head(Node node, int depth) {
+
+        }
+
+        @Override
+        public void tail(Node node, int depth) {
+            if (node instanceof Element) {
+                Element element = (Element) node;
+                if (TextUtils.isBlank(element.text()))
+                    element.remove();
+            }
+        }
+    }
 }

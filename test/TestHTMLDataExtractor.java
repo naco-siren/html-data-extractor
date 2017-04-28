@@ -89,4 +89,11 @@ public class TestHTMLDataExtractor {
             return -1;
         }
     }
+
+    @Test
+    public void testOnBestBuy() throws Exception {
+        String url = "http://www.bestbuy.com/site/searchpage.jsp?cp=1&searchType=search&st=surface&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&nrp=&sp=&qp=brand_facet%3DBrand~Microsoft&list=n&af=true&iht=y&usc=All%20Categories&ks=960&keys=keys";
+        testWebpage(url, true, true);
+        return;
+    }
 }
