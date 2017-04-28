@@ -147,6 +147,9 @@ public class SeleniumInjector {
                 file.mkdir();
             }
 
+            /* Legalize the file name */
+            filename = filename.replaceAll("[^a-zA-Z0-9.-]", "_");
+
             /* Write HTML into the file */
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(INJECTED_HTML_OUTPUT_DIR + File.separator + filename));
             bufferedWriter.write(_HTML);
