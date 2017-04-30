@@ -16,14 +16,19 @@ public class TestHTMLDataExtractor {
 
         /* TODO: Add more test cases and analyze! */
         String[] titles = new String[] {
-                "Google Scholar"
+                "Google Scholar",
+                "Bestbuy - earphones",
+                "Amazon - book light"
         };
         String[] URLs = new String[]{
-                "https://stackoverflow.com/"
-
+                "https://stackoverflow.com/",
+                "http://www.bestbuy.com/site/searchpage.jsp?st=earphones&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=&sp=&qp=&list=n&af=true&iht=y&usc=All+Categories&ks=960&keys=keys",
+                "https://www.amazon.com/s/ref=nb_sb_ss_c_1_10?url=search-alias%3Dstripbooks&field-keywords=book+light&sprefix=book+light%2Cstripbooks%2C151&crid=3LC02T51FKVHJ"
         };
         int[] expectedOutputDataCounts = new int[] {
-                8
+                8,
+                24,
+                12
         };
 
 
@@ -90,6 +95,12 @@ public class TestHTMLDataExtractor {
         }
     }
 
+
+
+    /**
+     * Test on Bestbuy, keyword: earphones
+     * @throws Exception
+     */
     @Test
     public void testOnBestBuy() throws Exception {
         String url = "http://www.bestbuy.com/site/searchpage.jsp?st=earphones&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=&sp=&qp=&list=n&af=true&iht=y&usc=All+Categories&ks=960&keys=keys";
@@ -97,9 +108,8 @@ public class TestHTMLDataExtractor {
         return;
     }
 
-
     /**
-     * TODO: Sun Hao will use this test case to make use of area information
+     * Test on Amazon, keyword: book light
      * @throws Exception
      */
     @Test
