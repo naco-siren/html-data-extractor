@@ -158,7 +158,7 @@ public class DomTreeDataExtractor {
                 if (node.childNode(i).APTEDTreeStructure == null || node.childNode(j).APTEDTreeStructure == null) {
                     continue;
                 }
-                /* Comprehensive voting, area and APTED*/
+                /* Comprehensive voting, considering area difference and APTED. Different weight values are assigned to these two*/
                 /* Area similarity*/
                 if (node.childNode(i) instanceof Element && node.childNode(j) instanceof Element) {
                     Element ele_i = (Element) node.childNode(i);
@@ -169,6 +169,7 @@ public class DomTreeDataExtractor {
                         voteCount[i] += 0.4f;
                         voteCount[j] += 0.4f;
                     } else {
+                        /* If the bigger area of the two nodes is within the 1.35 times of the other one, the two nodes are similar enough*/
                         if (Math.max(Integer.parseInt(area_str_i), Integer.parseInt(area_str_j))
                                 <= 1.35 * Math.min(Integer.parseInt(area_str_i), Integer.parseInt(area_str_j))) {
                             voteCount[i] += 0.4f;
