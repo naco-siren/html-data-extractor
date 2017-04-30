@@ -1,6 +1,7 @@
 package gokurakujoudo.data;
 
 import gokurakujoudo.dom_tree_helpers.DomTreeCleaner;
+import gokurakujoudo.dom_tree_helpers.FinalizeDOMTreeVisitor;
 import org.json.JSONObject;
 import org.json.XML;
 import org.jsoup.nodes.*;
@@ -98,69 +99,36 @@ public class DataGroup implements Comparable<DataGroup> {
             return 0;
         Element element = (Element) node;
 
-        /* Unwrap single-child elements */
+        /* Remove attributes */
+        if (DomTreeCleaner.removeDOMTreeAttributes(element) != 0)
+            return -1;
+
+        /* Finalize the data for output */
+        if (finalizeData(element) != 0)
+            return -2;
+
+        return 0;
+
+    }
+
+    /**
+     * Finalize the data for output by removing nodes with blank text and unwrapping single children
+     * @param root
+     * @return 0 on success
+     */
+    private int finalizeData(Element root){
+        /* Remove nodes with blank text */
         try {
-            SingleChildUnwrappingVisitor singleChildUnwrappingVisitor = new SingleChildUnwrappingVisitor();
-            NodeTraversor nodeTraversor = new NodeTraversor(singleChildUnwrappingVisitor);
-            nodeTraversor.traverse(element);
+            FinalizeDOMTreeVisitor finalizeDOMTreeVisitor = new FinalizeDOMTreeVisitor();
+            NodeTraversor nodeTraversor = new NodeTraversor(finalizeDOMTreeVisitor);
+            nodeTraversor.traverse(root);
+
+            return 0;
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return -1;
         }
-
-        /* Remove attributes */
-        if (DomTreeCleaner.removeDOMTreeAttributes(element) == 0)
-            return 0;
-        else
-            return -2;
     }
-
-    /**
-     * Used for unwrapping single-child elements
-     */
-    class SingleChildUnwrappingVisitor implements NodeVisitor {
-        @Override
-        public void head(Node node, int depth) {
-
-        }
-
-        @Override
-        public void tail(Node node, int depth) {
-            /* Unwrap all the children demands unwrapping */
-            ArrayList<Node> childrenDemandsUnwrapping = new ArrayList<>();
-            for (Node childNode : node.childNodes()) {
-                if (childNode.needsUnwrapping == true)
-                    childrenDemandsUnwrapping.add(childNode);
-            }
-            for (Node childNode : childrenDemandsUnwrapping)
-                childNode.unwrap();
-
-            /* If current node needs unwrapping, leave a mark */
-            boolean shouldUnwrap = shouldUnwrap(node, depth);
-            node.needsUnwrapping = shouldUnwrap;
-
-            return;
-        }
-
-        private boolean shouldUnwrap(Node node, int depth){
-            /* Check if the node is not an <a> element */
-            if (node instanceof Element == false)
-                return false;
-            Element element = (Element) node;
-
-            /* Fetch its previous sibling and next sibling node */
-            Element prevSibEle = element.previousElementSibling();
-            Element nextSibEle = element.nextElementSibling();
-
-            /* If it's the only child */
-            if (prevSibEle == null && nextSibEle == null)
-                return true;
-            else
-                return false;
-        }
-    }
-
-
 }
