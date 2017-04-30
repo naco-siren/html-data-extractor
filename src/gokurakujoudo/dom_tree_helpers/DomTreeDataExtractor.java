@@ -6,6 +6,7 @@ import apted.node.StringNodeData;
 import apted.parser.BracketStringInputParser;
 import gokurakujoudo.data.DataGroup;
 import gokurakujoudo.data.DataGroups;
+import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.NodeTraversor;
 
@@ -147,7 +148,7 @@ public class DomTreeDataExtractor {
         int childNodeSize = node.childNodeSize();
 
         /* Output: */
-        int[] voteCount = new int[childNodeSize];
+        float[] voteCount = new float[childNodeSize];
         boolean[] voteResult = new boolean[childNodeSize];
 
         /* Vote for each node */
@@ -156,6 +157,24 @@ public class DomTreeDataExtractor {
                 /* Check for null String */
                 if (node.childNode(i).APTEDTreeStructure == null || node.childNode(j).APTEDTreeStructure == null) {
                     continue;
+                }
+                /* Comprehensive voting, area and APTED*/
+                /* Area similarity*/
+                if (node.childNode(i) instanceof Element && node.childNode(j) instanceof Element) {
+                    Element ele_i = (Element) node.childNode(i);
+                    Element ele_j = (Element) node.childNode(j);
+                    String area_str_i = ele_i.attr("area");
+                    String area_str_j = ele_j.attr("area");
+                    if (area_str_i == "" || area_str_j == "") {
+                        voteCount[i] += 0.4f;
+                        voteCount[j] += 0.4f;
+                    } else {
+                        if (Math.max(Integer.parseInt(area_str_i), Integer.parseInt(area_str_j))
+                                <= 1.35 * Math.min(Integer.parseInt(area_str_i), Integer.parseInt(area_str_j))) {
+                            voteCount[i] += 0.4f;
+                            voteCount[j] += 0.4f;
+                        }
+                    }
                 }
 
                 /* Compute TED */
@@ -167,8 +186,8 @@ public class DomTreeDataExtractor {
                         * (1 - _proximity);
                 //System.out.println("i"+i+"j"+j+"tmp"+tmp+"distance"+_apted.computeEditDistance(t1, t2));
                 if (TEDthreshold >= _apted.computeEditDistance(t1, t2)) {
-                    voteCount[i]++;
-                    voteCount[j]++;
+                    voteCount[i] += 0.6f;
+                    voteCount[j] += 0.6f;
                 }
             }
         }

@@ -19,7 +19,7 @@ public class TestHTMLDataExtractor {
                 "Google Scholar"
         };
         String[] URLs = new String[]{
-                "https://scholar.google.com/scholar?hl=en&q=database&as_sdt=1%2C14&as_sdtp=&oq="
+                "https://stackoverflow.com/"
 
         };
         int[] expectedOutputDataCounts = new int[] {
@@ -92,7 +92,7 @@ public class TestHTMLDataExtractor {
 
     @Test
     public void testOnBestBuy() throws Exception {
-        String url = "http://www.bestbuy.com/site/searchpage.jsp?cp=1&searchType=search&st=surface&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&nrp=&sp=&qp=brand_facet%3DBrand~Microsoft&list=n&af=true&iht=y&usc=All%20Categories&ks=960&keys=keys";
+        String url = "http://www.bestbuy.com/site/searchpage.jsp?st=earphones&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=&sp=&qp=&list=n&af=true&iht=y&usc=All+Categories&ks=960&keys=keys";
         testWebpage(url, true, true);
         return;
     }
@@ -104,7 +104,7 @@ public class TestHTMLDataExtractor {
      */
     @Test
     public void testOnAmazon() throws Exception {
-        String url = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=playstation4&rh=i%3Aaps%2Ck%3Aplaystation4";
+        String url = "https://www.amazon.com/s/ref=nb_sb_ss_c_1_10?url=search-alias%3Dstripbooks&field-keywords=book+light&sprefix=book+light%2Cstripbooks%2C151&crid=3LC02T51FKVHJ";
         testWebpage(url, true, true);
         return;
 

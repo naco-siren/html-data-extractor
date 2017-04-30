@@ -5,8 +5,8 @@ import org.junit.Test;
  * Created by nacos on 4/23/2017.
  */
 public class TestSeleniumInjector {
-    private static final String GOOGLE_SCHOLAR_URL = "https://scholar.google.com/scholar?hl=en&q=database&as_sdt=1%2C14&as_sdtp=&oq=";
-    private static final String GOOGLE_SCHOLAR_TITLE = "googleScholar";
+    private static final String GOOGLE_SCHOLAR_URL = "http://www.bestbuy.com/site/searchpage.jsp?st=earphones&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=&sp=&qp=&list=n&af=true&iht=y&usc=All+Categories&ks=960&keys=keys";
+    private static final String GOOGLE_SCHOLAR_TITLE = "bestbuy";
 
 
     /**
