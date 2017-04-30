@@ -15,7 +15,8 @@ import java.util.List;
  * Created by haosun on 3/25/17.
  */
 public class DomTreeCleaner {
-    private static final String[] TAG_NAMES_TO_REMOVE = new String[]{"meta", "script", "style", "base", "video", "audio"};
+    private static final String[] TAG_NAMES_TO_REMOVE = new String[]{"meta", "script", "style", "base", "video", "audio", "hr", "wbr", "dl", "area", "base", "col", "img", "input",
+            "keygen", "link", "param", "source", "track"};
     private static final String[] TAG_NAMES_TO_UNWRAP = new String[]{"font", "strong", "em", "b", "i", "u", "s", "br", "sup", "sub"};
     //private final String[] ATTRIBUTE_KEYS_TO_REMOVE = new String[]{"href", "id", "class", "style"};
 
