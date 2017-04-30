@@ -54,7 +54,7 @@ public class TestHTMLDataExtractor {
 
         /* Perform extraction */
         htmlDataExtractor.setMinResultSize(2);
-        if (htmlDataExtractor.extract() == 0) {
+        if (htmlDataExtractor.extract(true, true) == 0) {
 
             /* Refine results using default strategy */
             htmlDataExtractor.refine();

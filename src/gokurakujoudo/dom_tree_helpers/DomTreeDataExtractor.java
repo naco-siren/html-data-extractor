@@ -23,7 +23,7 @@ public class DomTreeDataExtractor {
     /* Input: */
     private Node _root;
 
-    /* Parameters: Proximity */
+    /* Params: Proximity */
     private float _proximity = 0.6f;
     public void setProximity(float proximity) {
         this._proximity = proximity;
@@ -31,7 +31,25 @@ public class DomTreeDataExtractor {
     public double getProximity() {
         return _proximity;
     }
+    
+    /* Params: TED */
+    private boolean _considerTED = true;
+    public void setConsiderTED(boolean considerTED) {
+        this._considerTED = considerTED;
+    }
+    public boolean getConsiderTED(){
+        return _considerTED;
+    }
 
+    /* Params: Area */
+    private boolean _considerArea = true;
+    public void setConsiderArea(boolean considerArea) {
+        this._considerArea = considerArea;
+    }
+    public boolean getConsiderArea(){
+        return _considerArea;
+    }
+    
     /* Output: Results */
     private DataGroups _results = new DataGroups();
     public DataGroups getResults(){
@@ -158,9 +176,13 @@ public class DomTreeDataExtractor {
                 if (node.childNode(i).APTEDTreeStructure == null || node.childNode(j).APTEDTreeStructure == null) {
                     continue;
                 }
+
                 /* Comprehensive voting, considering area difference and APTED. Different weight values are assigned to these two*/
+
                 /* Area similarity*/
-                if (node.childNode(i) instanceof Element && node.childNode(j) instanceof Element) {
+                if (_considerArea == false) {
+                    // Pass
+                } else if (node.childNode(i) instanceof Element && node.childNode(j) instanceof Element) {
                     Element ele_i = (Element) node.childNode(i);
                     Element ele_j = (Element) node.childNode(j);
                     String area_str_i = ele_i.attr("area");
@@ -179,16 +201,20 @@ public class DomTreeDataExtractor {
                 }
 
                 /* Compute TED */
-                apted.node.Node<StringNodeData> t1 = _APTEDParser.fromString(node.childNode(i).APTEDTreeStructure);
-                apted.node.Node<StringNodeData> t2 = _APTEDParser.fromString(node.childNode(j).APTEDTreeStructure);
+                if (_considerTED == false) {
+                    // Pass
+                } else {
+                    apted.node.Node<StringNodeData> t1 = _APTEDParser.fromString(node.childNode(i).APTEDTreeStructure);
+                    apted.node.Node<StringNodeData> t2 = _APTEDParser.fromString(node.childNode(j).APTEDTreeStructure);
 
-                /* Judge if TED exceed threshold */
-                float TEDthreshold = (node.childNode(i).numOffsprings + node.childNode(j).numOffsprings) / 2
-                        * (1 - _proximity);
-                //System.out.println("i"+i+"j"+j+"tmp"+tmp+"distance"+_apted.computeEditDistance(t1, t2));
-                if (TEDthreshold >= _apted.computeEditDistance(t1, t2)) {
-                    voteCount[i] += 0.6f;
-                    voteCount[j] += 0.6f;
+                    /* Judge if TED exceed threshold */
+                    float TEDthreshold = (node.childNode(i).numOffsprings + node.childNode(j).numOffsprings) / 2
+                            * (1 - _proximity);
+                    //System.out.println("i"+i+"j"+j+"tmp"+tmp+"distance"+_apted.computeEditDistance(t1, t2));
+                    if (TEDthreshold >= _apted.computeEditDistance(t1, t2)) {
+                        voteCount[i] += 0.6f;
+                        voteCount[j] += 0.6f;
+                    }
                 }
             }
         }

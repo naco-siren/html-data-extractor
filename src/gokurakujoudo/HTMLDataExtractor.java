@@ -172,9 +172,17 @@ public class HTMLDataExtractor {
      * @return
      */
     public int extract(){
+        return(extract(true, true));
+    }
+    public int extract(boolean considerTED, boolean considerArea) {
+        if (considerTED == false && considerArea == false)
+            throw new IllegalArgumentException("You have to use at least one factor for extraction!");
+
         try {
             /* Instantiate a DomTreeDataExtractor */
             _domTreeDataExtractor = new DomTreeDataExtractor(_body);
+            _domTreeDataExtractor.setConsiderTED(considerTED);
+            _domTreeDataExtractor.setConsiderArea(considerArea);
 
             /* Perform data extraction */
             int dataExtractErrCode = _domTreeDataExtractor.extractData();
