@@ -28,8 +28,9 @@ public abstract class Node implements Cloneable {
     /* String representation of its tree structure for TED calculation (APTED) */
     public String APTEDTreeStructure;
 
-    /* Whether this node should be unwrapped */
+    /* Whether this node should be unwrapped or removed */
     public boolean needsUnwrapping;
+    public boolean needsRemoving;
 
     //use for debug by haosun
     public int numOffsprings = 1; //include itself
