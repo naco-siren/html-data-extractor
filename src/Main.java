@@ -1,3 +1,4 @@
+import gokurakujoudo.GUI.HTMLDataExtractorGUI;
 import gokurakujoudo.data.DataGroup;
 import gokurakujoudo.HTMLDataExtractor;
 import gokurakujoudo.data.DataGroups;
@@ -10,7 +11,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        /* Please refer to ./test for testcases */
+        /* As for test cases, please refer to ./test */
+
+
+        HTMLDataExtractorGUI.main(null);
     }
 
 }
