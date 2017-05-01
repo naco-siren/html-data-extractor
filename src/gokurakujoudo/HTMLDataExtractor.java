@@ -125,7 +125,7 @@ public class HTMLDataExtractor {
         try {
             String HTML = null;
 
-            SeleniumInjector seleniumInjector = new SeleniumInjector(SeleniumInjector.DevPlatform.WINDOWS);
+            SeleniumInjector seleniumInjector = new SeleniumInjector(SeleniumInjector.DevPlatform.WINDOWS, true);
 
             int errCode = seleniumInjector.render(URL);
 

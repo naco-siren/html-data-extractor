@@ -3,6 +3,8 @@ package gokurakujoudo.injection;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.BufferedWriter;
@@ -50,27 +52,39 @@ public class SeleniumInjector {
      * Constructor
      * @param devPlatform specify current platform (Windows only)
      */
-    public SeleniumInjector(DevPlatform devPlatform){
-        /* Selenium capacities */
-        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-        capabilities.setCapability("marionette", true);
-        capabilities.setBrowserName("firefox");
-        capabilities.setVersion("");
-
+    public SeleniumInjector(DevPlatform devPlatform, boolean invisible){
         switch (devPlatform) {
             case WINDOWS:
-                System.setProperty("webdriver.gecko.driver", "lib\\geckodriver.exe");
-                capabilities.setPlatform(Platform.WIN10);
+                if (invisible == false) {
+                    /* Selenium capacities */
+                    DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+                    capabilities.setCapability("marionette", true);
+                    capabilities.setBrowserName("firefox");
+                    capabilities.setVersion("");
+                    System.setProperty("webdriver.gecko.driver", "lib\\geckodriver.exe");
+                    capabilities.setPlatform(Platform.WIN10);
 
-                // Firefox options
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
-                firefoxOptions.addArguments(new ArrayList<String>());
-                firefoxOptions.setLogLevel(null);
-                //firefoxOptions.addPreference();
-                firefoxOptions.setProfile(null);
+                    // Firefox options
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
+                    firefoxOptions.addArguments(new ArrayList<String>());
+                    firefoxOptions.setLogLevel(null);
+                    //firefoxOptions.addPreference();
+                    firefoxOptions.setProfile(null);
 
-                capabilities.setCapability("moz:firefoxOptions", firefoxOptions);
+                    capabilities.setCapability("moz:firefoxOptions", firefoxOptions);
+                    _driver = new FirefoxDriver(capabilities);
+
+                } else {
+                    DesiredCapabilities caps = new DesiredCapabilities();
+                    caps.setJavascriptEnabled(true);
+                    caps.setCapability("takesScreenshot", true);
+                    caps.setCapability(
+                            PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
+                            "lib\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe"
+                    );
+                    _driver = new PhantomJSDriver(caps);
+                }
                 break;
 
             case MACOS:
@@ -79,7 +93,7 @@ public class SeleniumInjector {
                 break;
         }
 
-        _driver = new FirefoxDriver(capabilities);
+
     }
 
     /**

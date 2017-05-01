@@ -23,7 +23,7 @@ public class TestSeleniumInjector {
     public void testCSSInjectionForURL(String URL, String fileName) throws Exception {
         String HTML = null;
 
-        SeleniumInjector seleniumInjector = new SeleniumInjector(SeleniumInjector.DevPlatform.WINDOWS);
+        SeleniumInjector seleniumInjector = new SeleniumInjector(SeleniumInjector.DevPlatform.WINDOWS, false);
         if (seleniumInjector.render(URL) == 0) {
             HTML = seleniumInjector.getHTML();
 
