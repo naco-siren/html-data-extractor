@@ -1,4 +1,4 @@
-package GUI;
+package gokurakujoudo.GUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class HTMLDataExtractorGUI {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("HTML Data Extractor GUI");
+        JFrame frame = new JFrame("HTML Data Extractor gokurakujoudo.GUI");
         frame.setContentPane(new HTMLDataExtractorGUI()._mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -144,10 +144,11 @@ public class HTMLDataExtractorGUI {
             _resultsText = new StringBuilder();
             for (int i = 0; i < _results.size(); i++) {
                 DataGroup dataGroup = _results.get(i);
-                _resultsText.append("\n=== No." + (i+1) + " data group, size: " + dataGroup.size() + " ===\n\n");
+                _resultsText.append("\n=== No." + (i+1) + " data group, size: " + dataGroup.size() + " ===\n");
 
                 if (_outputJSON) {
                     ArrayList<String> outputJSONs = dataGroup.getJSONs();
+                    _resultsText.append("\n");
                     for (int j = 0; j < outputJSONs.size(); j++) {
                         _resultsText.append(outputJSONs.get(j));
                         _resultsText.append("\n");
@@ -156,6 +157,7 @@ public class HTMLDataExtractorGUI {
 
                 if (_outputXML) {
                     ArrayList<String> outputXMLs = dataGroup.getHTMLs();
+                    _resultsText.append("\n");
                     for (int j = 0; j < outputXMLs.size(); j++) {
                         _resultsText.append(outputXMLs.get(j));
                         _resultsText.append("\n");
