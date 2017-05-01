@@ -127,7 +127,7 @@ public class TestHTMLDataExtractor {
      */
     @Test
     public void testOnAmazon() throws Exception {
-        String url = "https://www.amazon.com/s/ref=nb_sb_ss_c_1_10?url=search-alias%3Dstripbooks&field-keywords=book+light&sprefix=book+light%2Cstripbooks%2C151&crid=3LC02T51FKVHJ";
+        String url = "https://www.amazon.com/s/ref=nb_sb_ss_c_1_2?url=search-alias%3Daps&field-keywords=umbrella&sprefix=um%2Caps%2C156&crid=A6Q8YE6PMYYT";
         testWebpage(url, true, true);
         return;
 

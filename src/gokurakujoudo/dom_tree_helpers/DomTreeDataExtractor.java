@@ -160,13 +160,15 @@ public class DomTreeDataExtractor {
      * @return the vote result for each child.
      */
     private boolean[] vote(Node node) {
-        float voteThreshold = 0.6f; //TODO: modularize
+        int voteThreshold = 50;//in percent
+        int areaVoteWeight = 40;
+        int TEDVoteWeight = 60;
 
         /* Input: */
         int childNodeSize = node.childNodeSize();
 
         /* Output: */
-        float[] voteCount = new float[childNodeSize];
+        int[] voteCount = new int[childNodeSize];
         boolean[] voteResult = new boolean[childNodeSize];
 
         /* Vote for each node */
@@ -181,21 +183,21 @@ public class DomTreeDataExtractor {
 
                 /* Area similarity*/
                 if (_considerArea == false) {
-                    // Pass
+                    //pass
                 } else if (node.childNode(i) instanceof Element && node.childNode(j) instanceof Element) {
                     Element ele_i = (Element) node.childNode(i);
                     Element ele_j = (Element) node.childNode(j);
                     String area_str_i = ele_i.attr("area");
                     String area_str_j = ele_j.attr("area");
                     if (area_str_i == "" || area_str_j == "") {
-                        voteCount[i] += 0.4f;
-                        voteCount[j] += 0.4f;
+                        voteCount[i] += areaVoteWeight;
+                        voteCount[j] += areaVoteWeight;
                     } else {
                         /* If the bigger area of the two nodes is within the 1.35 times of the other one, the two nodes are similar enough*/
                         if (Math.max(Integer.parseInt(area_str_i), Integer.parseInt(area_str_j))
                                 <= 1.35 * Math.min(Integer.parseInt(area_str_i), Integer.parseInt(area_str_j))) {
-                            voteCount[i] += 0.4f;
-                            voteCount[j] += 0.4f;
+                            voteCount[i] += areaVoteWeight;
+                            voteCount[j] += areaVoteWeight;
                         }
                     }
                 }
@@ -212,17 +214,19 @@ public class DomTreeDataExtractor {
                             * (1 - _proximity);
                     //System.out.println("i"+i+"j"+j+"tmp"+tmp+"distance"+_apted.computeEditDistance(t1, t2));
                     if (TEDthreshold >= _apted.computeEditDistance(t1, t2)) {
-                        voteCount[i] += 0.6f;
-                        voteCount[j] += 0.6f;
+                        voteCount[i] += TEDVoteWeight;
+                        voteCount[j] += TEDVoteWeight;
                     }
                 }
             }
         }
 
         /* Collect voting results */
+        int consideredArea = (_considerArea == true) ? 1 : 0;
+        int consideredTED = (_considerTED == true) ? 1: 0;
         for(int i = 0; i < childNodeSize; i++) {
             //System.out.print(voteCount[i]);
-            if (voteCount[i] >= voteThreshold * childNodeSize) {
+            if ((voteCount[i] * 100) >= voteThreshold * childNodeSize * (consideredArea * areaVoteWeight + consideredTED * TEDVoteWeight)) {
                 voteResult[i] = true;
             } else {
                 voteResult[i] = false;
