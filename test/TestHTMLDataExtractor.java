@@ -4,7 +4,6 @@ import gokurakujoudo.data.DataGroups;
 import org.json.JSONObject;
 import org.json.XML;
 import org.junit.Test;
-import gokurakujoudo.data.Prettify_json;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class TestHTMLDataExtractor {
         /* DO NOT MODIFY THIS! */
         for (int i = 0; i < URLs.length; i++) {
             System.out.println("=== Testing on " + titles[i] + " ===");
-            //assert (testWebpage(URLs[i], true, true) == expectedOutputDataCounts[i]);
+            //assert (extractDataFromURL(URLs[i], true, true) == expectedOutputDataCounts[i]);
             try {
                 testWebpage(URLs[i], true, true);
             } catch (IOException e) {

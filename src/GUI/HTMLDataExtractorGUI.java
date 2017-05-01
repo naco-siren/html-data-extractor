@@ -15,25 +15,40 @@ import java.util.ArrayList;
 /**
  * Created by yuqiz on 4/30/2017.
  */
-public class record_extractor {
+public class HTMLDataExtractorGUI {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("HTML Data Extractor GUI");
+        frame.setContentPane(new HTMLDataExtractorGUI()._mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 
-    private JPanel panel1;
-    private JTextField inputurl;
-    private JButton parse;
-    private JCheckBox areaCheckBox;
-    private JCheckBox nodeDistanceCheckBox;
-    private JTextField ErecordN;
-    private JComboBox select;
+
+    /* UI */
+    private JPanel _mainPanel;
+    private JTextField _inputURLTextField;
+    private JButton _parseButton;
+    private JCheckBox _areaCheckBox;
+    private JCheckBox _nodeDistanceCheckBox;
+    private JTextField _expectedRecordCountTextField;
+    private JComboBox _outputFormatComboBox;
+
+    /* Input: */
     private boolean _considerTED = false;
     private boolean _considerArea = false;
     private boolean _getXml = false;
     private boolean _getJson = false;
-    public record_extractor() {
-        parse.addActionListener(new PrintResult());
+
+    /**
+     * Constructor
+     */
+    public HTMLDataExtractorGUI() {
+        _parseButton.addActionListener(new PrintResult());
         ActionListener actionListener = new ActionHandler();
-        areaCheckBox.addActionListener(actionListener);
-        nodeDistanceCheckBox.addActionListener(actionListener);
-        select.addActionListener(new actionListenerComboBox());
+        _areaCheckBox.addActionListener(actionListener);
+        _nodeDistanceCheckBox.addActionListener(actionListener);
+        _outputFormatComboBox.addActionListener(new actionListenerComboBox());
     }
 
     class actionListenerComboBox implements ActionListener{
@@ -45,7 +60,7 @@ public class record_extractor {
                 _getJson = true;
             } else if (selection == "xml") {
                 _getXml = true;
-            } else if (selection == "json&xml") {
+            } else if (selection == "json & xml") {
                 _getXml = true;
                 _getJson = true;
             }
@@ -56,45 +71,46 @@ public class record_extractor {
         @Override
         public void actionPerformed(ActionEvent event) {
             JCheckBox checkbox = (JCheckBox) event.getSource();
-            if (checkbox == areaCheckBox) {
+
+            if (checkbox == _areaCheckBox) {
                 _considerArea = !_considerArea;
-                //System.out.println(_considerArea);
-                //System.out.println("Checkbox #1 is clicked");
-            } else if (checkbox == nodeDistanceCheckBox) {
+            } else if (checkbox == _nodeDistanceCheckBox) {
                 _considerTED = !_considerTED;
-                //System.out.println("Checkbox #2 is clicked");
             }
         }
     }
+
     ArrayList<String> output = new ArrayList<String>();
     class PrintResult implements ActionListener{
         @Override
-
         public void actionPerformed(ActionEvent event){
-            String title = "HTML Data Extrator\n";
-            String expectedOutputDataCounts = ErecordN.getText();
-            String InputUrl = inputurl.getText();
+            String title = "HTML Data Extractor\n";
+            String expectedOutputDataCounts = _expectedRecordCountTextField.getText();
+            String InputUrl = _inputURLTextField.getText();
 
-            //String[] GetDomainName = InputUrl.split("/");
-
-            //String testing = "=== Testing on "+ GetDomainName[2] +" ===";
             output.add(expectedOutputDataCounts);
             final ImageIcon icon = new ImageIcon("image.jpg");
 
-
-
             try {
-                testWebpage(InputUrl, _getXml, _getJson);
+                extractDataFromURL(InputUrl, _getXml, _getJson);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
             System.out.print(output);
-            JOptionPane.showMessageDialog(null, output,"HTML Data Extrator", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, output,"HTML Data Extractor", JOptionPane.INFORMATION_MESSAGE, icon);
         }
 
     }
 
-    public int testWebpage(String URL, boolean outputHTML, boolean outputJSON) throws IOException {
+    /**
+     * Main working method to do the data extraction
+     * @param URL
+     * @param outputHTML
+     * @param outputJSON
+     * @return 0 on success
+     */
+    public int extractDataFromURL(String URL, boolean outputHTML, boolean outputJSON) throws IOException {
         /* Instantiate an HTMLDataExtractor */
         //System.out.print("i'm in!");
         HTMLDataExtractor htmlDataExtractor = new HTMLDataExtractor();
@@ -147,16 +163,5 @@ public class record_extractor {
         } else {
             return -1;
         }
-    }
-
-
-
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("record_extractor");
-        frame.setContentPane(new record_extractor().panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
     }
 }
