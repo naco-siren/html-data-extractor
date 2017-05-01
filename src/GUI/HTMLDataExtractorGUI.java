@@ -8,8 +8,6 @@ import gokurakujoudo.data.DataGroup;
 import gokurakujoudo.data.DataGroups;
 
 
-import java.io.IOException;
-
 import java.util.ArrayList;
 
 /**
@@ -27,139 +25,146 @@ public class HTMLDataExtractorGUI {
 
     /* UI */
     private JPanel _mainPanel;
+
     private JTextField _inputURLTextField;
-    private JButton _parseButton;
-    private JCheckBox _areaCheckBox;
-    private JCheckBox _nodeDistanceCheckBox;
     private JTextField _expectedRecordCountTextField;
+    private JButton _parseButton;
+
+    private JCheckBox _areaCheckBox;
+    private JCheckBox _TEDCheckBox;
+
     private JComboBox _outputFormatComboBox;
+    private JTextArea _outputTextArea;
+
+    private final ImageIcon _msgIcon = new ImageIcon("image.jpg");
 
     /* Input: */
     private boolean _considerTED = false;
     private boolean _considerArea = false;
-    private boolean _getXml = false;
-    private boolean _getJson = false;
+
+    private boolean _outputXML = false;
+    private boolean _outputJSON = false;
+
+    /* Tools: */
+    private HTMLDataExtractor _htmlDataExtractor;
+
+    /* Output: */
+    private DataGroups _results;
+    private StringBuilder _resultsText;
+
 
     /**
      * Constructor
      */
     public HTMLDataExtractorGUI() {
         _parseButton.addActionListener(new PrintResult());
-        ActionListener actionListener = new ActionHandler();
-        _areaCheckBox.addActionListener(actionListener);
-        _nodeDistanceCheckBox.addActionListener(actionListener);
-        _outputFormatComboBox.addActionListener(new actionListenerComboBox());
+        _areaCheckBox.setSelected(true);
+        _TEDCheckBox.setSelected(true);
     }
 
-    class actionListenerComboBox implements ActionListener{
-        public void actionPerformed(ActionEvent event) {
-            JComboBox combo = (JComboBox) event.getSource();
-            String selection = (String) combo.getSelectedItem();
-            System.out.print(selection);
-            if (selection == "json") {
-                _getJson = true;
-            } else if (selection == "xml") {
-                _getXml = true;
-            } else if (selection == "json & xml") {
-                _getXml = true;
-                _getJson = true;
-            }
-        }
-    }
 
-    class ActionHandler implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent event) {
-            JCheckBox checkbox = (JCheckBox) event.getSource();
-
-            if (checkbox == _areaCheckBox) {
-                _considerArea = !_considerArea;
-            } else if (checkbox == _nodeDistanceCheckBox) {
-                _considerTED = !_considerTED;
-            }
-        }
-    }
-
-    ArrayList<String> output = new ArrayList<String>();
     class PrintResult implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent event){
-            String title = "HTML Data Extractor\n";
-            String expectedOutputDataCounts = _expectedRecordCountTextField.getText();
-            String InputUrl = _inputURLTextField.getText();
 
-            output.add(expectedOutputDataCounts);
-            final ImageIcon icon = new ImageIcon("image.jpg");
+            /* Data source URL and expected data count */
+            String dataSourceURL = _inputURLTextField.getText();
+            String expectedOutputDataCount = _expectedRecordCountTextField.getText();
 
-            try {
-                extractDataFromURL(InputUrl, _getXml, _getJson);
-            } catch (IOException e) {
-                e.printStackTrace();
+            /* Extraction factor */
+            _considerArea = _areaCheckBox.isSelected();
+            _considerTED = _TEDCheckBox.isSelected();
+
+            /* Output format */
+            int outputFormatIndex = _outputFormatComboBox.getSelectedIndex();
+            switch (outputFormatIndex) {
+                case 0:
+                    _outputJSON = true;
+                    _outputXML = false;
+                    break;
+                case 1:
+                    _outputJSON = false;
+                    _outputXML = true;
+                    break;
+                case 2:
+                    _outputXML = true;
+                    _outputJSON = true;
+                    break;
             }
 
-            System.out.print(output);
-            JOptionPane.showMessageDialog(null, output,"HTML Data Extractor", JOptionPane.INFORMATION_MESSAGE, icon);
+            
+            /* Check if no factors are selected */
+            if (_considerArea == false && _considerTED == false) {
+                JOptionPane.showMessageDialog(null, "Please specify at least a factor for data extraction!","Factors missing!", JOptionPane.INFORMATION_MESSAGE, _msgIcon);
+                return;
+            } 
+
+            /* Execute data extraction */
+            _outputTextArea.setText(">>> Performing data record extraction...");
+            if (extractDataFromURL(dataSourceURL, _outputXML, _outputJSON) == 0) {
+                _outputTextArea.setText(_resultsText.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Something is wrong performing data extraction!","Error!", JOptionPane.ERROR_MESSAGE, _msgIcon);
+            }
         }
 
     }
 
+
     /**
      * Main working method to do the data extraction
-     * @param URL
-     * @param outputHTML
-     * @param outputJSON
+     * @param URL data source webpage's URL
+     * @param outputXML whether output XML
+     * @param outputJSON whether output JSON
      * @return 0 on success
      */
-    public int extractDataFromURL(String URL, boolean outputHTML, boolean outputJSON) throws IOException {
+    public int extractDataFromURL(String URL, boolean outputXML, boolean outputJSON){
         /* Instantiate an HTMLDataExtractor */
-        //System.out.print("i'm in!");
-        HTMLDataExtractor htmlDataExtractor = new HTMLDataExtractor();
+        _htmlDataExtractor = new HTMLDataExtractor();
 
         /* Read from URL */
-        htmlDataExtractor.readFromURL(URL);
+        _htmlDataExtractor.readFromURL(URL);
 
         /* Clean DOM tree */
-        htmlDataExtractor.cleanDomTree();
+        _htmlDataExtractor.cleanDomTree();
 
         /* Perform extraction */
-        htmlDataExtractor.setMinResultSize(2);
-        if (htmlDataExtractor.extract(_considerTED, _considerArea) == 0) {
+        _htmlDataExtractor.setMinResultSize(2);
+        if (_htmlDataExtractor.extract(_considerTED, _considerArea) == 0) {
 
-            /* Refine results using default strategy */
-            htmlDataExtractor.refine();
+            /* Refine _results using default strategy */
+            _htmlDataExtractor.refine();
 
-            /* Collect and clean up the results */
-            DataGroups results = htmlDataExtractor.getResults();
-            results.clean();
+            /* Collect and clean up the _results */
+            _results = _htmlDataExtractor.getResults();
+            _results.clean();
 
-            /* Output the results */
-            int dataCount = 0;
-            for (int i = 0; i < results.size(); i++) {
-                DataGroup dataGroup = results.get(i);
-                dataCount += dataGroup.size();
 
-                //System.out.println();
-                //System.out.println("*** No. " + i + ", " + dataGroup);
+            /* Build output text */
+            _resultsText = new StringBuilder();
+            for (int i = 0; i < _results.size(); i++) {
+                DataGroup dataGroup = _results.get(i);
+                _resultsText.append("\n=== No." + (i+1) + " data group, size: " + dataGroup.size() + " ===\n\n");
 
-                /* HTML format */
-                if (outputHTML) {
-                    ArrayList<String> dataHTMLs = dataGroup.getHTMLs();
-                    for (String dataHTML : dataHTMLs) {
-                        output.add(dataHTML+"\n");
+                if (_outputJSON) {
+                    ArrayList<String> outputJSONs = dataGroup.getJSONs();
+                    for (int j = 0; j < outputJSONs.size(); j++) {
+                        _resultsText.append(outputJSONs.get(j));
+                        _resultsText.append("\n");
                     }
                 }
 
-                /* JSON format */
-                if (outputJSON) {
-                    ArrayList<String> dataJSONs = dataGroup.getJSONs();
-                    for (String dataJSON : dataJSONs) {
-                        //Prettify_json.readd(dataJSON);
-                        output.add(dataJSON + "\n");
+                if (_outputXML) {
+                    ArrayList<String> outputXMLs = dataGroup.getHTMLs();
+                    for (int j = 0; j < outputXMLs.size(); j++) {
+                        _resultsText.append(outputXMLs.get(j));
+                        _resultsText.append("\n");
                     }
                 }
+
             }
 
-            return dataCount;
+            return 0;
         } else {
             return -1;
         }
