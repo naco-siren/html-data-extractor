@@ -139,7 +139,6 @@ public class HTMLDataExtractorGUI {
             _results = _htmlDataExtractor.getResults();
             _results.clean();
 
-
             /* Build output text */
             _resultsText = new StringBuilder();
             for (int i = 0; i < _results.size(); i++) {
