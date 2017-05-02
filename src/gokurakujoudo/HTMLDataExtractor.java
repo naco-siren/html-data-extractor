@@ -43,26 +43,6 @@ public class HTMLDataExtractor {
     /* Output: */
     private DataGroups _results;
     public DataGroups getResults() {
-
-        /* Rank the results */
-        int resultSize = _results.size();
-
-        for (int i = 0; i < resultSize; i++) {
-            DataGroup dataGroup = _results.get(i);
-            ArrayList<Node> data = dataGroup._data;
-
-            /* measurement += avg(tree_node_size) */
-            double numOffspringsSum = 0;
-            for (Node node : data) {
-                numOffspringsSum += node.numOffsprings;
-            }
-            dataGroup._significance += (numOffspringsSum / (double) data.size());
-        }
-
-        /* Sort the results according to their significances */
-        _results.sort();
-        _results.reverse();
-
         return _results;
     }
 
@@ -195,6 +175,24 @@ public class HTMLDataExtractor {
 
             /* Get the final results of data extraction */
             _results = _domTreeDataExtractor.getResults();
+
+            /* Rank the results */
+            int resultSize = _results.size();
+            for (int i = 0; i < resultSize; i++) {
+                DataGroup dataGroup = _results.get(i);
+                ArrayList<Node> data = dataGroup._data;
+
+                /* measurement += avg(tree_node_size) */
+                double numOffspringsSum = 0;
+                for (Node node : data) {
+                    numOffspringsSum += node.numOffsprings;
+                }
+                dataGroup._significance += (numOffspringsSum / (double) data.size());
+            }
+
+            /* Sort the results according to their significances */
+            _results.sort();
+            _results.reverse();
 
             return 0;
         } catch (Exception e) {

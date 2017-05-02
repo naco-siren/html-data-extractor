@@ -1,9 +1,9 @@
-package gokurakujoudo.GUI;
+package gokurakujoudo;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import gokurakujoudo.HTMLDataExtractor;
+
 import gokurakujoudo.data.DataGroup;
 import gokurakujoudo.data.DataGroups;
 
@@ -132,8 +132,8 @@ public class HTMLDataExtractorGUI {
         _htmlDataExtractor.setMinResultSize(2);
         if (_htmlDataExtractor.extract(_considerTED, _considerArea) == 0) {
 
-            /* Refine _results using default strategy */
-            _htmlDataExtractor.refine();
+//            /* Refine _results using default strategy */
+//            _htmlDataExtractor.refine();
 
             /* Collect and clean up the _results */
             _results = _htmlDataExtractor.getResults();
@@ -143,7 +143,7 @@ public class HTMLDataExtractorGUI {
             _resultsText = new StringBuilder();
             for (int i = 0; i < _results.size(); i++) {
                 DataGroup dataGroup = _results.get(i);
-                _resultsText.append("\n=== No." + (i+1) + " data group, size: " + dataGroup.size() + " ===\n");
+                _resultsText.append("\n=== No." + (i+1) + " data group, size: " + dataGroup.size() + ", score: " + String.format("%.2f", dataGroup._significance) + " ===\n");
 
                 if (_outputJSON) {
                     ArrayList<String> outputJSONs = dataGroup.getJSONs();
