@@ -1,6 +1,6 @@
-import com.nacosiren.blog.HTMLDataExtractor;
-import com.nacosiren.blog.data.DataGroup;
-import com.nacosiren.blog.data.DataGroups;
+import naco_siren.github.htmldataextractor.HTMLDataExtractor;
+import naco_siren.github.htmldataextractor.data.DataGroup;
+import naco_siren.github.htmldataextractor.data.DataGroups;
 import org.junit.Test;
 
 import java.io.IOException;

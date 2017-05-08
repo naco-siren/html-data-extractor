@@ -1,6 +1,6 @@
-package com.nacosiren.blog.dom_tree_helpers;
+package naco_siren.github.htmldataextractor.dom_tree_helpers;
 
-import com.nacosiren.blog.injection.InjectionUtils;
+import naco_siren.github.htmldataextractor.injection.InjectionUtils;
 import org.apache.http.util.TextUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;

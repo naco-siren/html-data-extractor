@@ -1,10 +1,10 @@
-package com.nacosiren.blog;
+package naco_siren.github.htmldataextractor;
 
-import com.nacosiren.blog.data.DataGroup;
-import com.nacosiren.blog.data.DataGroups;
-import com.nacosiren.blog.dom_tree_helpers.DomTreeCleaner;
-import com.nacosiren.blog.dom_tree_helpers.DomTreeDataExtractor;
-import com.nacosiren.blog.injection.SeleniumInjector;
+import naco_siren.github.htmldataextractor.data.DataGroup;
+import naco_siren.github.htmldataextractor.data.DataGroups;
+import naco_siren.github.htmldataextractor.dom_tree_helpers.DomTreeCleaner;
+import naco_siren.github.htmldataextractor.dom_tree_helpers.DomTreeDataExtractor;
+import naco_siren.github.htmldataextractor.injection.SeleniumInjector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 

@@ -1,4 +1,4 @@
-package com.nacosiren.blog.data;
+package naco_siren.github.htmldataextractor.data;
 
 import java.util.ArrayList;
 import java.util.Collections;

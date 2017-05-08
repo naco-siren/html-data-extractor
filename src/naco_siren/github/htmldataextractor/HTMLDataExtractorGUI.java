@@ -1,11 +1,11 @@
-package com.nacosiren.blog;
+package naco_siren.github.htmldataextractor;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.nacosiren.blog.data.DataGroup;
-import com.nacosiren.blog.data.DataGroups;
+import naco_siren.github.htmldataextractor.data.DataGroup;
+import naco_siren.github.htmldataextractor.data.DataGroups;
 
 
 import java.util.ArrayList;

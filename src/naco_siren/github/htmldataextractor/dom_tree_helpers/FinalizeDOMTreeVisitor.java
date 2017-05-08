@@ -1,4 +1,4 @@
-package com.nacosiren.blog.dom_tree_helpers;
+package naco_siren.github.htmldataextractor.dom_tree_helpers;
 
 import org.apache.http.util.TextUtils;
 import org.jsoup.nodes.Element;

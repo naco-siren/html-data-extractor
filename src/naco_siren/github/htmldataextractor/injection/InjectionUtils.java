@@ -1,4 +1,4 @@
-package com.nacosiren.blog.injection;
+package naco_siren.github.htmldataextractor.injection;
 
 /**
  * Created by nacos on 4/26/2017.

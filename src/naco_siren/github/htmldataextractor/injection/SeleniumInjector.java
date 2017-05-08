@@ -1,4 +1,4 @@
-package com.nacosiren.blog.injection;
+package naco_siren.github.htmldataextractor.injection;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,7 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.nacosiren.blog.injection.InjectionUtils.*;
+import static naco_siren.github.htmldataextractor.injection.InjectionUtils.*;
 
 /**
  * Created by nacos on 4/15/2017.

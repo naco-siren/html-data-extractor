@@ -1,5 +1,5 @@
-import com.nacosiren.blog.dom_tree_helpers.DomTreeCleaner;
-import com.nacosiren.blog.injection.SeleniumInjector;
+import naco_siren.github.htmldataextractor.dom_tree_helpers.DomTreeCleaner;
+import naco_siren.github.htmldataextractor.injection.SeleniumInjector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

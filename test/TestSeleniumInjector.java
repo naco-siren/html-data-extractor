@@ -1,4 +1,4 @@
-import com.nacosiren.blog.injection.SeleniumInjector;
+import naco_siren.github.htmldataextractor.injection.SeleniumInjector;
 import org.junit.Test;
 
 /**

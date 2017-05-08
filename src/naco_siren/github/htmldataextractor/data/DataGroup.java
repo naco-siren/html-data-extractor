@@ -1,7 +1,7 @@
-package com.nacosiren.blog.data;
+package naco_siren.github.htmldataextractor.data;
 
-import com.nacosiren.blog.dom_tree_helpers.DomTreeCleaner;
-import com.nacosiren.blog.dom_tree_helpers.FinalizeDOMTreeVisitor;
+import naco_siren.github.htmldataextractor.dom_tree_helpers.DomTreeCleaner;
+import naco_siren.github.htmldataextractor.dom_tree_helpers.FinalizeDOMTreeVisitor;
 import org.json.JSONObject;
 import org.json.XML;
 import org.jsoup.nodes.*;

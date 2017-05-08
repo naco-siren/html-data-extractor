@@ -1,11 +1,11 @@
-package com.nacosiren.blog.dom_tree_helpers;
+package naco_siren.github.htmldataextractor.dom_tree_helpers;
 
 import apted.costmodel.StringUnitCostModel;
 import apted.distance.APTED;
 import apted.node.StringNodeData;
 import apted.parser.BracketStringInputParser;
-import com.nacosiren.blog.data.DataGroup;
-import com.nacosiren.blog.data.DataGroups;
+import naco_siren.github.htmldataextractor.data.DataGroup;
+import naco_siren.github.htmldataextractor.data.DataGroups;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.NodeTraversor;

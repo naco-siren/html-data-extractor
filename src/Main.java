@@ -1,4 +1,4 @@
-import com.nacosiren.blog.HTMLDataExtractorGUI;
+import naco_siren.github.htmldataextractor.HTMLDataExtractorGUI;
 
 public class Main {
 
