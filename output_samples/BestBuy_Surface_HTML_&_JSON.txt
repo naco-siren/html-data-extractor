@@ -1,0 +1,943 @@
+
+=== Testing on BestBuy - Surface ===
+Apr 27, 2017 4:31:11 PM org.openqa.selenium.firefox.FirefoxOptions toCapabilities
+INFO: Preferring the firefox binary in these options (C:\Program Files (x86)\Mozilla Firefox\firefox.exe rather than /Program Files (x86)/Mozilla Firefox/firefox.exe)
+Apr 27, 2017 4:31:11 PM org.openqa.selenium.firefox.FirefoxOptions toCapabilities
+INFO: Preferring the firefox binary in these options (C:\Program Files (x86)\Mozilla Firefox\firefox.exe rather than null)
+1493328671414	geckodriver	INFO	Listening on 127.0.0.1:35956
+1493328671934	mozprofile::profile	INFO	Using profile path C:\Users\nacos\AppData\Local\Temp\rust_mozprofile.B7uHn4ofmezY
+1493328671941	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe with args []
+1493328671949	geckodriver::marionette	INFO	Connecting to Marionette on localhost:64479
+1493328673044	Marionette	INFO	Listening on port 64479
+Apr 27, 2017 4:31:15 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+JavaScript error: , line 0: TimeoutError: operation timed out after 3000 ms
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+=== Successfully saved to Microsoft surface - Best Buy - 2017-04-27 16-47-45.html
+1493329665958	Marionette	INFO	New connections will no longer be accepted
+[Child 10028] ###!!! ABORT: Aborting on channel error.: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/glue/MessageChannel.cpp, line 2143
+DataGroups refined to 0.038461538461538464
+
+*** No. 0, Data size: 16, Significance: 106.125
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Pro 4 - 12.3" - 128GB - Intel Core i5 - Silver
+  </div>
+  <div>
+   <li>Model:CR5-00001</li>
+   <li>SKU:4523600</li>
+  </div>
+  <div>
+   See More Options
+  </div>
+  <div>
+   <li>Windows 10 Pro</li>
+   <li>12.3" touch-screen display with 2736 x 1824 resolution</li>
+   <li>128GB storage capacity</li>
+   <li>Wi-Fi</li>
+   <li>Cortana digital assistant</li>
+   <li>5.0MP front- and 8.0MP rear-facing cameras</li>
+  </div>
+  <div>
+   4.5(3137 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $849.99
+    </div>
+    <span>SAVE $150</span>
+    <span>Was $999.99</span>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>2 items</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $100 on 24/7 Geek Squad Support</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Pro 4 - 12.3" - 256GB - Intel Core i7 - Silver
+  </div>
+  <div>
+   <li>Model:CQ9-00001</li>
+   <li>SKU:4523800</li>
+  </div>
+  <div>
+   See More Options
+  </div>
+  <div>
+   <li>Windows 10 Pro</li>
+   <li>12.3" touch-screen display with 2736 x 1824 resolution</li>
+   <li>256GB storage capacity</li>
+   <li>Wi-Fi</li>
+   <li>Cortana digital assistant</li>
+   <li>5.0MP front- and 8.0MP rear-facing cameras</li>
+  </div>
+  <div>
+   4.5(422 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $1,349.99
+    </div>
+    <span>SAVE $150</span>
+    <span>Was $1,499.99</span>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $100 on 24/7 Geek Squad Support</li>
+   <li>Save $20 on Wi-Fi Setup with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Pro 4 - 12.3" - 256GB - Intel Core i5 - Silver
+  </div>
+  <div>
+   <li>Model:CR3-00001</li>
+   <li>SKU:4523700</li>
+  </div>
+  <div>
+   See More Options
+  </div>
+  <div>
+   <li>Windows 10 Pro</li>
+   <li>12.3" touch-screen display with 2736 x 1824 resolution</li>
+   <li>256GB storage capacity</li>
+   <li>Wi-Fi</li>
+   <li>Cortana voice assistant</li>
+   <li>5.0MP front- and 8.0MP rear-facing cameras</li>
+  </div>
+  <div>
+   4.5(1653 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $1,199.99
+    </div>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $100 on 24/7 Geek Squad Support</li>
+   <li>Save $20 on Wi-Fi Setup with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Pro 4 - 12.3" - 128GB - Intel Core m3 - Silver
+  </div>
+  <div>
+   <li>Model:FML-00001</li>
+   <li>SKU:5723346</li>
+  </div>
+  <div>
+   <li>Windows 10</li>
+   <li>12.3" multi-touch screen display with 2736 x 1824 resolution</li>
+   <li>128GB storage capacity</li>
+   <li>Dual-Core processor</li>
+   <li>Wi-Fi</li>
+   <li>8MP back and 5MP front cameras</li>
+   <li>microSD, microSDHC, microSDXC memory cards</li>
+  </div>
+  <div>
+   4.4(29 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $749.99
+    </div>
+    <span>SAVE $50</span>
+    <span>Was $799.99</span>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $100 on 24/7 Geek Squad Support</li>
+   <li>Save $20 on Wi-Fi Setup with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Pro 4 - 12.3" - 256GB - 16GB Intel Core i7 - Silver
+  </div>
+  <div>
+   <li>Model:TH2-00001</li>
+   <li>SKU:4523900</li>
+  </div>
+  <div>
+   <li>Windows 10 Pro</li>
+   <li>12.3" touch-screen display with 2736 x 1824 resolution</li>
+   <li>256GB storage capacity</li>
+   <li>Wi-Fi</li>
+   <li>Cortana digital assistant</li>
+   <li>5.0MP front- and 8.0MP rear-facing cameras</li>
+  </div>
+  <div>
+   4.5(343 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $1,549.99
+    </div>
+    <span>SAVE $150</span>
+    <span>Was $1,699.99</span>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $100 on 24/7 Geek Squad Support</li>
+   <li>Save $20 on Wi-Fi Setup with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Pro 4 - 12.3" - 512GB - Intel Core i7 - Silver
+  </div>
+  <div>
+   <li>Model:TH4-00001</li>
+   <li>SKU:4524000</li>
+  </div>
+  <div>
+   See More Options
+  </div>
+  <div>
+   <li>Windows 10 Pro</li>
+   <li>12.3" touch-screen display with 2736 x 1824 resolution</li>
+   <li>512GB storage capacity</li>
+   <li>Wi-Fi</li>
+   <li>Cortana digital assistant</li>
+   <li>5.0MP front- and 8.0MP rear-facing cameras</li>
+  </div>
+  <div>
+   4.6(123 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $2,099.99
+    </div>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $100 on 24/7 Geek Squad Support</li>
+   <li>Save $20 on Wi-Fi Setup with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Pro 4 - 12.3" - 1TB - Intel Core i7 - Silver
+  </div>
+  <div>
+   <li>Model:SU4-00001</li>
+   <li>SKU:4981400</li>
+  </div>
+  <div>
+   See More Options
+  </div>
+  <div>
+   <li>Windows 10</li>
+   <li>12.3" multitouch-screen display with 2736 x 1824 resolution</li>
+   <li>1TB storage capacity</li>
+   <li>Dual-Core processor</li>
+   <li>Wi-Fi</li>
+   <li>Ambient light sensor, accelerometer</li>
+   <li>8MP back and 5MP front cameras</li>
+   <li>microSD, microSDHC, microSDXC memory cards</li>
+  </div>
+  <div>
+   4.3(15 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $2,599.99
+    </div>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $100 on 24/7 Geek Squad Support</li>
+   <li>Save $20 on Wi-Fi Setup with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface 3 - 10.8" - Intel Atom - 128GB - Silver
+  </div>
+  <div>
+   <li>Model:7G6-00014</li>
+   <li>SKU:4217901</li>
+  </div>
+  <div>
+   <li>Windows 10</li>
+   <li>10.8" touch-screen display with 1920 x 1280 resolution</li>
+   <li>128GB storage capacity</li>
+   <li>Quad-core processor</li>
+   <li>Wi-Fi</li>
+   <li>Integrated kickstand</li>
+  </div>
+  <div>
+   4.4(919 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $599.99
+    </div>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Check Stores
+   </div>
+  </div>
+  <div>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $100 on 24/7 Geek Squad Support</li>
+   <li>Save $20 on Wi-Fi Setup with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Pro 3 - 12" - Intel Core i7 - 512GB - Silver
+  </div>
+  <div>
+   <li>Model:PU2-00017</li>
+   <li>SKU:4217800</li>
+  </div>
+  <div>
+   <li>Windows 10</li>
+   <li>12" touch screen with 2160 x 1440 resolution</li>
+   <li>512GB storage capacity</li>
+   <li>Wi-Fi</li>
+   <li>5.0MP front and rear cameras</li>
+   <li>microSD slot</li>
+   <li>USB 3.0 port and Mini DisplayPort</li>
+  </div>
+  <div>
+   3.7(15 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $1,949.99
+    </div>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $100 on 24/7 Geek Squad Support</li>
+   <li>Save $20 on Wi-Fi Setup with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Studio - 28" - Intel Core i5 - 8GB Memory - 1TB Rapid Hard Drive - Silver
+  </div>
+  <div>
+   <li>Model:42L-00001</li>
+   <li>SKU:5679332</li>
+  </div>
+  <div>
+   <li>6th Generation Intel® Core™ i5 processor</li>
+   <li>NVIDIA® GeForce® GTX 965M 2GB Graphics</li>
+   <li>1TB Rapid Hybrid Drive</li>
+   <li>28-inch adjustable PixelSense™ Display with touchscreen</li>
+   <li>Surface Pen, Surface Keyboard, and Surface Mouse</li>
+   <li>Zero Gravity Hinge included</li>
+  </div>
+  <div>
+   4.5(4 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $2,999.99
+    </div>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save on Select Mouse with Computer</li>
+   <li>Free 6-Month Internet Security: See How, opens a new window</li>
+   <li>Save $30 or $50 on Printer with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Studio - 28" - Intel Core i7 - 16GB Memory - 1TB Rapid Hybrid Drive - Silver
+  </div>
+  <div>
+   <li>Model:42Q-00001</li>
+   <li>SKU:5678705</li>
+  </div>
+  <div>
+   <li>6th Generation Intel® Core™ i7 processor</li>
+   <li>NVIDIA® GeForce® GTX 965M 2GB Graphics</li>
+   <li>1TB Rapid Hybrid Drive</li>
+   <li>28-inch adjustable PixelSense™ Display with touchscreen</li>
+   <li>Surface Pen, Surface Keyboard, and Surface MouseZero</li>
+   <li>Gravity Hinge included</li>
+  </div>
+  <div>
+   4.8(5 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $3,499.99
+    </div>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save on Select Mouse with Computer</li>
+   <li>Free 6-Month Internet Security: See How, opens a new window</li>
+   <li>Save $30 or $50 on Printer with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Studio - 28" - Intel Core i7 - 32GB Memory - 2TB Rapid Hybrid Drive - Silver
+  </div>
+  <div>
+   <li>Model:43Q-00001</li>
+   <li>SKU:5678749</li>
+  </div>
+  <div>
+   <li>6th Generation Intel® Core™ i7 processor</li>
+   <li>NVIDIA® GeForce® GTX 980M 2GB Graphics</li>
+   <li>2TB Rapid Hybrid Drive</li>
+   <li>28-inch adjustable PixelSense™ Display with touchscreen</li>
+   <li>Surface Pen, Surface Keyboard, and Surface Mouse</li>
+   <li>Zero Gravity Hinge included</li>
+  </div>
+  <div>
+   4.6(8 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $4,199.99
+    </div>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save on Select Mouse with Computer</li>
+   <li>Free 6-Month Internet Security: See How, opens a new window</li>
+   <li>Save $30 or $50 on Printer with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Book 2-in-1 13.5" Touch-Screen Laptop - Intel Core i5 - 8GB Memory - 128GB Solid State Drive - Silver
+  </div>
+  <div>
+   <li>Model:CR9-00001</li>
+   <li>SKU:4530800</li>
+  </div>
+  <div>
+   See More Options
+  </div>
+  <div>
+   <li>Windows 10 Pro</li>
+   <li>Technical details: Intel® HD Graphics; 6th Gen Intel® Core™ i5 processor; 13.5" display; 8GB memory; 128GB solid state drive</li>
+   <li>Special features: Bluetooth; touch screen</li>
+   <li>Note: DVD/CD drive not included</li>
+  </div>
+  <div>
+   4.5(1043 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>Was $1,499.99
+    <div>
+     See price in cart
+    </div>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save on Select Mouse with Computer</li>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $20 on Microsoft Office with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Book 13.5" Touch Screen with Performance Base - Intel Core i7 - 16GB Memory - 512GB Solid State Hard Drive - Silver
+  </div>
+  <div>
+   <li>Model:96D-00001</li>
+   <li>SKU:5669800</li>
+  </div>
+  <div>
+   See More Options
+  </div>
+  <div>
+   <li>Windows 10 Pro</li>
+   <li>Intel® Core™ i7 processors and up to 16GB RAM</li>
+   <li>Enhanced graphics performance with NVIDIA® GeForce® GTX 965M 2GB GDDR5 memory</li>
+   <li>13.5 inch PixelSense™ Display with touchscreen</li>
+   <li>Up to 16 hours of video playback3</li>
+  </div>
+  <div>
+   4.6(123 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>Was $2,799.99
+    <div>
+     See price in cart
+    </div>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save on Select Mouse with Computer</li>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $20 on Microsoft Office with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Book 2-in-1 13.5" Touch-Screen Laptop - Intel Core i5 - 8GB Memory - 256GB Solid State Drive - Silver
+  </div>
+  <div>
+   <li>Model:SX3-00001</li>
+   <li>SKU:4531200</li>
+  </div>
+  <div>
+   See More Options
+  </div>
+  <div>
+   <li>Windows 10 Pro</li>
+   <li>Technical details: NVIDIA GeForce GPU; 6th Gen Intel® Core™ i5 processor; 13.5" display; 8GB memory; 256GB solid state drive</li>
+   <li>Special features: Bluetooth; touch screen</li>
+   <li>Note: DVD/CD drive not included</li>
+  </div>
+  <div>
+   4.5(488 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $1,729.99
+    </div>
+    <span>SAVE $170</span>
+    <span>Was $1,899.99</span>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save on Select Mouse with Computer</li>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $20 on Microsoft Office with Device</li>
+  </div>
+ </div>
+</div>
+
+<div>
+ <div>
+  <div></div>
+  <div></div>
+  <div>
+   Add to Compare
+  </div>
+ </div>
+ <div>
+  <div>
+   Microsoft - Surface Book 13.5" Touch Screen with Performance Base - Intel Core i7 - 16GB Memory - 1TB Solid State Hard Drive - Silver
+  </div>
+  <div>
+   <li>Model:975-00001</li>
+   <li>SKU:5669900</li>
+  </div>
+  <div>
+   See More Options
+  </div>
+  <div>
+   <li>Windows 10 Pro</li>
+   <li>Intel® Core™ i7 processors and up to 16GB RAM</li>
+   <li>Enhanced graphics performance with NVIDIA® GeForce® GTX 965M 2GB GDDR5 memory</li>
+   <li>13.5 inch PixelSense™ Display with touchscreen</li>
+   <li>Up to 16 hours of video playback3</li>
+  </div>
+  <div>
+   4.8(8 Reviews)
+  </div>
+ </div>
+ <div>
+  <div>
+   <div>
+    <div>
+     Price Match Guarantee
+    </div>
+    <div>
+     $3,199.99
+    </div>
+    <span>SAVE $100</span>
+    <span>Was $3,299.99</span>
+   </div>
+   <div>
+    <span>Included Free:</span>
+    <span>1 item</span>
+   </div>
+   <div>
+    Add to Cart
+   </div>
+  </div>
+  <div>
+   <li>Save on Select Mouse with Computer</li>
+   <li>Save $30 or $50 on Printer with Device</li>
+   <li>Save $20 on Microsoft Office with Device</li>
+  </div>
+ </div>
+</div>
+
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Pro 4 - 12.3\" - 128GB - Intel Core i5 - Silver",{"li":["Model:CR5-00001","SKU:4523600"]},"See More Options",{"li":["Windows 10 Pro","12.3\" touch-screen display with 2736 x 1824 resolution","128GB storage capacity","Wi-Fi","Cortana digital assistant","5.0MP front- and 8.0MP rear-facing cameras"]},"4.5(3137 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$849.99"],"span":["SAVE $150","Was $999.99"]},{"span":["Included Free:","2 items"]},"Add to Cart"]},{"li":["Save $30 or $50 on Printer with Device","Save $30 or $50 on Printer with Device","Save $100 on 24/7 Geek Squad Support"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Pro 4 - 12.3\" - 256GB - Intel Core i7 - Silver",{"li":["Model:CQ9-00001","SKU:4523800"]},"See More Options",{"li":["Windows 10 Pro","12.3\" touch-screen display with 2736 x 1824 resolution","256GB storage capacity","Wi-Fi","Cortana digital assistant","5.0MP front- and 8.0MP rear-facing cameras"]},"4.5(422 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$1,349.99"],"span":["SAVE $150","Was $1,499.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save $30 or $50 on Printer with Device","Save $100 on 24/7 Geek Squad Support","Save $20 on Wi-Fi Setup with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Pro 4 - 12.3\" - 256GB - Intel Core i5 - Silver",{"li":["Model:CR3-00001","SKU:4523700"]},"See More Options",{"li":["Windows 10 Pro","12.3\" touch-screen display with 2736 x 1824 resolution","256GB storage capacity","Wi-Fi","Cortana voice assistant","5.0MP front- and 8.0MP rear-facing cameras"]},"4.5(1653 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$1,199.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save $30 or $50 on Printer with Device","Save $100 on 24/7 Geek Squad Support","Save $20 on Wi-Fi Setup with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Pro 4 - 12.3\" - 128GB - Intel Core m3 - Silver",{"li":["Model:FML-00001","SKU:5723346"]},{"li":["Windows 10","12.3\" multi-touch screen display with 2736 x 1824 resolution","128GB storage capacity","Dual-Core processor","Wi-Fi","8MP back and 5MP front cameras","microSD, microSDHC, microSDXC memory cards"]},"4.4(29 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$749.99"],"span":["SAVE $50","Was $799.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save $30 or $50 on Printer with Device","Save $100 on 24/7 Geek Squad Support","Save $20 on Wi-Fi Setup with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Pro 4 - 12.3\" - 256GB - 16GB Intel Core i7 - Silver",{"li":["Model:TH2-00001","SKU:4523900"]},{"li":["Windows 10 Pro","12.3\" touch-screen display with 2736 x 1824 resolution","256GB storage capacity","Wi-Fi","Cortana digital assistant","5.0MP front- and 8.0MP rear-facing cameras"]},"4.5(343 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$1,549.99"],"span":["SAVE $150","Was $1,699.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save $30 or $50 on Printer with Device","Save $100 on 24/7 Geek Squad Support","Save $20 on Wi-Fi Setup with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Pro 4 - 12.3\" - 512GB - Intel Core i7 - Silver",{"li":["Model:TH4-00001","SKU:4524000"]},"See More Options",{"li":["Windows 10 Pro","12.3\" touch-screen display with 2736 x 1824 resolution","512GB storage capacity","Wi-Fi","Cortana digital assistant","5.0MP front- and 8.0MP rear-facing cameras"]},"4.6(123 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$2,099.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save $30 or $50 on Printer with Device","Save $100 on 24/7 Geek Squad Support","Save $20 on Wi-Fi Setup with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Pro 4 - 12.3\" - 1TB - Intel Core i7 - Silver",{"li":["Model:SU4-00001","SKU:4981400"]},"See More Options",{"li":["Windows 10","12.3\" multitouch-screen display with 2736 x 1824 resolution","1TB storage capacity","Dual-Core processor","Wi-Fi","Ambient light sensor, accelerometer","8MP back and 5MP front cameras","microSD, microSDHC, microSDXC memory cards"]},"4.3(15 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$2,599.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save $30 or $50 on Printer with Device","Save $100 on 24/7 Geek Squad Support","Save $20 on Wi-Fi Setup with Device"]}]}]}}
+{"div":{"div":[{"div":["","Add to Compare"]},{"div":["Microsoft - Surface 3 - 10.8\" - Intel Atom - 128GB - Silver",{"li":["Model:7G6-00014","SKU:4217901"]},{"li":["Windows 10","10.8\" touch-screen display with 1920 x 1280 resolution","128GB storage capacity","Quad-core processor","Wi-Fi","Integrated kickstand"]},"4.4(919 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$599.99"]},{"span":["Included Free:","1 item"]},"Check Stores"]},{"li":["Save $30 or $50 on Printer with Device","Save $100 on 24/7 Geek Squad Support","Save $20 on Wi-Fi Setup with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Pro 3 - 12\" - Intel Core i7 - 512GB - Silver",{"li":["Model:PU2-00017","SKU:4217800"]},{"li":["Windows 10","12\" touch screen with 2160 x 1440 resolution","512GB storage capacity","Wi-Fi","5.0MP front and rear cameras","microSD slot","USB 3.0 port and Mini DisplayPort"]},"3.7(15 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$1,949.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save $30 or $50 on Printer with Device","Save $100 on 24/7 Geek Squad Support","Save $20 on Wi-Fi Setup with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Studio - 28\" - Intel Core i5 - 8GB Memory - 1TB Rapid Hard Drive - Silver",{"li":["Model:42L-00001","SKU:5679332"]},{"li":["6th Generation Intel® Core™ i5 processor","NVIDIA® GeForce® GTX 965M 2GB Graphics","1TB Rapid Hybrid Drive","28-inch adjustable PixelSense™ Display with touchscreen","Surface Pen, Surface Keyboard, and Surface Mouse","Zero Gravity Hinge included"]},"4.5(4 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$2,999.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save on Select Mouse with Computer","Free 6-Month Internet Security: See How, opens a new window","Save $30 or $50 on Printer with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Studio - 28\" - Intel Core i7 - 16GB Memory - 1TB Rapid Hybrid Drive - Silver",{"li":["Model:42Q-00001","SKU:5678705"]},{"li":["6th Generation Intel® Core™ i7 processor","NVIDIA® GeForce® GTX 965M 2GB Graphics","1TB Rapid Hybrid Drive","28-inch adjustable PixelSense™ Display with touchscreen","Surface Pen, Surface Keyboard, and Surface MouseZero","Gravity Hinge included"]},"4.8(5 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$3,499.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save on Select Mouse with Computer","Free 6-Month Internet Security: See How, opens a new window","Save $30 or $50 on Printer with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Studio - 28\" - Intel Core i7 - 32GB Memory - 2TB Rapid Hybrid Drive - Silver",{"li":["Model:43Q-00001","SKU:5678749"]},{"li":["6th Generation Intel® Core™ i7 processor","NVIDIA® GeForce® GTX 980M 2GB Graphics","2TB Rapid Hybrid Drive","28-inch adjustable PixelSense™ Display with touchscreen","Surface Pen, Surface Keyboard, and Surface Mouse","Zero Gravity Hinge included"]},"4.6(8 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$4,199.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save on Select Mouse with Computer","Free 6-Month Internet Security: See How, opens a new window","Save $30 or $50 on Printer with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Book 2-in-1 13.5\" Touch-Screen Laptop - Intel Core i5 - 8GB Memory - 128GB Solid State Drive - Silver",{"li":["Model:CR9-00001","SKU:4530800"]},"See More Options",{"li":["Windows 10 Pro","Technical details: Intel® HD Graphics; 6th Gen Intel® Core™ i5 processor; 13.5\" display; 8GB memory; 128GB solid state drive","Special features: Bluetooth; touch screen","Note: DVD/CD drive not included"]},"4.5(1043 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","See price in cart"],"content":"Was $1,499.99"},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save on Select Mouse with Computer","Save $30 or $50 on Printer with Device","Save $20 on Microsoft Office with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Book 13.5\" Touch Screen with Performance Base - Intel Core i7 - 16GB Memory - 512GB Solid State Hard Drive - Silver",{"li":["Model:96D-00001","SKU:5669800"]},"See More Options",{"li":["Windows 10 Pro","Intel® Core™ i7 processors and up to 16GB RAM","Enhanced graphics performance with NVIDIA® GeForce® GTX 965M 2GB GDDR5 memory","13.5 inch PixelSense™ Display with touchscreen","Up to 16 hours of video playback3"]},"4.6(123 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","See price in cart"],"content":"Was $2,799.99"},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save on Select Mouse with Computer","Save $30 or $50 on Printer with Device","Save $20 on Microsoft Office with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Book 2-in-1 13.5\" Touch-Screen Laptop - Intel Core i5 - 8GB Memory - 256GB Solid State Drive - Silver",{"li":["Model:SX3-00001","SKU:4531200"]},"See More Options",{"li":["Windows 10 Pro","Technical details: NVIDIA GeForce GPU; 6th Gen Intel® Core™ i5 processor; 13.5\" display; 8GB memory; 256GB solid state drive","Special features: Bluetooth; touch screen","Note: DVD/CD drive not included"]},"4.5(488 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$1,729.99"],"span":["SAVE $170","Was $1,899.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save on Select Mouse with Computer","Save $30 or $50 on Printer with Device","Save $20 on Microsoft Office with Device"]}]}]}}
+{"div":{"div":[{"div":["","","Add to Compare"]},{"div":["Microsoft - Surface Book 13.5\" Touch Screen with Performance Base - Intel Core i7 - 16GB Memory - 1TB Solid State Hard Drive - Silver",{"li":["Model:975-00001","SKU:5669900"]},"See More Options",{"li":["Windows 10 Pro","Intel® Core™ i7 processors and up to 16GB RAM","Enhanced graphics performance with NVIDIA® GeForce® GTX 965M 2GB GDDR5 memory","13.5 inch PixelSense™ Display with touchscreen","Up to 16 hours of video playback3"]},"4.8(8 Reviews)"]},{"div":[{"div":[{"div":["Price Match Guarantee","$3,199.99"],"span":["SAVE $100","Was $3,299.99"]},{"span":["Included Free:","1 item"]},"Add to Cart"]},{"li":["Save on Select Mouse with Computer","Save $30 or $50 on Printer with Device","Save $20 on Microsoft Office with Device"]}]}]}}
+Disconnected from the target VM, address: '127.0.0.1:55063', transport: 'socket'

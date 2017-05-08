@@ -6,8 +6,9 @@ public class Main {
 
         /* As for test cases, please refer to ./test */
 
-
         HTMLDataExtractorGUI.main(null);
+
+        return;
     }
 
 }
