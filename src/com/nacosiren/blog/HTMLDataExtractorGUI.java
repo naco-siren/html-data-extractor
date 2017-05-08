@@ -1,11 +1,11 @@
-package gokurakujoudo;
+package com.nacosiren.blog;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import gokurakujoudo.data.DataGroup;
-import gokurakujoudo.data.DataGroups;
+import com.nacosiren.blog.data.DataGroup;
+import com.nacosiren.blog.data.DataGroups;
 
 
 import java.util.ArrayList;

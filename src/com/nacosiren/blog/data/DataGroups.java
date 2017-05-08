@@ -1,8 +1,7 @@
-package gokurakujoudo.data;
+package com.nacosiren.blog.data;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.DoubleSummaryStatistics;
 
 /**
  * Created by naco_siren on 3/29/17.

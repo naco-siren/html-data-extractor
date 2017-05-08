@@ -1,4 +1,4 @@
-import gokurakujoudo.injection.SeleniumInjector;
+import com.nacosiren.blog.injection.SeleniumInjector;
 import org.junit.Test;
 
 /**

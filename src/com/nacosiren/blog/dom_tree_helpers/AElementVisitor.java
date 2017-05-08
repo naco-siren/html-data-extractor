@@ -1,4 +1,4 @@
-package gokurakujoudo.dom_tree_helpers;
+package com.nacosiren.blog.dom_tree_helpers;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Element;
@@ -8,7 +8,7 @@ import org.jsoup.select.NodeVisitor;
 
 import java.util.ArrayList;
 
-import static gokurakujoudo.injection.InjectionUtils.*;
+import static com.nacosiren.blog.injection.InjectionUtils.*;
 
 /**
  * Created by nacos on 4/23/2017.

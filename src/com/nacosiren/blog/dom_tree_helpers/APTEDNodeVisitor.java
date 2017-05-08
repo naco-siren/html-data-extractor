@@ -1,4 +1,4 @@
-package gokurakujoudo.dom_tree_helpers;
+package com.nacosiren.blog.dom_tree_helpers;
 
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Attributes;

@@ -1,11 +1,11 @@
-package gokurakujoudo.dom_tree_helpers;
+package com.nacosiren.blog.dom_tree_helpers;
 
 import apted.costmodel.StringUnitCostModel;
 import apted.distance.APTED;
 import apted.node.StringNodeData;
 import apted.parser.BracketStringInputParser;
-import gokurakujoudo.data.DataGroup;
-import gokurakujoudo.data.DataGroups;
+import com.nacosiren.blog.data.DataGroup;
+import com.nacosiren.blog.data.DataGroups;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.NodeTraversor;

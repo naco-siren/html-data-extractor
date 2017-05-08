@@ -1,10 +1,10 @@
-package gokurakujoudo;
+package com.nacosiren.blog;
 
-import gokurakujoudo.data.DataGroup;
-import gokurakujoudo.data.DataGroups;
-import gokurakujoudo.dom_tree_helpers.DomTreeCleaner;
-import gokurakujoudo.dom_tree_helpers.DomTreeDataExtractor;
-import gokurakujoudo.injection.SeleniumInjector;
+import com.nacosiren.blog.data.DataGroup;
+import com.nacosiren.blog.data.DataGroups;
+import com.nacosiren.blog.dom_tree_helpers.DomTreeCleaner;
+import com.nacosiren.blog.dom_tree_helpers.DomTreeDataExtractor;
+import com.nacosiren.blog.injection.SeleniumInjector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 

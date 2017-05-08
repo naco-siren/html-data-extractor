@@ -1,12 +1,11 @@
-package gokurakujoudo.data;
+package com.nacosiren.blog.data;
 
-import gokurakujoudo.dom_tree_helpers.DomTreeCleaner;
-import gokurakujoudo.dom_tree_helpers.FinalizeDOMTreeVisitor;
+import com.nacosiren.blog.dom_tree_helpers.DomTreeCleaner;
+import com.nacosiren.blog.dom_tree_helpers.FinalizeDOMTreeVisitor;
 import org.json.JSONObject;
 import org.json.XML;
 import org.jsoup.nodes.*;
 import org.jsoup.select.NodeTraversor;
-import org.jsoup.select.NodeVisitor;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,6 @@
-import gokurakujoudo.HTMLDataExtractor;
-import gokurakujoudo.data.DataGroup;
-import gokurakujoudo.data.DataGroups;
-import org.json.JSONObject;
-import org.json.XML;
+import com.nacosiren.blog.HTMLDataExtractor;
+import com.nacosiren.blog.data.DataGroup;
+import com.nacosiren.blog.data.DataGroups;
 import org.junit.Test;
 
 import java.io.IOException;

@@ -1,6 +1,6 @@
-package gokurakujoudo.dom_tree_helpers;
+package com.nacosiren.blog.dom_tree_helpers;
 
-import gokurakujoudo.injection.InjectionUtils;
+import com.nacosiren.blog.injection.InjectionUtils;
 import org.apache.http.util.TextUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;

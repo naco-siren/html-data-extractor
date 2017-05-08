@@ -1,5 +1,5 @@
-import gokurakujoudo.dom_tree_helpers.DomTreeCleaner;
-import gokurakujoudo.injection.SeleniumInjector;
+import com.nacosiren.blog.dom_tree_helpers.DomTreeCleaner;
+import com.nacosiren.blog.injection.SeleniumInjector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

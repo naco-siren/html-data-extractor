@@ -1,4 +1,4 @@
-package gokurakujoudo.injection;
+package com.nacosiren.blog.injection;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,9 +12,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
-import static gokurakujoudo.injection.InjectionUtils.*;
+import static com.nacosiren.blog.injection.InjectionUtils.*;
 
 /**
  * Created by nacos on 4/15/2017.

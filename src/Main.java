@@ -1,4 +1,4 @@
-import gokurakujoudo.HTMLDataExtractorGUI;
+import com.nacosiren.blog.HTMLDataExtractorGUI;
 
 public class Main {
 
