@@ -13,42 +13,36 @@ public class TestHTMLDataExtractor {
     @Test
     public void testWebpages() throws Exception {
 
+        /* Test cases of popular web sites */
         /* TODO: Add more test cases and analyze! */
         String[] titles = new String[] {
                 "Google Scholar",
-                //"Bestbuy - earphones",
-                //"Amazon - book light"
+                "Bestbuy - earphones",
+                "Amazon - book light"
         };
         String[] URLs = new String[]{
-                "https://scholar.google.com/scholar?hl=en&q=database&btnG=&as_sdt=1%2C14&as_sdtp="
-                //"https://stackoverflow.com/",
-                //"http://www.bestbuy.com/site/searchpage.jsp?st=earphones&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=&sp=&qp=&list=n&af=true&iht=y&usc=All+Categories&ks=960&keys=keys",
-                //"https://www.amazon.com/s/ref=nb_sb_ss_c_1_10?url=search-alias%3Dstripbooks&field-keywords=book+light&sprefix=book+light%2Cstripbooks%2C151&crid=3LC02T51FKVHJ"
+                "https://scholar.google.com/scholar?hl=en&q=database&btnG=&as_sdt=1%2C14&as_sdtp=",
+                "http://www.bestbuy.com/site/searchpage.jsp?st=earphones&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=&sp=&qp=&list=n&af=true&iht=y&usc=All+Categories&ks=960&keys=keys",
+                "https://www.amazon.com/s/ref=nb_sb_ss_c_1_10?url=search-alias%3Dstripbooks&field-keywords=book+light&sprefix=book+light%2Cstripbooks%2C151&crid=3LC02T51FKVHJ"
         };
         int[] expectedOutputDataCounts = new int[] {
-                8
-                //24,
-                //12
+                8,
+                24,
+                12
         };
 
 
         /* DO NOT MODIFY THIS! */
         for (int i = 0; i < URLs.length; i++) {
             System.out.println("=== Testing on " + titles[i] + " ===");
-            //assert (extractDataFromURL(URLs[i], true, true) == expectedOutputDataCounts[i]);
-            try {
-                testWebpage(URLs[i], true, true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+            assert (testWebpage(URLs[i], true, true) == expectedOutputDataCounts[i]);
             System.out.println();
         }
 
         return;
     }
 
-    public int testWebpage(String URL, boolean outputHTML, boolean outputJSON) throws IOException {
+    public int testWebpage(String URL, boolean outputHTML, boolean outputJSON) {
         /* Instantiate an HTMLDataExtractor */
         HTMLDataExtractor htmlDataExtractor = new HTMLDataExtractor();
 
@@ -92,7 +86,6 @@ public class TestHTMLDataExtractor {
                     ArrayList<String> dataJSONs = dataGroup.getJSONs();
                     for (String dataJSON : dataJSONs) {
                         //TODO: parse json to table
-                        //Prettify_json.readd(dataJSON);
                         System.out.println(dataJSON);
                         System.out.println();
                     }
