@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class HTMLDataExtractorGUI {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("HTML Data Extractor gokurakujoudo.GUI");
+        JFrame frame = new JFrame("HTML Data Extractor");
         frame.setContentPane(new HTMLDataExtractorGUI()._mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

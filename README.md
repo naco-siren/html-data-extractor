@@ -9,7 +9,7 @@ Extract data records from web pages based on DOM tree structure and visual info.
 1.  Use the latest version of IntelliJ IDEA to import the project.
 2.  Run the Main class `src/Main.java`, a Swing GUI will pop up, as shown in the screenshot below:
 
-    ![GUI](https://ix2iqw.bn1302.livefilestore.com/y4mgB2uuHKlpT4AbmHTobSIDYH6rdsVeSfB_40zGqf9d1XmC-nUzsh6ruV6QJwVS-Uinfou5ihnbO-wjU0cqVQuVD1HGkst8DSA5yBj94WkLz0WNEJGADK9hfwvtDaAReJE5KTwr855esXHoqHdZ7tltE-FsZfv9F5yr4oOaO8_hVyARLA6cRWCTY2LEIlGatH0nq3rvsCFilv3usN3KEr73A?width=1024&height=598&cropmode=none)
+    ![GUI](https://6zndqg.bn1302.livefilestore.com/y4md175y362r-eH8igxo_-WlsVss0SMtrxx3cDTEUeUN-vhxzTOcjg4xWTkxW1qVeIToKMHxSWFcalIgedT6FawpNDDZjJ8E1n-36p5-Plac-I5UNyYjNZJWn_U3osmoKUC25-VR7Dlx9vHEAhb3HfAVVwy_yZWFZp7mAeSKpF2mBu8nPRdevsjLZ5HlPb9TphC1s95IIQygMMqKyXX0bJ-Vg?width=1024&height=598&cropmode=none)
     1. Paste the URL of the web page to extract data records from to the `Source URL`
 	text input.
     2. The `Expected records count` input can be left blank as it won't affect the result.
