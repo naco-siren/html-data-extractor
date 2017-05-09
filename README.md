@@ -1,11 +1,11 @@
-# HTMLDataExtractor
-Extract data records from web pages based on DOM tree structure and visual info.
+# HTML Data Extractor
+Automatic extraction of data records from web pages based on DOM tree structure and visual information.
 
-## Environment Requirements
-* OS: Windows
+## Environment
+* OS: Windows with JDK 8
 * Software: Mozilla firefox (32 bit)
 
-## Execution Procedures
+## Usage and Demo
 1.  Use the latest version of IntelliJ IDEA to import the project.
 2.  Run the Main class `src/Main.java`, a Swing GUI will pop up, as shown in the screenshot below:
 
